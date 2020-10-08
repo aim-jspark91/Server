@@ -33,7 +33,7 @@ public class AssignCellWorkOrder extends SyncHandler
 		List<Element> eleLotList = SMessageUtil.getBodySequenceItemList(doc, "LOTLIST", true);
 		int releaseQuantity = 0;
 		ProductRequest productRequest = MESWorkOrderServiceProxy.getProductRequestInfoUtil().getProductRequest(productRequestName);
-		
+		int i=0;
 		// validation
 		
 		for (Element eleLot : eleLotList) 
