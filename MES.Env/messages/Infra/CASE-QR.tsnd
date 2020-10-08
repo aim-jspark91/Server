@@ -1,0 +1,112 @@
+8800
+;225.11.11.8
+tcp:10.80.136.51:7500
+GVO.A1.MES.PRD.GEN.QRYsvr
+Scenario test
+false
+3.0
+step 01;
+body
+<Message>
+    <Header>
+        <MESSAGENAME>GetQueryResult</MESSAGENAME>
+        <TRANSACTIONID>${TRANSACTIONID}</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME></ORIGINALSOURCESUBJECTNAME>
+        <EVENTUSER />
+        <EVENTCOMMENT />
+    </Header>
+    <Body>
+        <QUERYID>GetMainLotList</QUERYID>
+        <VERSION>00001</VERSION>
+        <BINDV>
+            <DISABLELOTSTATE2>Scrapped</DISABLELOTSTATE2>
+            <FACTORYNAME>ARRAY</FACTORYNAME>
+            <DISABLELOTSTATE4>Shipped</DISABLELOTSTATE4>
+            <DISABLELOTSTATE1>Emptied</DISABLELOTSTATE1>
+            <MACHINENAME>1ACI01</MACHINENAME>
+            <DISABLELOTSTATE3>Completed</DISABLELOTSTATE3>
+        </BINDV>
+        <BINDP>
+            <EXTENDEDCOL1 />
+            <CONDITION1>AND L.lotState NOT IN (:DISABLELOTSTATE1, :DISABLELOTSTATE2, :DISABLELOTSTATE3, :DISABLELOTSTATE4)</CONDITION1>
+            <EXTENDEDCOL2 />
+            <CONDITION2>AND L.lotState NOT IN (:DISABLELOTSTATE1, :DISABLELOTSTATE2, :DISABLELOTSTATE3, :DISABLELOTSTATE4)</CONDITION2>
+        </BINDP>
+    </Body>
+</Message>
+;
+send;
+wait 200;
+step 02;
+body
+<Message>
+    <Header>
+        <MESSAGENAME>GetQueryResult</MESSAGENAME>
+        <TRANSACTIONID>${TRANSACTIONID}</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME></ORIGINALSOURCESUBJECTNAME>
+        <EVENTUSER />
+        <EVENTCOMMENT />
+    </Header>
+    <Body>
+        <QUERYID>GetProcessFlowInfo</QUERYID>
+        <VERSION>00001</VERSION>
+        <BINDV>
+            <PROCESSFLOWNAME>MP40010A1</PROCESSFLOWNAME>
+        </BINDV>
+    </Body>
+</Message>
+;
+send;
+wait 200;
+step 03;
+body
+<Message>
+    <Header>
+        <MESSAGENAME>GetQueryResult</MESSAGENAME>
+        <TRANSACTIONID>${TRANSACTIONID}</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME></ORIGINALSOURCESUBJECTNAME>
+        <EVENTUSER />
+        <EVENTCOMMENT />
+    </Header>
+    <Body>
+        <QUERYID>GetLotHistoryList</QUERYID>
+        <VERSION>00001</VERSION>
+        <BINDV>
+            <FROMDATE>20140101</FROMDATE>
+            <TODATE>20141207</TODATE>
+            <LOTNAME>A1P4X12B9</LOTNAME>
+        </BINDV>
+        <BINDP>
+            <CONDITION>AND eventTime BETWEEN TO_DATE(:FROMDATE, 'YYYY-MM-DD') AND TO_DATE(:TODATE, 'YYYY-MM-DD')</CONDITION>
+        </BINDP>
+    </Body>
+</Message>
+;
+send;
+wait 200;
+step 4;
+body
+<Message>
+    <Header>
+        <MESSAGENAME>GetQueryResult</MESSAGENAME>
+        <TRANSACTIONID>${TRANSACTIONID}</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME></ORIGINALSOURCESUBJECTNAME>
+        <EVENTUSER />
+        <EVENTCOMMENT />
+    </Header>
+    <Body>
+        <QUERYID>GetProductHistoryList</QUERYID>
+        <VERSION>00001</VERSION>
+        <BINDV>
+            <FROMDATE>20140401</FROMDATE>
+            <TODATE>20141207</TODATE>
+            <LOTNAME>A1P4X11C2</LOTNAME>
+        </BINDV>
+        <BINDP>
+            <CONDITION>AND eventTime BETWEEN TO_DATE(:FROMDATE, 'YYYY-MM-DD') AND TO_DATE(:TODATE, 'YYYY-MM-DD') AND lotName = :LOTNAME</CONDITION>
+        </BINDP>
+    </Body>
+</Message>
+;
+send;
+wait 200;

@@ -1,0 +1,27 @@
+8400
+;225.11.11.4
+
+BOEDT.B4.MES.DEVSanghyun.FAB.CNMsvr
+Sample
+true
+3.0
+<Message>
+  <Header>
+    	<MESSAGENAME>MakeLotNote</MESSAGENAME>
+        <SHOPNAME>BAYA01</SHOPNAME>
+        <MACHINENAME />
+        <TRANSACTIONID>20110104121215750000</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME></ORIGINALSOURCESUBJECTNAME>
+        <SOURCESUBJECTNAME />
+        <TARGETSUBECTNAME />
+        <EVENTUSER />
+        <EVENTCOMMENT />
+        <INPUTSET />
+        <LANGUAGE>English</LANGUAGE>
+        <listener>CNMListener</listener>
+  </Header>
+  <Body>
+        <LOTNAME>8AWA130003</LOTNAME>
+        <LOTNOTE>Lot Memo</LOTNOTE>
+  </Body>
+</Message>

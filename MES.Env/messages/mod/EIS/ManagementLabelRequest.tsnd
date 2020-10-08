@@ -1,0 +1,20 @@
+8200
+;225.11.11.2
+
+BOEHF.B3.MES.DEVWG.MOD.PEMsvr
+Sample
+false
+15.0
+<message>
+  <header>
+    <messagename>ManagementLabelRequest</messagename>
+    <transactionid>20100607172724484375</transactionid>
+    <replysubjectname>_LOCAL.HF.B3M.JMNA.MES.M0001</replysubjectname>
+  </header>
+  <body>
+    <MACHINENAME>3MMPA11</MACHINENAME>
+    <PRODUCTNAME>3ATN060034B5DB</PRODUCTNAME>
+  </body>
+</message>
+
+	

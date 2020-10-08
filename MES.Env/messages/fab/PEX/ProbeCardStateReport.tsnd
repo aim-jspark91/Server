@@ -1,0 +1,44 @@
+8500
+;225.11.11.5
+
+LHH.ARRAY.MES.DEV.FAB.PEXsvr
+Sample
+false
+3.0
+<Message>
+    <Header>
+        <MESSAGENAME>A_ProbeCardStateReport</MESSAGENAME>
+        <TRANSACTIONID>20180814104732000008</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME>EDO.P2.BC.ARRAY.A2TST010</ORIGINALSOURCESUBJECTNAME>
+        <EVENTUSER>A2TST010</EVENTUSER>
+        <EVENTCOMMENT />
+    </Header>
+    <Body>
+        <MACHINENAME>A2TST010</MACHINENAME>
+        <UNITNAME />
+        <PROBECARDLIST>
+            <PROBECARD>
+                <PROBECARDNAME>FHD0200.107</PROBECARDNAME>
+                <MACHINERECIPE>001</MACHINERECIPE>
+                <POSITION>1</POSITION>
+                <UNITNAME>A2TSTK01</UNITNAME>
+                <SUBUNITNAME />
+                <USEDCOUNT />
+                <USEDCOUNTLIMIT />
+            </PROBECARD>
+            <PROBECARD>
+                <PROBECARDNAME>FHD0200.103</PROBECARDNAME>
+                <MACHINERECIPE>001</MACHINERECIPE>
+                <POSITION>1</POSITION>
+                <UNITNAME>A2TSTK02</UNITNAME>
+                <SUBUNITNAME />
+                <USEDCOUNT />
+                <USEDCOUNTLIMIT />
+            </PROBECARD>
+        </PROBECARDLIST>
+    </Body>
+    <Return>
+        <RETURNCODE>0</RETURNCODE>
+        <RETURNMESSAGE />
+    </Return>
+</Message>

@@ -1,0 +1,981 @@
+#!/usr/bin/perl
+  
+#########################################################################
+#
+# indent "@(#) Simple JAVA Based Server Startup Script v1.0 11/10/23
+#                                                  made by A.T.L.A.S
+#
+#                                   All Rights reserved in 2004-2011
+#
+#########################################################################
+
+use POSIX;
+use Time::Local;
+use Time::HiRes qw(usleep);
+
+$exe_path = "";
+
+#########################################################################
+#
+# ToDo : 
+#       1) export MES_CFG="location of AL_serverList.cfg's directory" 
+#       2) export MES_CS_BIN="location of CS script and stop.sh"
+#       3) modify $JAVA_ARG & $OSGI_PORT value according to yours.
+# 
+#########################################################################
+$CFG_LOC = getenv("MES_CFG");
+
+if ($CFG_LOC eq "")
+{
+  print "Setup MES_CFG Environment Variable .profile or .cshrc\n";
+  exit(1);
+}
+
+$run_path = getenv("MES_CS_BIN");
+if ($run_path eq "")
+{
+  print "set MES_CS_BIN Environment Variable in .profile or .cshrc\n";
+  exit(1);
+}
+
+
+$JAVA_ARG = "-DSeq=";       # for checking java processes
+$OSGI_PORT = "-Dprocess=";  # for stop osgi based java processes
+
+
+#########################################################################
+# Process Status Format
+#########################################################################
+format STDOUT =
+<1> @<<<<<<<<< : @<<<<<< - PORT: @<<<<<< - ST: @<<<<<<<<<<<<<<<<<<< - @<<<<<<<
+$p_name, $p_pid, $p_port, $p_stime, $p_tty
+.
+
+
+#########################################################################
+# Process Stop Format
+########################################################################
+format FMT_STOP =
+<1> @<<<<<<<<< : @<<<<<< - PORT : @<<<<<< will be stopped.
+$p_name, $p_pid, $p_port
+.
+
+
+#########################################################################
+# Process Start Format
+#########################################################################
+format FMT_START = 
+<1> Process Group : @<<<<<<<< - Name : @<<<<<<<<< - Cnt : 1, Run : @<
+$p_group, $p_name, $p_count
+.
+  
+
+
+#########################################################################
+
+#########################################################################
+# Basic Information 
+#########################################################################
+$host_name = `hostname`;
+chomp($host_name);
+$host_name =~tr/a-z/A-Z/;
+$get_ip_cmd = "getip $host_name";   # HP-UX specific command 
+$my_ipaddress = `$get_ip_cmd`;
+chomp($my_ipaddress);
+$id = `whoami`;
+chomp($id);
+
+
+#########################################################################
+#
+# Process to invoke !!
+# [WARNING] You must setup the $MES_CFG/AL_serverList.cfg file correctly.
+#
+#########################################################################
+
+$cnt = 0;
+$tmp = "";
+
+%proc_reg = ();     # named hash variables for non-java apps
+%proc_exist = ();   # to fork processes one after another -s 1,2,3...
+
+
+#########################################################################
+#
+# for logging who used this script.
+#
+#########################################################################
+
+$log_path = getenv("HOME") . "/log/ADMIN";
+$today = `date +%Y%m%d`;
+$today_proc = `date "+%Y%m%d%H%M%S"`;
+chomp($today);
+chomp($today_proc);
+$log_file = "CS_STARTUP" . $today . ".LOG";
+
+$log_file_path = $log_path .  "/" . $log_file;
+open(logH, ">> $log_file_path");
+
+
+#########################################################################
+# sub routine : write_log
+#########################################################################
+sub write_log {
+  $time_stamp = "[" . `date "+%Y%m%d %H:%M:%S"`;
+  chomp($time_stamp);
+  $time_stamp .= "]";
+  print logH $time_stamp . " " . $_[0] . "\n";
+}
+
+sub getTime( $$ ) {
+    my $date = @_[0];
+    my $diff = @_[1];
+    $year    = substr($date,0,4);
+    $mon     = substr($date,4,2);
+    $mday    = substr($date,6,2);
+    $hours   = substr($date,8,2);
+    $min     = substr($date,10,2);
+    $sec     = substr($date,12,2);
+    return timelocal($sec, $min, $hours, $mday, $mon - 1, $year) - $diff;
+}
+
+sub getDiffer
+{
+    # day-hh:mm:ss format
+    my $elapsed_time = 0;
+    my $a1 = "";
+    my $a2 = null;
+    my $days = 0;
+    my $hrs = 0;
+    my $min = 0;
+    my $sec = 0;
+    my $tmp = "";
+    $_ = $_[0];
+    ($a1, $a2) = split(/-/);
+    if ($a2 == null )
+    {
+      # only time
+      $tmp = $a1;
+    } else {
+      $days = $a1;
+      $tmp = $a2;
+    }
+
+    my @alist;
+    my $count;
+    @alist = split(/:/, $tmp);
+    $count = @alist;
+    if ($count == 2)
+    {
+      $min = $alist[0]; 
+      $sec = $alist[1];
+    } else {
+      $hrs = $alist[0];
+      $min = $alist[1];
+      $sec = $alist[2];
+    }
+
+    $elapsed_time = 24*60*60*$days + 60*60*$hrs + 60*$min + $sec;
+    return ($elapsed_time);
+}
+sub getDate( $$ ) {
+    my $date = @_[0];
+    my $differ = @_[1];
+    chomp($date);
+    chomp($differ);
+    my $elapsed_time = getDiffer($differ);
+    my $time = &getTime( $date, $elapsed_time );
+    ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime( $time );
+    return sprintf("%04d/%02d/%02d<%02d:%02d:%02d>", $year + 1900, $mon + 1, $mday, $hour, $min, $sec);
+}
+
+
+#########################################################################
+# sub routine : format process 
+#########################################################################
+sub print_process {
+  $p_name = $_[0];
+  $p_pid = $_[1]; 
+  $p_port = $_[2];
+  $p_stime = $_[3];
+  $p_tty = $_[4];
+  write;
+}
+
+
+sub print_stop_process {
+  open(FMT_STOP, ">&STDOUT");
+  $p_name = $_[0];
+  $p_pid = $_[1];
+  $p_port = $_[2];
+ 
+  write(FMT_STOP);
+  close(FMT_STOP);
+}
+          
+sub print_start_process {
+  open(FMT_START, ">&STDOUT");
+  $p_group = $_[0];
+  $p_name = $_[1];
+  $p_count = $_[2];
+ 
+  write(FMT_START);
+  close(FMT_START);
+}
+
+
+          
+
+#########################################################################
+# 
+# Sorting functions
+#
+#########################################################################
+
+## sort by proces_name
+
+sub my_sort_by_procname {
+  foreach $rlEntry (@{$proc_exist{$a}}) {
+    $a_before = $rlEntry->[0];
+  }
+
+  foreach $rlEntry (@{$proc_exist{$b}}) {
+    $a_after = $rlEntry->[0];
+  }
+
+  $ret = $a_before cmp $a_after;
+
+  return ($ret);
+}
+
+# sort by process group
+
+sub my_sort_by_procgrp {
+  foreach $rlEntry (@{$proc_reg{$a}}) {
+    $a_before = $rlEntry->[2];
+  }
+
+  foreach $rlEntry (@{$proc_reg{$b}}) {
+    $a_after = $rlEntry->[2];
+  }
+
+  $ret = $a_before cmp $a_after;
+
+  return ($ret);
+}
+
+
+#########################################################################
+#
+# sub routine : my_sort 
+#
+#########################################################################
+
+sub my_sort {
+  foreach $rlEntry (@{$proc_reg{$a}}) {
+    $a_before = $rlEntry->[7];
+  }
+
+  foreach $rlEntry (@{$proc_reg{$b}}) {
+    $a_after = $rlEntry->[7];
+  }
+
+  return -1 if ($a_before < $a_after);
+  return 0 if ($a_before == $a_after);
+  return 1 if ($a_before > $a_after);
+}
+
+sub my_reverse_sort {
+  $a_before = 0;
+  $a_after = 0;
+  foreach $rlEntry (@{$proc_reg{$a}}) {
+    $a_before = $rlEntry->[7];
+  }
+
+  
+  foreach $rlEntry (@{$proc_reg{$b}}) {
+    $a_after = $rlEntry->[7];
+  }
+
+  return 1 if ($a_before < $a_after);
+  return 0 if ($a_before == $a_after);
+  return -1 if ($a_before > $a_after);
+}
+
+
+sub get_process_info {
+  my ($cmd) = $_[0];
+  my $user = "";
+  my $pid = "";
+  my $ppid = "";
+  my $tty = "";
+  my $etime = "";
+  my $args = "";
+  my $elapsed_time = "";
+  my ($idx) = 0;
+  my ($count) = 0;
+
+  print "--- cmd : $cmd ---\n";
+
+  foreach $a (`$cmd`)
+  {
+     print "=== a : $a ===\n";
+     chomp($a);
+     $len = length($a);
+     @alist = split(/ /, $a);
+     $srv_name = "";
+     $osgi_port = 0;
+
+     $idx = 0;
+     foreach $one(@alist)
+     {
+       if (length($one) == 0)
+       {
+          next;
+       }
+       $idx = $idx + 1;
+       if ($idx == 1)
+       {
+          $user = $one;
+       } elsif ($idx == 2) {
+          $pid = $one;
+       } elsif ($idx == 3) {
+          $ppid = $one;
+       } elsif ($idx == 4) {
+          $tty = $one;
+       } elsif ($idx == 5) {
+          $etime = $one;
+       } else {
+         $bright = index($one, $JAVA_ARG);
+         if ($bright == 0)
+         {
+           ($a, $srv_name) = split(/=/, $one);
+         }
+
+         $bright = index($one, $OSGI_PORT);
+
+         if ($bright == 0)
+         {
+           ($a, $osgi_port) = split(/=/, $one);
+           $osgi_port = $osgi_port + 0;
+         }
+       }
+
+     }
+     if (($osgi_port > 0) && ($srv_name ne ""))
+     {
+        $idx = idx + 1;
+        $count = $count + 1;
+        #print "   <$idx> $srv_name($pid) - port : $osgi_port : $stime  $tty\n";
+        $srv_group = $srv_name;
+        $srv_group =~ tr/0-9/ /;
+        $srv_group =~ s/ //g;
+        #$rlEntry = [$srv_name, $osgi_port, $tty];
+        #push (@{$proc_exist{$srv_name}}, $rlEntry);
+
+        $elapsed_time = getDate($today_proc, $etime);
+
+        foreach $procname (sort my_sort_by_procgrp keys %proc_reg) {
+          foreach $rlEntry (@{$proc_reg{$procname}}) {
+            if ($rlEntry->[0] eq $srv_name)
+            {
+              $rlEntry->[8] = $pid;
+              $rlEntry->[9] = $osgi_port;
+              $rlEntry->[10] = $elapsed_time;
+              $rlEntry->[11] = $tty;
+            }
+          }
+        }
+      }
+  }
+  return ($count);
+}
+
+#########################################################################
+#
+# sub routine : server_list 
+#               this function read the config. file(AL_serverList.cfg),
+#               and fill up the name hash variables.
+#
+#########################################################################
+sub server_list {
+  my($ServerListFile);
+  $ServerListFile = getenv("MES_CFG") . "/AL_serverList.cfg";
+  open(infoH, $ServerListFile);
+
+  while (<infoH>) {
+    ($prog, $num, $group ,$start, $path, $single, $auto, $seq) = split(/:/);
+    $tmp = substr($prog, 0, 1); 
+
+    if ($tmp ne "#")
+    {
+        # warning ! $run_num is not a member of file format. it's runtime information.
+        $run_num = 0;
+        $pid = 0;
+        $time = "";
+        $rlEntry = [$prog, $num, $group ,$start, $path, $single, $auto, $seq, $pid, $osgi_port, $time, $tty];
+        push (@{$proc_reg{$prog}}, $rlEntry);
+    }
+  }
+  close (infoH);
+}
+
+#########################################################################
+#
+# sub routine : search_proc 
+#
+#########################################################################
+sub search_proc {
+  my ($count);
+  $count = 0;
+  my ($return);
+  $return = -1;
+
+  my($progname) = @_;
+
+  foreach $rlEntry (@{$proc_reg{$progname}}) {
+      return ($rlEntry->[1]);
+  }
+
+
+  foreach $prog_name (sort my_sort keys %proc_reg) {
+     foreach $rlEntry (@{$proc_reg{$prog_name}}) {
+        if ($rlEntry->[0] =~ /$progname/)
+        {
+	   return (0);
+        }	   
+      }	 
+  }
+
+  return ($return);
+
+}
+
+
+#########################################################################
+#
+#
+# sub routine : fork_java
+#               this function is for spawning java apps. 
+#
+#########################################################################
+sub fork_java {
+  my ($path);
+  my ($start);
+  my ($program);
+ 
+  $program = $_[0];
+  $start = $_[1];
+  $path = $_[2];
+   
+  chdir($path);
+  print "    - path : $path \n";
+  print "    - cmd : $start \n";
+  $cmd_string = "$start > /dev/null 2>&1 &";
+#  $cmd_string = "$start &";
+  write_log("Invoke Process based on JAVA : $start, on path : $path");
+  system($cmd_string); 
+  sleep(1);
+}
+
+
+##########################################################################
+#
+# sub routine : fork_exe
+#               to invoke the process you name it
+#
+##########################################################################
+sub fork_exe {
+  my ($run_exe);
+  my ($number);
+
+  fork_java($_[0], $_[1], $_[2]);
+
+  #$number = check_process($_[0]);
+  #write_log("[CHECK Process : $_[0], Number : $number ]");
+}
+
+
+sub fork_by_name {
+  my ($progname);
+ 
+  $progname = $_[0];
+  foreach $prog_name (sort my_sort keys %proc_reg) {
+       foreach $rlEntry (@{$proc_reg{$prog_name}}) {
+        if ($rlEntry->[0] eq $progname)
+        {
+           print_start_process($rlEntry->[2], $rlEntry->[0], 0);
+           fork_exe($rlEntry->[0], $rlEntry->[3], $rlEntry->[4]);
+        }
+      }
+  }
+}
+
+#########################################################################
+#
+#
+#
+#########################################################################
+$id = `whoami`;
+chomp($id);
+
+## tty check
+$mytty = `tty`;
+chomp($mytty);
+
+$sret = 0;
+#########################################################################
+#
+# sub routine : check_java
+#               to check java the process you search.
+# History : This script was able to handle normal process and java,
+#           but, handle only java now.
+#
+#########################################################################
+
+sub check_java {
+  return (1);    # assume all processes are java-based ones.
+}
+
+sub ltrim($)
+{
+        my $string = shift;
+        $string =~ s/^\s+//;
+        return $string;
+}
+
+
+
+#########################################################################
+#
+# sub routine : check_process
+#  
+#########################################################################
+sub check_process {
+  my ($count);
+  $count = 0;
+
+  #$return = check_java($_[0]);
+  $return = 1;
+  if ($return > 0)
+  {
+    $cmd = "ps -efx -o user,pid,ppid,tty,etime,args | grep $_[0] | grep $id";
+    $count = get_process_info($cmd);
+    return ($count);
+  }
+  
+  return ($count);
+}
+
+#########################################################################
+#
+# sub routine : similar_start
+#
+#########################################################################
+
+sub similar_start {
+  my ($moncnt);
+  $moncnt = 0;
+  my ($count);
+  $count = 0;
+  $list_count = 1;
+
+  my($progname) = @_;
+
+  similar_process($progname, 1);
+
+  print "------------------------------------------------------------------------------\n";
+  print " Start similar process \n";
+  print "------------------------------------------------------------------------------\n";
+
+  foreach $prog_name (sort my_sort keys %proc_reg) {
+     foreach $rlEntry (@{$proc_reg{$prog_name}}) {
+        if ($rlEntry->[0] =~ /$progname/)
+        {
+		$moncnt = check_process($rlEntry->[0]);
+		if ($rlEntry->[1] > $moncnt)
+		{
+                        print_start_process($rlEntry->[2], $rlEntry->[0], 0);
+			#print "[$list_count] Process Name : $rlEntry->[0], " .
+                        #      "Registered Cnt : $rlEntry->[1], Run Time : $moncnt\n";
+			fork_exe($rlEntry->[0], $rlEntry->[3], $rlEntry->[4]);
+		} else {
+                        print_start_process($rlEntry->[2], $rlEntry->[0], 1);
+			#print "[$list_count] Process Name : $rlEntry->[0], " .
+                              #"Registered Cnt : $rlEntry->[1], Now : $moncnt ! Enough !!\n";
+		}
+        }	   
+     }	 
+  }
+}
+
+#########################################################################
+#
+# sub routine : kill_process
+#
+#########################################################################
+sub kill_process {
+  $count = 0;
+
+  $cnt = check_java($_[0]);
+  $cnt = 1;
+   
+  #check_process($_[0]);
+  if ($cnt > 0)
+  {
+    foreach $procname (sort my_reverse_sort keys %proc_reg) {
+          foreach $rlEntry (@{$proc_reg{$procname}}) {
+            if ($rlEntry->[0] eq $_[0])
+            {
+              $count ++;
+              print_stop_process($rlEntry->[0], $rlEntry->[8], $rlEntry->[9]);
+              kill(TERM, $rlEntry->[8]);
+              #$cmd = `$run_path/stop.sh $port`;
+              #print "$cmd .. \n";
+              sleep(1); 
+            }
+          }
+    }
+  } 
+
+  if ($count == 0)
+  {
+    print "\t[x] $_[0] not in memory.\n";
+  }
+}
+
+#########################################################################
+#
+# sub routine : similar_kill
+#
+#########################################################################
+
+sub similar_kill {
+  my ($moncnt);
+  $moncnt = 0;
+  my ($count);
+  $count = 0;
+  $list_count = 1;
+
+  my($progname) = @_;
+
+  print "------------------------------------------------------------------------------\n";
+  print " . Stop similar processes $progname \n";
+  print "------------------------------------------------------------------------------\n";
+
+  similar_process($progname);
+
+  print "------------------------------------------------------------------------------\n";
+  print " . In case of no process id or osgi port, skip stopping processes.\n";
+  print " . stopping orders will be reserve. \n";
+  print "------------------------------------------------------------------------------\n";
+
+  sleep(1);
+
+  foreach $prog_name (sort my_reverse_sort keys %proc_reg) {
+      foreach $rlEntry (@{$proc_reg{$prog_name}}) {
+        if ($rlEntry->[0] =~ /$progname/)
+        {
+            if (($rlEntry->[8] > 0) && ($rlEntry->[9] > 0))
+            {
+               #print "     . $rlEntry->[0] ($rlEntry->[8]) - port : $rlEntry->[9] will be dead.\n";
+               print_stop_process($rlEntry->[0], $rlEntry->[8], $rlEntry->[9]);
+               kill(TERM, $rlEntry->[8]);
+               #$cmd = `$run_path/stop.sh $rlEntry->[9]`;
+               #print "$cmd ..\n";
+               sleep(1);   
+            }
+        }   
+     }	 
+  }
+}
+
+
+#########################################################################
+#
+# sub routine : status_process
+#
+#########################################################################
+sub status_process {
+  $counts = 1;
+  my ($process_name);
+  $process_name = $_[0];
+  print "------------------------------------------------------------------------------\n";
+  print " . Registered Process Name : $process_name, Count : $_[1] \n";
+  print "------------------------------------------------------------------------------\n";
+
+  $sret = check_java($_[0]);
+  $sret = 1;
+  if ($sret > 0)
+  {
+    $cmd = "ps -efx -o user,pid,ppid,tty,etime,args | grep $_[0] | grep $id";
+    get_process_info($cmd);
+
+    foreach $procname (sort my_sort keys %proc_reg) {
+      foreach $rlEntry (@{$proc_reg{$procname}}) {
+        if ($process_name eq $rlEntry->[0])
+        {
+          if ($rlEntry->[8] > 0)
+          {
+            print_process($rlEntry->[0], $rlEntry->[8], $rlEntry->[9], $rlEntry->[10], $rlEntry->[11]);
+          } else {
+            print_process($rlEntry->[0], 0, 0, 0, "NIL");
+          }
+        }
+      }
+    }
+
+    print "------------------------------------------------------------------------------\n";
+    return;
+  } 
+}
+
+#########################################################################
+#
+# sub routine : similar_process
+#
+#########################################################################
+sub similar_process {
+  $counts = 1;
+  my ($process_name);
+  my ($bprint);
+
+  $process_name = $_[0];
+  $bprint = $_[1];
+
+  $xms = 0;
+
+  $cmd = "ps -efx -o user,pid,ppid,tty,etime,args | grep $id | grep $process_name"; 
+  $idx = 0;
+  get_process_info($cmd);
+
+  if ($bprint == 1)
+  {
+    return;
+  }
+
+  $binit = 0;
+  $idx = 0;
+  $idx_sub = 0;
+  $tmp = "";
+  foreach $procname (sort my_sort keys %proc_reg) {
+    foreach $rlEntry (@{$proc_reg{$procname}}) {
+      if ($rlEntry->[0] =~ /$process_name/)
+      {
+        $idx = $idx + 1;
+        if ($tmp ne $rlEntry->[2])
+        {
+          print " [$idx] Registered Server Group : $rlEntry->[2]\n";
+          $tmp = $rlEntry->[2];
+          $binit = 1;
+        } 
+
+        if ($rlEntry->[8] > 0)
+        {
+              print_process($rlEntry->[0], $rlEntry->[8], $rlEntry->[9], $rlEntry->[10], $rlEntry->[11]);
+        } else { 
+              print_process($rlEntry->[0], 0, 0, 0, "NIL");        
+        }
+        $idx_sub = 0;
+      } 
+    }
+    $procname = "";
+  }
+
+  
+  #$ServerListFile = getenv("MES_CFG") . "/AL_serverList.cfg";
+  #$cmd = "checkgroup $ServerListFile $JAVA_ARG $process_name";
+  #$output = `$cmd`;
+  #print $output;
+}
+
+#########################################################################
+#
+# sub routine : start_all
+#
+#########################################################################
+sub start_all {
+  my ($moncnt);
+  $moncnt = 0;
+  my ($count);
+  $count = 0;
+  $list_count = 1;
+
+  print "------------------------------------------------------------------------------\n";
+  print " Start all process \n";
+  print "------------------------------------------------------------------------------\n";
+
+  foreach $procname (sort my_sort keys %proc_reg) {
+    $moncnt = check_process($procname);
+    foreach $rlEntry (@{$proc_reg{$procname}}) {
+      if ($rlEntry->[1] > $moncnt)
+      {
+        print "[$list_count] Process Name : $procname, " .
+          "Registered Cnt : $rlEntry->[1], Now : $moncnt !\n";
+        fork_exe($rlEntry->[0], $rlEntry->[3], $rlEntry->[4]);
+      } else {
+        print "[$list_count] Process Name : $procname, " .
+          "Registered Cnt : $rlEntry->[1], Now : $moncnt ! Enough !!\n";
+        print "\t $0 won't invoke $procname.\n"; 
+      }
+      $list_count ++;
+    }
+    $procname = "";
+  }
+
+  print "------------------------------------------------------------------------------\n";
+}
+
+#########################################################################
+#
+# sub routine : stop_all
+#
+#########################################################################
+sub stop_all {
+  $list_count = 1;
+  print "------------------------------------------------------------------------------\n";
+  print " Stop all processes\n";
+  print "------------------------------------------------------------------------------\n";
+
+  status_all(1);
+
+
+  foreach $prog_name (sort my_reverse_sort keys %proc_reg) {
+      foreach $rlEntry (@{$proc_reg{$prog_name}}) {
+        if (($rlEntry->[8] > 0) && ($rlEntry->[9] > 0))
+        {
+            #print "     . $rlEntry->[0] ($rlEntry->[8]) - port : $rlEntry->[9] will be dead.\n";
+            print_stop_process($rlEntry->[0], $rlEntry->[8], $rlEntry->[9]);
+            kill(TERM, $rlEntry->[8]);
+            #$cmd = `$run_path/stop.sh $rlEntry->[9]`;
+            #print "$cmd ..\n";
+            sleep(1);
+        }
+     }
+  }
+
+
+
+  print "------------------------------------------------------------------------------\n";
+}
+
+#########################################################################
+#
+# sub routine : status_all
+#       .. .... .. .... . Runtime . .... 
+#       ....
+#
+#########################################################################
+sub status_all {
+  print "==============================================================================\n";
+  print " ALL MES Processes(Custom Servers) Status\n";
+  print "==============================================================================\n";
+
+  $mes_root = getenv("HOME");
+  if ($mes_root eq "")
+  {
+     print "[Error] not set MES_ROOT environment variable.\n";
+     exit;
+  }
+
+  $counts = 1;
+  $bprint = $_[0];
+
+  $cmd = "ps -efx -o user,pid,ppid,tty,etime,args | grep java | grep $id";
+ 
+  get_process_info($cmd);
+  $binit = 0;
+  $idx = 0;
+  $idx_sub = 0;
+  $tmp = "";
+
+  if ($bprint == 1) 
+  { return; }
+
+  foreach $procname (sort my_sort keys %proc_reg) {
+    foreach $rlEntry (@{$proc_reg{$procname}}) {
+      if ($tmp ne $rlEntry->[2])
+      {
+        $idx = $idx + 1;
+        print "------------------------------------------------------------------------------\n";
+        print " [$idx] Registered Server Group : $rlEntry->[2]\n";
+        print "------------------------------------------------------------------------------\n";
+        $tmp = $rlEntry->[2];
+        $binit = 1;
+
+      }
+
+      if ($rlEntry->[8] > 0)
+      {
+          print_process($rlEntry->[0], $rlEntry->[8], $rlEntry->[9], $rlEntry->[10], $rlEntry->[11]);
+      } else {
+          print_process($rlEntry->[0], 0, 0, 0, "NIL");
+          fork_by_name($rlEntry->[0]);
+      }
+      $idx_sub = 0;
+    }
+  }
+
+}
+
+#############################################################################
+#
+# sub routine : greeting
+#               .. .......
+#
+#############################################################################
+
+sub greetings {
+print "------------------------------------------------------------------------------\n";
+print " M E S  P R O C E S S E S  M A N A G E M E N T  S C R I P T.\n";
+print "------------------------------------------------------------------------------\n";
+}
+
+#############################################################################
+#
+# BODY - MAIN PROCEDURE
+#
+#############################################################################
+
+$cmd = "";
+$s_proc_name = "";
+$numb = 0;
+
+$argc = @ARGV;
+
+$tmp = $0;
+$tmp =~ s/\.//;
+
+$tmp_prog = $tmp;
+
+if ($argc == 1)
+{
+  ($cmd) = @ARGV;
+} elsif ($argc == 2) {
+  ($cmd, $s_proc_name) = @ARGV;
+} elsif ($argc >= 3) {
+  ($cmd, $s_proc_name, $numb) = @ARGV;
+}
+
+
+$cmd =~ tr/A-Z/a-z/;	# start, Start, START ... .. .... ..
+
+server_list("master");
+while (1)
+{
+  status_all();
+  sleep 5;
+  foreach $procname (sort my_sort_by_procgrp keys %proc_reg) {
+      foreach $rlEntry (@{$proc_reg{$procname}}) {
+#        if ($rlEntry->[0] eq $srv_name)
+#        {
+          $rlEntry->[8] = 0;
+          $rlEntry->[9] = 0;
+          $rlEntry->[10] = "";
+          $rlEntry->[11] = "";
+#        }
+      }
+  }
+
+}
+

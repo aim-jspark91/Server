@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:osgi="http://www.springframework.org/schema/osgi" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd     http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
+	
+	<!-- Added by smkang on 2019.04.08 - For avoid duplication of schedule job. -->
+	<bean name="ScheduleJobFactory" class="kr.co.aim.messolution.timer.ScheduleJobFactory" />
+	
+	<bean name="QueueTimeMonitor" class="kr.co.aim.messolution.timer.job.QueueTimer"/>
+	<bean name="QueueTimeFabMonitor" class="kr.co.aim.messolution.timer.job.QueueFabTimer"/>
+	<bean name="CSTDurationTimer" class="kr.co.aim.messolution.timer.job.CSTDurationUsedTimer"/>
+	<bean name="ERPWorkOrderMonitor" class="kr.co.aim.messolution.timer.job.ERPWorkOrderTimer"/> 
+	<bean name="MaterialExpiredCheck" class="kr.co.aim.messolution.timer.job.MaterialExpiredCheck"/> 
+	<bean name="ModERPWorkOrderMonitor" class="kr.co.aim.messolution.timer.job.ModERPWorkOrderTimer"/> 
+	<bean name="DurableDryMonitor" class="kr.co.aim.messolution.timer.job.DurableDryTimer"/>
+	
+	<!-- Added by hhlee on 2018.08.14 - Need to GetDailyDataRequest. -->
+	<bean name="DailyEDCDataRequest" class="kr.co.aim.messolution.timer.job.GetDailyDataRequestTimer"/>
+	
+	<!-- Added by jspark on 2018.10.12 - Need to FileJudgeInspection. -->
+	<bean name="FileJudgeInspection" class="kr.co.aim.messolution.timer.job.FileJudgeInspection"/>
+	
+    <!-- Added by shkim on 2018.10.23 -->
+	<bean name="SortArrangePort" class="kr.co.aim.messolution.timer.job.SortArrangePort"/>	
+	
+	<!-- Added by smkang on 2018.11.06 - According to EDO's request, IDLE_TIME will be checked by timer job. -->
+	<bean name="MachineIdleTimeOverMonitor" class="kr.co.aim.messolution.timer.job.MachineIdleTimeOverMonitor"/>
+	
+	<!-- Added by Park Jeong Su on 2018.11.21 - CreateAutoMQC job by timer job. -->
+	<bean name="CreateAutoMQCJob" class="kr.co.aim.messolution.timer.job.CreateAutoMQCJob"/>
+
+	<!-- Added by Ryu Hyun Sun on 2019.01.25 - CST Duration Used Timer. -->
+	<bean name="CSTDurationUsedTimer" class="kr.co.aim.messolution.timer.job.CSTDurationUsedTimer"/>
+	
+	<!-- Added by Ryu Hyun Sun on 2019.02.11 - ErrorMessage Monitoring Timer! -->
+	<bean name="ErrorMessageMonitor" class="kr.co.aim.messolution.timer.job.ErrorMessageMonitor"/>
+	
+</beans>

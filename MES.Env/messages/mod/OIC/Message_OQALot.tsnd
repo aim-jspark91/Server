@@ -1,0 +1,118 @@
+8400
+;225.11.11.4
+
+HF.B3M.KSH.A.B.CNMsvr
+Sample
+true
+5.0
+<message>
+  <header>
+    <messagename>GenerateOQALot</messagename>
+    <transactionid>20100518162518531250</transactionid>
+    <replysubjectname>_INBOX.0A46030B.4BF9CDA025CC5.6</replysubjectname>
+  </header>
+  <body>
+    <EVENTUSER>shkim</EVENTUSER>
+    <EVENTCOMMENT />
+    <LANGUAGE />
+  </body>
+</message>
+
+
+<message>
+    <header>
+        <messagename>CreateOQALot</messagename>
+        <transactionid>20100518162518531250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D3F.4C073E400E8.1</replysubjectname>
+    </header>
+    <body>
+        <OQALOTNAME>OQA106300003</OQALOTNAME>
+        <FACTORYNAME>B3MODULE</FACTORYNAME>
+        <PRODUCTSPECNAME>B3M370X01T501</PRODUCTSPECNAME>
+        <LOTGRADE>G</LOTGRADE>
+        <REVISIONCODE>R</REVISIONCODE>
+        <EVENTUSER>shkim</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+    </body>
+</message>
+
+
+<message>
+    <header>
+        <messagename>RemoveOQALot</messagename>
+        <transactionid>20100518162518531250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D3F.4C073E400E8.1</replysubjectname>
+    </header>
+    <body>
+        <OQALOTNAME>OQA106300001</OQALOTNAME>
+        <EVENTUSER>shkim</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+    </body>
+</message>
+
+
+<message>
+    <header>
+        <messagename>CompleteOQALot</messagename>
+        <transactionid>20100518162518531250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D3F.4C073E400E8.1</replysubjectname>
+    </header>
+    <body>
+        <OQALOTNAME>OQA106300003</OQALOTNAME>
+        <EVENTUSER>shkim</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+    </body>
+</message>
+
+
+<message>
+    <header>
+        <messagename>InspectOQASample</messagename>
+        <transactionid>20100518162518531250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D3F.4C073E400E8.1</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>AAP1006012016</LOTNAME>
+        <OQALOTNAME>OQA106300003</OQALOTNAME>
+        <OQAINPECTRESULT>Accepted</OQAINPECTRESULT>
+        <EVENTUSER>shkim</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+    </body>
+</message>
+
+
+<message>
+    <header>
+        <messagename>InspectOQALot</messagename>
+        <transactionid>20100518162518531250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D3F.4C073E400E8.1</replysubjectname>
+    </header>
+    <body>
+        <OQALOTNAME>OQA106300002</OQALOTNAME>
+        <MACHINENAME>B3M370X01T501</MACHINENAME>
+        <EVENTUSER>shkim</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+    </body>
+</message>
+
+
+<message>
+    <header>
+        <messagename>DecideOQALot</messagename>
+        <transactionid>20100518162518531250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D3F.4C073E400E8.1</replysubjectname>
+    </header>
+    <body>
+        <OQALOTNAME>OQA106300002</OQALOTNAME>
+        <OQARESULT>Accepted</OQARESULT> [Accepted|Rejected]
+        <MACHINENAME>B3M370X01T501</MACHINENAME>
+        <EVENTUSER>shkim</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+    </body>
+</message>

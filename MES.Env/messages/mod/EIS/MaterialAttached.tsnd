@@ -1,0 +1,19 @@
+8200
+;225.11.11.2
+
+BOEHF.B3.MES.DEVWG.MOD.PEMsvr
+Sample
+true
+3.0
+<message>
+  <header>
+    <messagename>MaterialAttached</messagename>
+    <transactionid>20100607172724484375</transactionid>
+  </header>
+  <body>
+    <MACHINENAME>3MMPB31</MACHINENAME>
+    <PRODUCTNAME>3ANA08E060B8FA</PRODUCTNAME>
+    <MATERIALPOSITION>BL</MATERIALPOSITION>
+    <MATERIALNAME>85WX1355011111</MATERIALNAME>
+  </body>
+</message>

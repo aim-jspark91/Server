@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+       xmlns:p="http://www.springframework.org/schema/p"  
+       xmlns:util="http://www.springframework.org/schema/util"  
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">  
+
+	<bean name="DSPServiceImpl" class="kr.co.aim.messolution.dispatch.service.DSPServiceImpl"/>	
+	<bean name="DSPServiceUtil" class="kr.co.aim.messolution.dispatch.service.DSPServiceUtil"/>
+	<bean name="DSPInfoUtil" class="kr.co.aim.messolution.dispatch.service.DSPInfoUtil"/>
+	<bean name="KANBANService" class="kr.co.aim.messolution.dispatch.management.impl.KANBANService"/>
+	<bean name="STKCstLimitService" class="kr.co.aim.messolution.dispatch.management.impl.STKCstLimitService"/>
+	<bean name="MAXWIPService" class="kr.co.aim.messolution.dispatch.management.impl.MAXWIPService"/>
+	<bean name="STKPriorityService" class="kr.co.aim.messolution.dispatch.management.impl.STKPriorityService"/>
+	<bean name="STKOperationPriorityService" class="kr.co.aim.messolution.dispatch.management.impl.STKOperationPriorityService"/>
+	<bean name="EmptySTKPriorityService" class="kr.co.aim.messolution.dispatch.management.impl.EmptySTKPriorityService"/>
+	<bean name="EmptySTKBalanceService" class="kr.co.aim.messolution.dispatch.management.impl.EmptySTKBalanceService"/>
+	<bean name="STKLimitService" class="kr.co.aim.messolution.dispatch.management.impl.STKLimitService"/>
+	<bean name="ProductSpecPriorityService" class="kr.co.aim.messolution.dispatch.management.impl.ProductSpecPriorityService"/>
+	<bean name="MaxQTimeService" class="kr.co.aim.messolution.dispatch.management.impl.MaxQTimeService"/>
+	<bean name="MaxQTime_ToProductSpecListService" class="kr.co.aim.messolution.dispatch.management.impl.MaxQTime_ToProductSpecListService"/>
+	<bean name="MaxQTime_SubOperationListService" class="kr.co.aim.messolution.dispatch.management.impl.MaxQTime_SubOperationListService"/>
+	
+</beans>

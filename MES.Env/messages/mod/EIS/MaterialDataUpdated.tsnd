@@ -1,0 +1,46 @@
+8200
+;225.11.11.2
+
+BOEHF.B3.MES.DEVWG.MOD.PEMsvr
+Sample
+true
+3.0
+<message>
+	<header>
+		<messagename>MaterialDataUpdated</messagename>
+		<transactionid>20028666</transactionid>
+		<replysubjectname>WG.EIS</replysubjectname>
+	</header>
+	<body>
+		<MACHINELIST>
+			<MACHINE>
+				<MACHINENAME>ASSY01</MACHINENAME>
+				<MATERIALLIST>
+					<MATERIAL>
+						<MATERIALPOSITION>BL</MATERIALPOSITION>
+						<MATERIALNAME>BL01</MATERIALNAME>
+					</MATERIAL>
+				</MATERIALLIST>
+			</MACHINE>
+			<MACHINE>
+				<MACHINENAME>ASSY02</MACHINENAME>
+				<MATERIALLIST>
+					<MATERIAL>
+						<MATERIALPOSITION>BL</MATERIALPOSITION>
+						<MATERIALNAME>BL02</MATERIALNAME>
+					</MATERIAL>
+				</MATERIALLIST>
+			</MACHINE>
+			<MACHINE>
+				<MACHINENAME>ASSY03</MACHINENAME>
+				<MATERIALLIST>
+					<MATERIAL>
+						<MATERIALPOSITION>BL</MATERIALPOSITION>
+						<MATERIALNAME>BL03</MATERIALNAME>
+					</MATERIAL>
+				</MATERIALLIST>
+			</MACHINE>
+		</MACHINELIST>
+	</body>
+</message>
+

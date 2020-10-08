@@ -1,0 +1,34 @@
+8200
+;225.11.11.2
+
+BOEDT.B4.MES.DEVJXM.FAB.PEMsvr
+Sample
+false
+3.0
+
+   <Message>
+    <Header>
+        <MESSAGENAME>PortStateReport</MESSAGENAME>
+        <SHOPNAME>ARRAY</SHOPNAME>
+        <MACHINENAME>8FTRS01</MACHINENAME>
+        <TRANSACTIONID>20101215160000</TRANSACTIONID>
+        <SOURCESUBECTNAME>BOEDT.B4.MES.DEVSanghyun.FAB.PEMsvr</SOURCESUBECTNAME>
+        <TARGETSUBECTNAME>BOEDT.B4.MES.DEVSanghyun.FAB.FMCsvr</TARGETSUBECTNAME>
+        <EVENTUSER>shpark</EVENTUSER>
+        <EVENTCOMMENT>test</EVENTCOMMENT>
+        <listener>PEMListener</listener>
+    </Header>
+    <Body>
+        <MACHINENAME>8AEIC03</MACHINENAME>
+        <PORTLIST>
+            <PORT>
+                <PORTNAME>P01</PORTNAME>
+                <PORTSTATENAME>FULL</PORTSTATENAME>
+                <PORTTYPE>HM</PORTTYPE>
+                <PORTUSETYPE>HM</PORTUSETYPE>
+                <PORTACCESSMODE>AUTO</PORTACCESSMODE>
+                <CARRIERNAME />
+            </PORT>
+        </PORTLIST>
+    </Body>
+</Message>

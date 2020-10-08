@@ -1,0 +1,31 @@
+8400
+;225.11.11.4
+
+BOEHF.B3.MES.DEVWG.MOD.CNMsvr
+Sample
+true
+3.0
+<message>
+	<header>
+		<messagename>ScrapLot</messagename>
+		<transactionid>20100911101828218750</transactionid>
+		<replysubjectname>_INBOX.0A46012C.4C81ECDE259A1.159</replysubjectname>
+	</header>
+	<body>
+		<LOTNAME>3AAA060079A2CA</LOTNAME>
+        <REASONCODETYPE>FGRADE</REASONCODETYPE>
+        <REASONCODE>5620</REASONCODE>
+        <REASONCODESIZE>0.2</REASONCODESIZE>
+        <EVENTCOMMENT>test</EVENTCOMMENT>
+        <EVENTUSER>wgchoi</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+		<MATERIALLIST>
+			<MATERIAL>
+				<MATERIALTYPE>B/L</MATERIALTYPE>
+				<MATERIALNAME>B/L</MATERIALNAME>
+			</MATERIAL>
+		</MATERIALLIST>
+	</body>
+</message>
+

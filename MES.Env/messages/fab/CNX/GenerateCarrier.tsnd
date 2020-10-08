@@ -1,0 +1,32 @@
+8400
+;225.11.11.4
+
+BOEDT.B4.MES.DEVAdministrator.FAB.CNMsvr
+Sample
+true
+3.0
+<Message>
+   <Header>
+    	<MESSAGENAME>GenerateCarrier</MESSAGENAME>
+        <SHOPNAME>BAYA01</SHOPNAME>
+        <MACHINENAME />
+        <TRANSACTIONID>20110104121215750000</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME></ORIGINALSOURCESUBJECTNAME>
+        <SOURCESUBJECTNAME />
+        <TARGETSUBECTNAME />
+        <EVENTUSER />
+        <EVENTCOMMENT />
+        <INPUTSET />
+        <LANGUAGE>English</LANGUAGE>
+        <listener>CNMListener</listener>
+   </Header>
+   <Body>
+  	    <FACTORYNAME>ARRAY</FACTORYNAME>
+   		<DURABLESPECNAME>3AC</DURABLESPECNAME>
+   		<QUANTITY>2</QUANTITY>
+   </Body>
+   <Return>
+        <RETURNCODE></RETURNCODE>
+        <RETURNMESSAGE></RETURNMESSAGE>
+   </Return>
+</Message>

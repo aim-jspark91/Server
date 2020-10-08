@@ -1,0 +1,620 @@
+8200
+;225.11.11.2
+
+CEC.CF.MES.DEV.PEMsvr
+Sample
+false
+3.0
+<Message>
+    <Header>
+        <MESSAGENAME>LotInfoDownloadSend</MESSAGENAME>
+        <TRANSACTIONID>20110315171257625524</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME>GVO.ARRAY.EAP.PRD.FAB.EAPFAB11</ORIGINALSOURCESUBJECTNAME>
+        <EVENTUSER>TEST</EVENTUSER>
+        <EVENTCOMMENT />
+    </Header>
+    <Body>
+        <MACHINENAME>1AFC01</MACHINENAME>
+        <LOTNAME>A1P4808B7</LOTNAME>
+        <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+        <CARRIERNAME>AN0180</CARRIERNAME>
+        <CARRIERSTATE>InUse</CARRIERSTATE>
+        <CARRIERTYPE>Carrier</CARRIERTYPE>
+        <PORTNAME>P01</PORTNAME>
+        <PORTTYPE>PB</PORTTYPE>
+        <PORTUSETYPE />
+        <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+        <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+        <PRODUCTQUANTITY>20</PRODUCTQUANTITY>
+        <SLOTMAP>OOOOOOOOOOOOOOOOOOOO</SLOTMAP>
+        <SLOTSEL>OOOOOOOOOOOOOOOOOOOO</SLOTSEL>
+        <MACHINERECIPENAME>RCP01</MACHINERECIPENAME>
+        <LOTJUDGE>G</LOTJUDGE>
+        <PRODUCTLIST>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B701</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>1</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>R</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B702</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>2</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B703</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>3</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B704</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>4</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>R</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B705</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>5</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B706</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>6</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B707</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>7</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B708</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>8</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B709</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>9</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B710</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>10</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B711</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>11</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B712</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>12</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B713</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>13</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B714</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>14</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B715</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>15</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B716</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>16</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B717</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>17</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B718</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>18</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B719</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>19</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>A1P4808B7</LOTNAME>
+                <PRODUCTNAME>A1P4808B720</PRODUCTNAME>
+                <PRODUCTTYPE>Sheet</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>1100</PROCESSOPERATIONNAME>
+                <POSITION>20</POSITION>
+                <PRODUCTSPECNAME>G1400WV0G01G0111A</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>P</PRODUCTIONTYPE>
+                <PRODUCTGRADE />
+                <SUBPRODUCTGRADES />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <SUBPRODUCTJUDGES>GGGGGGGGGGGGGGGG</SUBPRODUCTJUDGES>
+                <PRODUCTTHICKNESS>1</PRODUCTTHICKNESS>
+                <CRATENAME />
+                <PRODUCTSIZE>400</PRODUCTSIZE>
+                <WORKORDER />
+                <GLASSMAKER>1</GLASSMAKER>
+                <PRODUCTRECIPE>RCP01</PRODUCTRECIPE>
+                <EXPOSUREUNITID />
+                <EXPOSURERECIPENAME />
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROCESSINGINFO />
+                <MASKNAME />
+                <PROBERNAME />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+            </PRODUCT>
+        </PRODUCTLIST>
+    </Body>
+    <Return>
+        <RETURNCODE>0</RETURNCODE>
+        <RETURNMESSAGE />
+    </Return>
+</Message>

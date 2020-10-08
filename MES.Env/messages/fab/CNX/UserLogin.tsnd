@@ -1,0 +1,30 @@
+
+
+
+BOEDT.B4.MES.DEVAdministrator.FAB.QRYsvr
+Sample
+false
+3.0
+<Message>
+    <Header>
+        <MESSAGENAME>UserLogin</MESSAGENAME>
+        <SHOPNAME>BAYA01</SHOPNAME>
+        <MACHINENAME />
+        <TRANSACTIONID>20110104121215750000</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME>_INBOX.C0A8376A.4D227DA715C.4</ORIGINALSOURCESUBJECTNAME>
+        <SOURCESUBJECTNAME />
+        <TARGETSUBECTNAME />
+        <EVENTUSER />
+        <EVENTCOMMENT />
+        <INPUTSET />
+        <LANGUAGE>English</LANGUAGE>
+        <listener>CNMListener</listener>
+    </Header>
+    <Body>
+        <USERID>wykim</USERID>
+        <PASSWORD>1</PASSWORD>
+        <UINAME>OIC</UINAME>
+        <WORKSTATIONNAME />
+        <LOGGEDINUIVERSION>2.2.0.14</LOGGEDINUIVERSION>
+    </Body>
+</Message>

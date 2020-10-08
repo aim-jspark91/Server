@@ -1,0 +1,24 @@
+8800
+;225.11.11.8
+tcp:10.70.1.41:7500
+BOEHF.B3.MES.PRD.FAB.FMBsvr
+Sample
+true
+5.0
+<message>
+  <header>
+    <messagename>LoginUser</messagename>
+    <transactionid />
+  </header>
+  <body>
+    <USERID>janghoon</USERID>
+    <PASSWORD>1</PASSWORD>
+    <UINAME>FMB</UINAME>
+    <WORKSTATIONNAME />
+    <LOGGEDINUIVERSION>FMB 1.0</LOGGEDINUIVERSION>
+    <EVENTUSER />
+    <EVENTCOMMENT />
+    <LANGUAGE />
+  </body>
+</message>
+

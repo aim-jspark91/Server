@@ -1,0 +1,24 @@
+8400
+;225.11.11.4
+
+BOEHF.B3.MES.DEVWG.MOD.CNMsvr
+Sample
+true
+3.0
+<message>
+    <header>
+        <messagename>ChangeMaterialNamingRule</messagename>
+        <transactionid>20100929232209937500</transactionid>
+        <replysubjectname>_INBOX.0A3C8D4F.4CA33C6D2916D.22</replysubjectname>
+    </header>
+    <body>
+        <MATERIALNAMINGRULESPECNAME>HV320WXC-100-D940</MATERIALNAMINGRULESPECNAME>
+        <MATERIALNAMINGRULENAME>BL</MATERIALNAMINGRULENAME>
+        <MATERIALNAMINGRULEVALUE>*355A*</MATERIALNAMINGRULEVALUE>
+        <EVENTCOMMENT>Back Light</EVENTCOMMENT>
+        <OLDMATERIALNAMINGRULEVALUE>*355A*</OLDMATERIALNAMINGRULEVALUE>
+        <EVENTUSER>wgchoi</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+</message>

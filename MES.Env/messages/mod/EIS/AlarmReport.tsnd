@@ -1,0 +1,28 @@
+8200
+;225.11.11.2
+
+BOEHF.B3.MES.DEVJMNA.MOD.PEMsvr
+Sample
+false
+15.0
+<message>
+  <header>
+    <messagename>AlarmReport</messagename>
+    <transactionid>20100607172724484375</transactionid>
+    <replysubjectname>_LOCAL.HF.B3M.JMNA.MES.M0001</replysubjectname>
+  </header>
+  <body>
+    <MACHINENAME>POLA01</MACHINENAME>
+    <ALARMCODE>test</ALARMCODE>
+    <ALARMSTATE>SET</ALARMSTATE>
+    <ALARMTEXT>test</ALARMTEXT>
+    <PRODUCTLIST>
+      <PRODUCTNAME>AAP1005001041</PRODUCTNAME>
+    </PRODUCTLIST>
+  </body>
+</message>
+
+MACHINENAME
+PRODUCTNAME
+MODULENAME
+LABEPRINTCNT

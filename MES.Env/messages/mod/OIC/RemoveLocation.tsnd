@@ -1,0 +1,19 @@
+8400
+;225.11.11.4
+
+HF.B3M.WG.A.B.CNMsvr
+Sample
+true
+5.0
+<message>
+	<header>
+		<messagename>RemoveLocation</messagename>
+		<transactionid>20100518162518531250</transactionid>
+	</header>
+	<body>
+		<AREANAME>TestArea02</AREANAME>
+		<EVENTCOMMENT />
+		<LANGUAGE />
+	</body>
+</message>
+

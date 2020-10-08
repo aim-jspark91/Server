@@ -1,0 +1,36 @@
+8400
+;225.11.11.4
+
+HF.B3M.KSH.A.B.CNMsvr
+Sample
+true
+5.0
+<message>
+  <header>
+    <messagename>CreateLot</messagename>
+    <transactionid>20100518162518531250</transactionid>
+  </header>
+  <body>
+    <LOTNAME>FLOWTESTLOT00005</LOTNAME>
+    <FACTORYNAME>B3MODULE</FACTORYNAME>
+    <PRODUCTSPECNAME>B3M370X01T501</PRODUCTSPECNAME>
+    <PRODUCTREQUESTNAME />
+    <EVENTUSER>shkim</EVENTUSER>
+    <EVENTCOMMENT />
+    <LANGUAGE />
+  </body>
+</message>
+
+<message>
+  <header>
+    <messagename>TrackOutNormal</messagename>
+    <transactionid>20100518162518531250</transactionid>
+  </header>
+  <body>
+    <LOTNAME>FLOWTESTLOT00003</LOTNAME>
+    <MACHINENAME>MAC01</MACHINENAME>
+    <EVENTUSER>shkim</EVENTUSER>
+    <EVENTCOMMENT />
+    <LANGUAGE />
+  </body>
+</message>

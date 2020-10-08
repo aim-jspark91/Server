@@ -1,0 +1,17 @@
+8400
+;225.11.11.4
+tcp:10.70.3.11:7500
+BOEHF.B3.MES.DEV.MOD
+Sample
+false
+15.0
+<message>
+  <header>
+    <messagename>StopWatcherAll</messagename>
+    <transactionid>20100518162518531250</transactionid>
+    <replysubjectname>_INBOX.0A46030B.4BF9CDA025F60.20</replysubjectname>
+  </header>
+  <body>
+  </body>
+</message>
+

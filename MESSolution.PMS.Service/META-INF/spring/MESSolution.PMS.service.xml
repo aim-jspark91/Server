@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+       xmlns:p="http://www.springframework.org/schema/p"  
+       xmlns:util="http://www.springframework.org/schema/util"  
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">  
+	
+	<bean name="BMService" class="kr.co.aim.messolution.pms.management.impl.BMService" />
+    <bean name="BMUsePartService" class="kr.co.aim.messolution.pms.management.impl.BMUsePartService" />
+    <bean name="BMUserService" class="kr.co.aim.messolution.pms.management.impl.BMUserService" />
+    <bean name="PurchaseService" class="kr.co.aim.messolution.pms.management.impl.PurchaseService" />
+    <bean name="RequestSparePartService" class="kr.co.aim.messolution.pms.management.impl.RequestSparePartService" />
+    <bean name="SparePartGroupService" class="kr.co.aim.messolution.pms.management.impl.SparePartGroupService" />
+    <bean name="SparePartInOutService" class="kr.co.aim.messolution.pms.management.impl.SparePartInOutService" />
+    <bean name="SparePartService" class="kr.co.aim.messolution.pms.management.impl.SparePartService" />
+    <bean name="VendorService" class="kr.co.aim.messolution.pms.management.impl.VendorService" />   
+    <bean name="PMCodeService" class="kr.co.aim.messolution.pms.management.impl.PMCodeService" />
+    <bean name="MappingItemService" class="kr.co.aim.messolution.pms.management.impl.MappingItemService" />
+    <bean name="CheckListService" class="kr.co.aim.messolution.pms.management.impl.CheckListService" />
+    <bean name="MaintenanceService" class="kr.co.aim.messolution.pms.management.impl.MaintenanceService" />
+    <bean name="CheckIDService" class="kr.co.aim.messolution.pms.management.impl.CheckIDService" />
+    <bean name="MaintenanceCheckService" class="kr.co.aim.messolution.pms.management.impl.MaintenanceCheckService" />
+    <bean name="BulletinBoardService" class="kr.co.aim.messolution.pms.management.impl.BulletinBoardService" />
+   <bean name="BulletinBoardAreaService" class="kr.co.aim.messolution.pms.management.impl.BulletinBoardAreaService" />
+   <bean name="CreateClothesService" class="kr.co.aim.messolution.pms.management.impl.CreateClothesService"/>
+   <bean name="ESDTestService" class="kr.co.aim.messolution.pms.management.impl.ESDTestService"/>
+   <bean name="ESDTestSetService" class="kr.co.aim.messolution.pms.management.impl.ESDTestSetService"/>
+   <bean name="UserGradeFunctionService" class="kr.co.aim.messolution.pms.management.impl.UserGradeFunctionService"/>
+   <bean name="UserGradeService" class="kr.co.aim.messolution.pms.management.impl.UserGradeService"/>
+</beans>
+

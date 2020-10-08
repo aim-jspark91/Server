@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:osgi="http://www.springframework.org/schema/osgi" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd     http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
+     
+    <osgi:service ref="BMService" interface="kr.co.aim.messolution.pms.management.impl.BMService" />
+    <osgi:service ref="BMUsePartService" interface="kr.co.aim.messolution.pms.management.impl.BMUsePartService" />
+    <osgi:service ref="BMUserService" interface="kr.co.aim.messolution.pms.management.impl.BMUserService" />
+    <osgi:service ref="PurchaseService" interface="kr.co.aim.messolution.pms.management.impl.PurchaseService" />
+    <osgi:service ref="RequestSparePartService" interface="kr.co.aim.messolution.pms.management.impl.RequestSparePartService" />
+    <osgi:service ref="SparePartGroupService" interface="kr.co.aim.messolution.pms.management.impl.SparePartGroupService" />
+    <osgi:service ref="SparePartInOutService" interface="kr.co.aim.messolution.pms.management.impl.SparePartInOutService" />
+    <osgi:service ref="SparePartService" interface="kr.co.aim.messolution.pms.management.impl.SparePartService" />
+    <osgi:service ref="VendorService" interface="kr.co.aim.messolution.pms.management.impl.VendorService" />
+    <osgi:service ref="PMCodeService" interface="kr.co.aim.messolution.pms.management.impl.PMCodeService" />
+    <osgi:service ref="MappingItemService" interface="kr.co.aim.messolution.pms.management.impl.MappingItemService" />
+    <osgi:service ref="CheckListService" interface="kr.co.aim.messolution.pms.management.impl.CheckListService" />
+    <osgi:service ref="MaintenanceService" interface="kr.co.aim.messolution.pms.management.impl.MaintenanceService" />
+    <osgi:service ref="CheckIDService" interface="kr.co.aim.messolution.pms.management.impl.CheckIDService" />
+    <osgi:service ref="MaintenanceCheckService" interface="kr.co.aim.messolution.pms.management.impl.MaintenanceCheckService" />
+    <osgi:service ref="BulletinBoardService" interface="kr.co.aim.messolution.pms.management.impl.BulletinBoardService" />
+    <osgi:service ref="BulletinBoardAreaService" interface="kr.co.aim.messolution.pms.management.impl.BulletinBoardAreaService" />
+    <osgi:service ref="CreateClothesService" interface="kr.co.aim.messolution.pms.management.impl.CreateClothesService"/>   
+    <osgi:service ref="ESDTestService" interface="kr.co.aim.messolution.pms.management.impl.ESDTestService"/>
+    <osgi:service ref="ESDTestSetService" interface="kr.co.aim.messolution.pms.management.impl.ESDTestSetService"/>
+    <osgi:service ref="UserGradeFunctionService" interface="kr.co.aim.messolution.pms.management.impl.UserGradeFunctionService"/>
+    <osgi:service ref="UserGradeService" interface="kr.co.aim.messolution.pms.management.impl.UserGradeService"/>
+</beans>
+

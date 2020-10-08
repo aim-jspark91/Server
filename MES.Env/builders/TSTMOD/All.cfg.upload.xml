@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<project name="config FtpUpload" default="uploadAll_config.ini" basedir="../../">
+	<property name="REMOTE_CFG_PATH" value="/usr01/MESTSTADM/mes" />
+	<property name="FTPIP" value="10.16.111.241" />
+	<property name="USERID" value="MESTSTADM" />
+	<property name="PASSWORD" value="meststadm" />
+
+	<target name="uploadAll_config.ini" depends="ALL" description="FTP upload to DEV all config.ini">
+		<echo>
+		</echo>
+	</target>
+
+	<target name="ALL" description="Deploy All config.ini Files FTP Upload to DEV Server">
+		<ftp server="${FTPIP}" port="21" remotedir="${REMOTE_CFG_PATH}" userid="${USERID}" password="${PASSWORD}" binary="no" verbose="true" passive="true">
+			<fileset dir=".">
+				<include name="cfg/**/*.ini" />
+			</fileset>
+		</ftp>
+	</target>
+
+
+</project>

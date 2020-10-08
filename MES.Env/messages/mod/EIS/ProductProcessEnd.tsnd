@@ -1,0 +1,36 @@
+8200
+;225.11.11.2
+
+BOEHF.B3.MES.DEVWG.MOD.PEMsvr
+Sample
+true
+15.0
+<message>
+    <header>
+        <messagename>ProductProcessEnd</messagename>
+        <transactionid>45874688</transactionid>
+        <replysubjectname>BOEHF.B3.EIS.DEVWG.MOD.BOEHF_B3_FLine01</replysubjectname>
+    </header>
+    <body>
+        <MACHINENAME>3MMVI11</MACHINENAME>
+        <UNITNAME />
+        <PALLETNAME />
+        <BOXNAME></BOXNAME>
+        <PRODUCTNAME>3ATN070479C8ID</PRODUCTNAME>
+        <PRODUCTJUDGE>P</PRODUCTJUDGE>
+        <PNLGRADE></PNLGRADE>
+        <REVISIONCODE>0</REVISIONCODE>
+        <DEFECTCODE />
+        <DEFECTADDRESSX />
+        <DEFECTADDRESSY />
+        <LEVEL></LEVEL>
+        <DEFECTSIZEW />
+        <DEFECTSIZEL />
+        <DEFECTSIZED />
+        <LASTPRODUCTFLAG></LASTPRODUCTFLAG>
+        <USERID>wgchoi</USERID>
+        <REASONCODE></REASONCODE>
+        <REASONTEXT></REASONTEXT>
+        <OQAPROCFLAG></OQAPROCFLAG>
+    </body>
+</message>

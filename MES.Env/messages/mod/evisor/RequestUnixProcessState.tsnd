@@ -1,0 +1,24 @@
+
+
+
+_LOCAL.BOEHF.B3.MES.DEVJMNA.MOD.EVISOR.CNXsvr1
+Sample
+false
+3.0
+<message>
+  <header>
+    <kind>RequestUnixProcessState</kind>
+    <value>12</value>
+    <messagename>RequestUnixProcessState</messagename>
+    <result>
+      <code />
+      <description />
+    </result>
+  </header>
+  <body>
+    <unixprocess_report id="CNXsvr11">
+      <report_key>12</report_key>
+    </unixprocess_report>
+  </body>
+</message>
+

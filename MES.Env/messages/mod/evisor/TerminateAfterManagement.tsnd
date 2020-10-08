@@ -1,0 +1,19 @@
+
+
+
+_LOCAL.BOEHF.B3.MES.DEVJMNA.MOD.EVISOR.PEMsvr1
+Sample
+false
+3.0
+<message>
+    <header>
+        <messagename>TerminateAfterManagement</messagename>
+        <transactionid></transactionid>
+    </header>
+    <body>
+        <SERVERNAME>PEMsvr1</SERVERNAME> 
+        <EVENTUSER>Evisor</EVENTUSER>  
+        <EVENTCOMMENT></EVENTCOMMENT>
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+</message>

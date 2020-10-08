@@ -1,0 +1,105 @@
+#!/usr/bin/perl
+
+use POSIX;
+use warnings;
+use strict;
+#########################################################################
+# Compress Logfile for saving disk usage.
+# 	.. done by ATLAS.
+#########################################################################
+
+my $argc = @ARGV;
+my $sys = "";
+my $gap = "";
+my $gzipgap = "";
+if ($argc == 3)
+{
+  ($sys, $gap, $gzipgap ) = @ARGV;		# sys for CS or NT, gap for today - gap
+} else {
+    print "wrong argument : usage : system gap \n";
+    exit;
+} 
+
+#########################################################################
+# you must modify this.
+#########################################################################
+#$dir = "/usr01/snsadm/mes/log/";
+my $today = `/usr01/snsadm/mes/cmd/dateprint $gap`;
+chomp($today);
+
+my $log_file = "/usr01/snsadm/mes/log/" . $sys . "/" . $today;
+#$srcdir = "/logs/mes/log/" . $sys . "/" . $today;
+my $backupdir = "/logs/mes/log/" . $sys ;
+
+my $gzipdir = "/logs/" .$sys . "/";
+my $gzday = `/usr01/snsadm/mes/cmd/dateprint $gzipgap`;
+chomp($gzday);
+
+#$deletelogs = "/logs/mes/log/" . $sys . "/" . $gzday;
+
+my $deletegzday = `/usr01/snsadm/mes/cmd/dateprint 30`;
+chomp($deletegzday);
+my $deletegzip = "/logs/" . $sys . "/*" . $deletegzday . ".tar.gz";
+
+my $compressdir  = "/logs/mes/log/" . $sys . "/" . $gzday;
+my $compress_backup_file = "/logs/mes/log/" . $sys . "/". $sys . "_" . $gzday . ".tar.gz";
+
+my $evisorAgentLog = "/usr01/snsadm/Evisor/EvisorAgent/logs/Evisor*_*" . $today . "*.log";
+
+open(STDOUT, "> $log_file");
+open(STDERR, ">&STDOUT");
+
+print "---------------- BATCH JOB START ----------------\n";
+print "1. CronJob Start Time : ";
+system("date");
+print "2. Account Information : ";
+system("whoami");
+print "3. Target Date : $today \n";
+print "4. Backup Dir : $backupdir \n";
+
+if ($sys eq "CNMsvr" or $sys eq "CNXsvr" or $sys eq "EDCsvr" or $sys eq "FMCsvr" or $sys eq "ILCsvr" or $sys eq "PEMsvr" or $sys eq "PEXsvr" or $sys eq "QRYsvr" or $sys eq "SCHsvr" or $sys eq "TEMsvr" or $sys eq "TEXsvr" or $sys eq "IFEsvr" or $sys eq "MATsvr" or $sys eq "CPTsvr")
+{
+
+#Move mes/log/srv -> logs/mes/srv
+my $exe_run = "mv $log_file $backupdir";
+my $output = system($exe_run);
+
+#gzip /logs/mes/srv/17 
+$exe_run = "tar cvf - $compressdir | /usr/contrib/bin/gzip -9c > $compress_backup_file";
+$output = system($exe_run);
+print "command($exe_run) return : $output \n";
+
+#Move /logs/mes/srv/*.gz -> /logs/srv/
+$exe_run = "mv /logs/mes/log/" . $sys . "/" . "*.tar.gz " . $gzipdir;
+$output = system($exe_run);
+
+#RM /logs/mes/srv/gzipdir
+$exe_run = "rm -rf $compressdir";
+$output = system($exe_run);
+
+#RM /mes/log/srv/ 
+$exe_run = "rm -rf $log_file";
+$output = system($exe_run);
+
+#RM /logs/srv/30.gz
+$exe_run = "rm -rf $deletegzip ";
+$output = system($exe_run);
+
+#$dsptoday = `/usr01/snsadm/mes/cmd/dateprint 2`;
+#chomp($dsptoday);
+#$exe_runDSP = "rm -rf /usr01/snsadm/DSP/log/" . $dsptoday;
+#system($exe_runDSP);
+
+#rm rSPC
+my $exe_runSPC = "rm -rf /usr01/snsadm/rSPC/logs/48090.log.*";
+system($exe_runSPC);
+
+#rm EvisorAgent
+my $exe_runEvisor = "rm -rf $evisorAgentLog";
+$output = system($exe_runEvisor);
+
+}
+else
+{
+}
+print "\n----------------- BATCH JOB END ------------------\n";

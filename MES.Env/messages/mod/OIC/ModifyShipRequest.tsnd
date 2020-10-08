@@ -1,0 +1,25 @@
+8400
+;225.11.11.4
+
+HF.B3M.JMNA.A.B.CNMsvr
+Sample
+true
+15.0
+<message>
+  <header>
+    <messagename>ModifyShipRequest</messagename>
+    <transactionid>20100607172724484375</transactionid>
+    <replysubjectname>_INBOX.0A46030B.4BF9CDA025F60.20</replysubjectname>
+  </header>
+  <body>
+    <INVOICENO>IN0001</INVOICENO>
+    <INVOICETYPE>ETC</INVOICETYPE>
+    <DOMESTICEXPORT>D</DOMESTICEXPORT>
+    <CUSTOMERNO>COSTOMER002</CUSTOMERNO>
+    <PLANSHIPDATE>20100619</PLANSHIPDATE>
+    <EVENTUSER>jmna</EVENTUSER>
+    <EVENTCOMMENT />
+    <LANGUAGE>English</LANGUAGE>
+  </body>
+</message>
+

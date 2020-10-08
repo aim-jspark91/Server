@@ -1,0 +1,14 @@
+
+
+tcp:10.70.3.11:7500
+BOEHF.B3.MES.DEVWG.MOD.PEMsvr
+Sample
+false
+3.0
+1. 이곳에 내용을 입력 합니다.
+2. TinOn->Send(Ctrl+Shift+1)를 눌러 Tib 메시지(선택된 영역만)를 보냅니다.
+3. 또는 *.tsnd 파일들을 선택하여 Popup 메뉴의 TinOn->Send를 눌러 여러 메시지를 보냅니다.
+4. 또는 History View에서  여러개를 선택 하여 Send를 누릅니다.
+
+5. Xml 작성 시 TinOn->Xml Check((Ctrl+Shift+F))를 할 수 있습니다.
+6. Xml Formatting의 설정을 변경 합니다. Windows -> Preferance -> TibOn.

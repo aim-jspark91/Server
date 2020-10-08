@@ -1,0 +1,101 @@
+8400
+;225.11.11.4
+
+HF.B3M.KSH.A.B.CNMsvr
+Sample
+true
+5.0
+<message>
+  <header>
+    <messagename>GenerateBox</messagename>
+    <transactionid>20100518162518531250</transactionid>
+    <replysubjectname>_INBOX.0A46030B.4BF9CDA025CC5.6</replysubjectname>
+  </header>
+  <body>
+    <PRODUCT>PP</PRODUCT>
+    <GRADE>G</GRADE>
+    <LINE>M</LINE>
+    <REVISIONCODE>1</REVISIONCODE>
+    <EVENTUSER>shkim</EVENTUSER>
+    <EVENTCOMMENT />
+    <LANGUAGE />
+  </body>
+</message>
+
+
+<message>
+    <header>
+        <messagename>CreateBox</messagename>
+        <transactionid>20100518162518531250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D3F.4C073E400E8.1</replysubjectname>
+    </header>
+    <body>
+        <BOXNAME>TESTKSHBOX00002</BOXNAME>
+        <PRODUCTSPECNAME>B3M370X01T501</PRODUCTSPECNAME>
+        <PLANMATERIALQUANTITY>20</PLANMATERIALQUANTITY>
+        <LOTGRADE>G</LOTGRADE>
+        <CHECKINCODE>CIC</CHECKINCODE>
+        <REVISIONCODE>R</REVISIONCODE>
+        <DOMESTICEXPORT>Export</DOMESTICEXPORT>
+        <EVENTUSER>shkim</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+    </body>
+</message>
+
+
+<message>
+    <header>
+        <messagename>AssignBoxToLot</messagename>
+        <transactionid>20100518162518531250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D3F.4C07642D068.1</replysubjectname>
+    </header>
+    <body>
+        <BOXNAME>TESTKSHBOX00001</BOXNAME>
+        <LOTLIST>
+            <LOT>
+                <LOTNAME>AAP1006013073</LOTNAME>
+            </LOT>
+        </LOTLIST>
+        <EVENTUSER>shkim</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+    </body>
+</message>
+
+
+<message>
+    <header>
+        <messagename>DeassignBoxFromLot</messagename>
+        <transactionid>20100518162518531250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D3F.4C07642D0616.1</replysubjectname>
+    </header>
+    <body>
+        <BOXNAME>TESTKSHBOX00001</BOXNAME>
+        <LOTLIST>
+            <LOT>
+                <LOTNAME>AAP1006013072</LOTNAME>
+            </LOT>
+        </LOTLIST>
+        <EVENTUSER>shkim</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+    </body>
+</message>
+
+
+
+<message>
+    <header>
+        <messagename>TrackOutBox</messagename>
+        <transactionid>20100518162518531250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D3F.4C073E400E8.1</replysubjectname>
+    </header>
+    <body>
+        <BOXNAME>SLP31006100002</BOXNAME>
+        <MACHINENAME>BOX01</MACHINENAME>
+        <EVENTUSER>shkim</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+    </body>
+</message>

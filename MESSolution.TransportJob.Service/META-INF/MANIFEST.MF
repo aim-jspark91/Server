@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MESSolution.TransportJob.Service [service]
+Bundle-SymbolicName: MESSolution.TransportJob.Service
+Bundle-Version: 1.1.0
+Bundle-ClassPath: .
+Eclipse-RegisterBuddy: greenflow, greenframe.kernel, greenFrame.workflow
+Bundle-Vendor: Aim System. Inc
+Export-Package: kr.co.aim.messolution.transportjob,
+ kr.co.aim.messolution.transportjob.service
+Require-Bundle: org.eclipse.osgi,
+ com.springsource.org.jdom;bundle-version="1.1.0",
+ MESSolution.Generic;bundle-version="1.1.0",
+ greenframe.dependency.apache.commons;bundle-version="1.0.0",
+ greenframe.dependency.springframework;bundle-version="1.0.0",
+ greenframe.dependency.springframework.batch;bundle-version="1.0.0",
+ greenframe.dependency.springframework.osgi;bundle-version="1.0.0",
+ greenframe.kernel;bundle-version="1.1.0",
+ greenTrack.Generic.Service;bundle-version="1.1.0",
+ MESSolution.Extended.Object;bundle-version="1.1.0",
+ greenTrack.Durable.Service;bundle-version="1.1.0",
+ greenTrack.Machine.Service;bundle-version="1.1.0",
+ greenTrack.Port.Service;bundle-version="1.1.0",
+ MESSolution.Durable.Service;bundle-version="1.1.0",
+ MESSolution.Machine.Service;bundle-version="1.1.0",
+ MESSolution.Port.Service;bundle-version="1.1.0",
+ greenTrack.Lot.Service;bundle-version="1.1.0",
+ MESSolution.Alarm.Service;bundle-version="1.1.0",
+ MESSolution.Product.Service;bundle-version="1.1.0",
+ MESSolution.Lot.Service;bundle-version="1.1.0",
+ greenTrack.ProcessOperationSpec.Service;bundle-version="1.1.0",
+ greenTrack.ProcessFlow.Service;bundle-version="1.1.0",
+ MESSolution.RMS.Service;bundle-version="1.1.0",
+ MESSolution.ProductRequest.Service;bundle-version="1.1.0",
+ greenTrack.ProductRequest.Service;bundle-version="1.1.0"
+Eclipse-LazyStart: false
+Created-By: Aim System. Inc
+Ant-Version: Apache Ant 1.7.0

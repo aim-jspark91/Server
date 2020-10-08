@@ -1,0 +1,14 @@
+8800
+;225.11.11.8
+
+BOEDT.B4.MES.DEVkil.FAB.FMCsvr
+Sample
+true
+3.0
+<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Header>
+<MESSAGENAME>ChangedWipState</MESSAGENAME>
+</Header>
+<Body />
+</Message>

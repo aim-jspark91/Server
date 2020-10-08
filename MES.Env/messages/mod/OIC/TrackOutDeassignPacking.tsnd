@@ -1,0 +1,21 @@
+8400
+;225.11.11.4
+
+BOEHF.B3.MES.DEVWG.MOD.CNMsvr
+Sample
+true
+3.0
+<message>
+	<header>
+		<messagename>TrackOutDeassignPacking</messagename>
+		<transactionid>20028666</transactionid>
+		<replysubjectname>WG.EIS</replysubjectname>
+	</header>
+	<body>
+		<PALLETNAME>201083M00053</PALLETNAME>
+		<MACHINENAME>RTDEPAL</MACHINENAME>
+		<EVENTUSER>JMNA</EVENTUSER>
+    	<EVENTCOMMENT>DEPAL</EVENTCOMMENT>
+    	<LANGUAGE />
+	</body>
+</message>

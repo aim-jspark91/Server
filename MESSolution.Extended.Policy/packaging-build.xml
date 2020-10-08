@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="_packaging_generation_" name="Product Packaging Generator">
+
+	<target name="_packaging_generation_" depends="N10001"/>
+
+	<target name="clean" description="remove previous jar">
+		<delete file="dist/MES.ExtendPolicy.Service-1.0.0.jar"/>
+	</target> 
+
+	<target name="N10001" description="creating jar" depends="clean">
+		<jar destfile="dist/MES.ExtendPolicy.Service-1.0.0.jar"  manifest="META-INF/MANIFEST.MF">
+			<zipfileset dir="META-INF/spring" prefix="META-INF/spring">
+				<include name="**/*.xml" />
+			</zipfileset>			
+			<zipfileset dir="bin" 
+				includes="**/*.class" 
+			/>
+			<zipfileset dir="src" 
+				includes="**/*.*" 
+			/>
+		</jar>
+	</target>
+
+</project>

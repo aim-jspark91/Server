@@ -1,0 +1,22 @@
+8400
+;225.11.11.4
+
+BOEHF.B3.MES.DEVJMNA.MOD.CNMsvr
+Sample
+true
+5.0
+<message>
+  <header>
+    <messagename>HoldPallet</messagename>
+    <transactionid>20100607172724484375</transactionid>
+    <replysubjectname>_INBOX.0A46030B.4BF9CDA025F60.20</replysubjectname>
+  </header>
+  <body>
+    <PALLETNAME>EEE</PALLETNAME>
+    <REASONCODE>H001</REASONCODE>
+    <EVENTUSER>jmna</EVENTUSER>
+    <EVENTCOMMENT />
+    <LANGUAGE>English</LANGUAGE>
+  </body>
+</message>
+

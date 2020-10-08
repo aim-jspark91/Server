@@ -1,0 +1,26 @@
+8400
+;225.11.11.4
+
+BOEHF.B3.MES.DEVJMNA.MOD.CNMsvr
+Sample
+true
+15.0
+<message>
+  <header>
+    <messagename>MatchWOToLot</messagename>
+    <transactionid>20100518162518531250</transactionid>
+    <replysubjectname>_INBOX.0A46030B.4BF9CDA025F60.20</replysubjectname>
+  </header>
+  <body>
+    <PRODUCTREQUESTNAME>Wonstyle_0713</PRODUCTREQUESTNAME>
+    <LOTLIST>
+      <LOT>
+        <LOTNAME>AB0500000100</LOTNAME>
+      </LOT>
+    </LOTLIST>
+    <EVENTUSER />
+    <EVENTCOMMENT />
+    <LANGUAGE />
+  </body>
+</message>
+

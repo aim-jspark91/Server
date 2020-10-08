@@ -1,0 +1,182 @@
+8500
+;225.11.11.5
+
+DML.FAB.MES.DEV.FAB.PEXsvr
+Sample
+false
+3.0
+<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+    <Header>
+        <MESSAGENAME>RecipeInfoReply</MESSAGENAME>
+        <TRANSACTIONID>20170413143704567248T1PVD400T01</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME>TRULY.F1.EAP.PRD.TFT.TC012</ORIGINALSOURCESUBJECTNAME>
+        <EVENTUSER>T1PVD400</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE />
+        <PROCESSFLOWID>94678648#0009</PROCESSFLOWID>
+        <TOOLID>T1PVD400T01</TOOLID>
+    </Header>
+    <Body>
+        <MACHINENAME>T1PVD400</MACHINENAME>
+        <UNITNAME />
+        <SUNITNAME />
+        <RECIPETYPE />
+        <RECIPELIST>
+            <RECIPE>
+                <RECIPENAME>PRE-S4</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S5 S1002</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>PRE  S5</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>TRANS S4 NO</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>TRANS S5</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>TRANS S4</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S3003</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S3002</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S3001</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S1003</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S1002</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S1001</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>MO2500 TEST2</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>MO2500 TEST1</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>EXP</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>300C TEST</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>245C TEST</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>001</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>TRANS S4 S5</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>TRANS S4 S3 S5</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>TRANS S3</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S4 TRANS TEST</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S4 3KW TEST</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S3 S5  TRAN TEST</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S3 DC 3-5-10-15</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S3 DC 10-20-40</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>LOW TEMP TEST</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>LOW TEMP PRE</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>0011</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>0000</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S4-MO-2500A</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>S4 1KW TEST</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>QR S5</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME>PRE  S4</RECIPENAME>
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+            <RECIPE>
+                <RECIPENAME />
+            </RECIPE>
+        </RECIPELIST>
+    </Body>
+    <Return>
+        <RETURNCODE>0</RETURNCODE>
+        <RETURNMESSAGE />
+    </Return>
+</Message>
