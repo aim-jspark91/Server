@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<project default="_packaging_generation_" name="Packaging Generator">
+    <property name="SPECVERSION" value="1.0.0.2" />
+    <property name="VERSION" value="1.1.0" />
+   <target name="_packaging_generation_" depends="N10001" />
+    <target name="clean" description="remove previous jar">
+        <delete file="../dist/greenFrame.workflow-${VERSION}-SNAPSHOT.jar" />
+    </target>
+    <target name="N10001" description="creating jar" depends="clean">
+        <jar destfile="../dist/greenFrame.workflow-${VERSION}-SNAPSHOT.jar" manifest="META-INF/MANIFEST.MF">
+            <zipfileset dir="bin" includes="**/*.class" />
+            <!--<zipfileset dir="META-INF/spring" prefix="META-INF/spring">
+                <include name="**/*.xml" />
+            </zipfileset>-->
+            <zipfileset dir="META-INF/conf" prefix="META-INF/conf">
+                <include name="**/*.*" />
+            </zipfileset>
+			<zipfileset dir="META-INF/spring" prefix="META-INF/spring">
+                <include name="**/*.*" />
+            </zipfileset>
+        	<!--
+            <zipfileset dir="META-INF/bpels" prefix="META-INF/bpels">
+                <include name="**/*.bpel" />
+            </zipfileset>
+        -->
+            <zipfileset dir="src" includes="**/*.*" />
+        </jar>
+    </target>
+	<!--
+	<target name="AIM-SLED-TestSvr" description="211.56.209.229 Upload" depends="N10001">
+		<ftp server="211.56.209.229"
+			   remotedir="/usr01/sled/MESSolution/lib"
+			   userid="sled"
+			   password="sled123"
+			   depends="yes" >
+			<fileset dir="../dist">
+				<include name="greenFrame.workflow-${VERSION}-SNAPSHOT.jar"/>
+			</fileset>
+		  </ftp>
+	</target>
+	-->
+</project>
+

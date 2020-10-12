@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:osgi="http://www.springframework.org/schema/osgi" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd     http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
+	
+	<!--
+	<bean id="QTimeConfigurator" class="kr.co.aim.greenframe.infra.SchedulerConfigurator" >
+		<property name="schedulerName" value="10" />
+		<property name="executionJobName" value="10" />
+		<property name="cronExpression" value="10" />
+	</bean>
+	-->
+	
+	<!--
+	<bean name="FmbScheduler" class="kr.co.aim.messolution.fmb.service.impl.FmbSchedulerImpl" init-method="start">
+    	<property name="scheduleList" >
+    		<list>
+    			<bean class="kr.co.aim.messolution.fmb.service.impl.Schedule">
+	    			<constructor-arg><value>0 0/10 * * * ?</value></constructor-arg>
+	    			<constructor-arg><value>WipCountReport.bpel</value></constructor-arg>
+    			</bean>
+    			<bean class="kr.co.aim.messolution.fmb.service.impl.Schedule">
+	    			<constructor-arg><value>0 0/9 * * * ?</value></constructor-arg>
+	    			<constructor-arg><value>GetSTKCSTDataReport.bpel</value></constructor-arg>
+    			</bean>
+    		</list>
+    	</property>
+   	</bean>
+   	-->
+</beans>
+

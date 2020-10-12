@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Spring-Context: META-INF/spring/*.xml
+Bundle-ManifestVersion: 2
+Bundle-Name: Extend Policy Service
+Bundle-SymbolicName: MESSolution.Extended.Policy
+Bundle-Version: 1.1.0
+Bundle-Vendor: AIM Systems, Inc.
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.osgi;bundle-version="3.7.0",
+ greenframe.dependency.apache.commons;bundle-version="1.0.0",
+ greenframe.dependency.javax;bundle-version="1.0.0",
+ greenframe.dependency.springframework;bundle-version="1.0.0",
+ greenframe.dependency.springframework.batch;bundle-version="1.0.0",
+ greenframe.dependency.springframework.osgi;bundle-version="1.0.0",
+ greenframe.kernel;bundle-version="1.2.4",
+ greenTrack.Consumable.Service;bundle-version="1.0.0",
+ greenTrack.Durable.Service;bundle-version="1.0.0",
+ greenTrack.Generic.Service;bundle-version="1.0.0",
+ greenTrack.Policy.Service;bundle-version="1.0.0",
+ greenTrack.ProcessGroup.Service;bundle-version="1.0.0",
+ greenTrack.Product.Service;bundle-version="1.0.0",
+ greenTrack.Lot.Service;bundle-version="1.0.0",
+ MESSolution.Generic;bundle-version="1.1.0",
+ greenTrack.Behavior.Service
+Export-Package: kr.co.aim.mes.lot.policy,
+ kr.co.aim.mes.product.policy

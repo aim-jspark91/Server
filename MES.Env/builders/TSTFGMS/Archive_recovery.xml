@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<project name="Backup MES" default="RecoveryMES" basedir="../../">
+
+	<property name="REMOTE_LIB_PATH" value="/usr01/MESTSTADM/mes/lib/target.mes" />
+	<property name="FTPIP" value="10.16.111.244" />
+	<property name="USERID" value="MESTSTADM" />
+	<property name="PASSWORD" value="meststadm" />
+	<property name="FILENAME" value="MES_20151014133738" />
+
+	<target name="RecoveryMES">
+		<telnet server="${FTPIP}" port="23" userid="${USERID}" password="${PASSWORD}" timeout="5">
+			<write>cd ./mes/cmd/</write>
+			<read>/usr01/MESTSTADM/mes/cmd]</read>
+			<write>./recovery.sh ${FILENAME}</write>
+			<read>/usr01/MESTSTADM/mes/cmd]</read>
+			<write>exit</write>
+		</telnet>
+	</target>
+</project>

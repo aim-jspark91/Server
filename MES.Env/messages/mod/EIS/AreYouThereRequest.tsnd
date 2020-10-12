@@ -1,0 +1,17 @@
+8200
+;225.11.11.2
+tcp:10.70.3.11:7500
+BOEHF.B3.MES.DEV.MOD.PEMsvr
+Sample
+false
+15.0
+<message>
+  <header>
+    <messagename>AreYouThereRequest</messagename>
+    <transactionid>20100607172724484375</transactionid>
+    <replysubjectname>HF.B3M.JMNA.MES.M0001</replysubjectname>
+  </header>
+  <body>
+    <MACHINENAME>M0001</MACHINENAME>
+  </body>
+</message>

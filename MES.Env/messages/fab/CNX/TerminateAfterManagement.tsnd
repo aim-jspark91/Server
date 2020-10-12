@@ -1,0 +1,19 @@
+
+
+tcp:10.80.20.3:7500
+_LOCAL.BOEDT.B4.MES.DEV.FAB.EVISOR.CNMsvr31
+Sample
+false
+3.0
+<Message>
+	<Header>
+		<MESSAGENAME>TerminateAfterManagement</MESSAGENAME>
+		<TRANACTIONID></TRANACTIONID>
+	</Header>
+	<Body>
+		<SERVERNAME>CNMsvr31</SERVERNAME>
+		<EVENTUSER></EVENTUSER>
+		<EVENTCOMMENT></EVENTCOMMENT>
+		<LANGUAGE>English</LANGUAGE>
+	</Body>
+</Message>

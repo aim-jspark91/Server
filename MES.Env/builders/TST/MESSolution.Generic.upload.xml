@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<project default="uploadAllMESSolutionBundle" name="service FtpUnload" basedir="../../../dist/">
+
+	<property name="REMOTE_CFG_PATH" value="/usr01/MESTSTADM/mes/lib/target.mes/" />
+	<property name="FTPIP" value="10.16.111.241" />
+	<property name="USERID" value="MESTSTADM" />
+	<property name="PASSWORD" value="meststadm" />
+	<property name="PACKAGENAME" value="MESSolution.Generic" />
+
+	<target name="uploadAllMESSolutionBundle" depends="U10001" />
+
+	<target name="U10001" description="Deploy JAR file with FTP upload">
+		<ftp server="${FTPIP}" port="21" remotedir="${REMOTE_CFG_PATH}" userid="${USERID}" password="${PASSWORD}" binary="yes" verbose="true">
+			<fileset dir=".">
+				<include name="${PACKAGENAME}*.jar" />
+			</fileset>
+		</ftp>
+	</target>
+
+</project>

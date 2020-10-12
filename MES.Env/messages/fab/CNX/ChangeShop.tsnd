@@ -1,0 +1,27 @@
+8400
+;225.11.11.4
+
+BOEDT.B4.MES.DEV.FAB.CNMsvr
+Sample
+true
+3.0
+<Message>
+    <Header>
+        <MESSAGENAME>ChangeShop</MESSAGENAME>
+        <SHOPNAME>CF</SHOPNAME>
+        <MACHINENAME />
+        <TRANSACTIONID>20110829161847765625</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME>_INBOX.C0A8809C.4E5B468B1612.13</ORIGINALSOURCESUBJECTNAME>
+        <SOURCESUBJECTNAME />
+        <TARGETSUBJECTNAME />
+        <EVENTUSER>shpark</EVENTUSER>
+        <EVENTCOMMENT>ChangeShop</EVENTCOMMENT>
+        <INPUTSET />
+        <LANGUAGE>English</LANGUAGE>
+        <listener>LOCALListener</listener>
+    </Header>
+    <Body>
+        <FACTORYNAME>CELL</FACTORYNAME>
+        <AREANAME>BAYC01</AREANAME>
+    </Body>
+</Message>

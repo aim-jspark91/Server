@@ -1,0 +1,21 @@
+
+
+
+_LOCAL.BOEDT.B4.MES.DEV_rangzi.FAB.EVISOR.CNMsvr1
+Sample
+false
+3.0
+<Message>
+	<Header>
+		<KIND>{0}</KIND>
+		<VALUE>{1}</VALUE>
+		<MESSAGENAME>RequestUnixProcessState</MESSAGENAME>
+		<EVENTCOMMENT></EVENTCOMMENT>
+		<RESULT>
+			<CODE></CODE>
+		<DESCRIPTION></DESCRIPTION>
+		</RESULT>
+	</Header>
+	<Body>
+	</Body>
+</Message>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<project name="config FtpUpload" default="uploadAllConfig" basedir="../../">
+
+	<property name="REMOTE_CONFIG_PATH" value="/usr01/MESTSTADM/mes" />
+	<property name="FTPIP" value="10.16.111.241" />
+	<property name="USERID" value="MESTSTADM" />
+	<property name="PASSWORD" value="meststadm" />
+
+	<target name="uploadAllConfig" depends="ALL" description="description">
+		<echo>
+		</echo>
+	</target>
+
+	<target name="ALL" description="Deploy All Files FTP Upload to DEV Server">
+		<ftp server="${FTPIP}" port="21" remotedir="${REMOTE_CONFIG_PATH}" userid="${USERID}" password="${PASSWORD}" binary="no" verbose="true" passive="true">
+			<fileset dir=".">
+				<include name="config/infra/**/*.xml" />
+				<!--<include name="config/**/*.xml" />
+				<include name="config/**/*.properties" /> -->
+			</fileset>
+		</ftp>
+	</target>
+</project>
+

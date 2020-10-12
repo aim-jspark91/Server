@@ -1,0 +1,313 @@
+8400
+;225.11.11.4
+
+BOEHF.B3.MES.DEVJMNA.MOD.CNMsvr
+Sample
+true
+10.0
+step POL;
+body
+<message>
+    <header>
+        <messagename>TrackOutLot</messagename>
+        <transactionid>20100805153433312500</transactionid>
+        <replysubjectname>_INBOX.C0A80065.4C5A015D19D.15</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>${LOTNAME}</LOTNAME>
+        <LOTGRADE>G</LOTGRADE>
+        <MACHINENAME>POLA02</MACHINENAME>
+        <LEVELNO />
+        <AGINGPALLETNAME />
+        <MODULENAME />
+        <REVISIONCODE />
+        <MATERIALS>
+            <MATERIAL>
+                <MATERIALPOSITION>POL TFT</MATERIALPOSITION>
+                <CONSUMABLENAME>POLT02</CONSUMABLENAME>
+            </MATERIAL>
+            <MATERIAL>
+                <MATERIALPOSITION>POL CF</MATERIALPOSITION>
+                <CONSUMABLENAME>POLB02</CONSUMABLENAME>
+            </MATERIAL>
+        </MATERIALS>
+        <EVENTUSER>jmna</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+    <return>
+        <returncode>0</returncode>
+        <returnmessage />
+    </return>
+</message>
+;
+send;
+wait 1;
+
+step AC;
+body
+<message>
+    <header>
+        <messagename>TrackOutLot</messagename>
+        <transactionid>20100805153609062500</transactionid>
+        <replysubjectname>_INBOX.C0A80065.4C5A015D19D.23</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>${LOTNAME}</LOTNAME>
+        <LOTGRADE>G</LOTGRADE>
+        <MACHINENAME>AC01</MACHINENAME>
+        <LEVELNO />
+        <AGINGPALLETNAME />
+        <MODULENAME />
+        <REVISIONCODE />
+        <EVENTUSER>jmna</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+    <return>
+        <returncode>0</returncode>
+        <returnmessage />
+    </return>
+</message>
+;
+send;
+wait 1;
+
+---------
+step TCP;
+body
+<message>
+    <header>
+        <messagename>TrackOutLot</messagename>
+        <transactionid>20100805153832546875</transactionid>
+        <replysubjectname>_INBOX.C0A80065.4C5A015D19D.32</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>${LOTNAME}</LOTNAME>
+        <LOTGRADE>G</LOTGRADE>
+        <MACHINENAME>TCPA01</MACHINENAME>
+        <LEVELNO />
+        <AGINGPALLETNAME />
+        <MODULENAME />
+        <REVISIONCODE />
+        <MATERIALS>
+            <MATERIAL>
+                <MATERIALPOSITION>ACFT</MATERIALPOSITION>
+                <CONSUMABLENAME>ACFT01</CONSUMABLENAME>
+            </MATERIAL>
+            <MATERIAL>
+                <MATERIALPOSITION>COFS1</MATERIALPOSITION>
+                <CONSUMABLENAME>COFS101</CONSUMABLENAME>
+            </MATERIAL>
+            <MATERIAL>
+                <MATERIALPOSITION>COFS2</MATERIALPOSITION>
+                <CONSUMABLENAME>COFS201</CONSUMABLENAME>
+            </MATERIAL>
+            <MATERIAL>
+                <MATERIALPOSITION>COFG</MATERIALPOSITION>
+                <CONSUMABLENAME>COFG01</CONSUMABLENAME>
+            </MATERIAL>
+        </MATERIALS>
+        <EVENTUSER>jmna</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+    <return>
+        <returncode>0</returncode>
+        <returnmessage />
+    </return>
+</message>
+;
+send;
+wait 1;
+---------
+step PCB;
+body
+<message>
+    <header>
+        <messagename>TrackOutLot</messagename>
+        <transactionid>20100805153950171875</transactionid>
+        <replysubjectname>_INBOX.C0A80065.4C5A015D19D.41</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>${LOTNAME}</LOTNAME>
+        <LOTGRADE>G</LOTGRADE>
+        <MACHINENAME>PCBA01</MACHINENAME>
+        <LEVELNO />
+        <AGINGPALLETNAME />
+        <MODULENAME />
+        <REVISIONCODE />
+        <MATERIALS>
+            <MATERIAL>
+                <MATERIALPOSITION>PCBA No</MATERIALPOSITION>
+                <CONSUMABLENAME>${PCBANAME}</CONSUMABLENAME>
+            </MATERIAL>
+            <MATERIAL>
+                <MATERIALPOSITION>ACFP</MATERIALPOSITION>
+                <CONSUMABLENAME>ACFP01</CONSUMABLENAME>
+            </MATERIAL>
+        </MATERIALS>
+        <EVENTUSER>jmna</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+    <return>
+        <returncode>0</returncode>
+        <returnmessage />
+    </return>
+</message>
+;
+send;
+wait 1;
+---------
+step ASSY;
+body
+<message>
+    <header>
+        <messagename>TrackOutLot</messagename>
+        <transactionid>20100805154104062500</transactionid>
+        <replysubjectname>_INBOX.C0A80065.4C5A015D19D.50</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>${LOTNAME}</LOTNAME>
+        <LOTGRADE>G</LOTGRADE>
+        <MACHINENAME>ASSY01</MACHINENAME>
+        <LEVELNO />
+        <AGINGPALLETNAME />
+        <MODULENAME />
+        <REVISIONCODE />
+        <MATERIALS>
+            <MATERIAL>
+                <MATERIALPOSITION>BL</MATERIALPOSITION>
+                <CONSUMABLENAME>${BLNAME}</CONSUMABLENAME>
+            </MATERIAL>
+        </MATERIALS>
+        <EVENTUSER>jmna</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+    <return>
+        <returncode>0</returncode>
+        <returnmessage />
+    </return>
+</message>
+;
+send;
+wait 1;
+---------
+step ASSYI;
+body
+<message>
+    <header>
+        <messagename>TrackOutLot</messagename>
+        <transactionid>20100805154204187500</transactionid>
+        <replysubjectname>_INBOX.C0A80065.4C5A015D19D.64</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>${LOTNAME}</LOTNAME>
+        <LOTGRADE>G</LOTGRADE>
+        <MACHINENAME>ASSYI01</MACHINENAME>
+        <LEVELNO />
+        <AGINGPALLETNAME />
+        <MODULENAME />
+        <REVISIONCODE />
+        <EVENTUSER>jmna</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+    <return>
+        <returncode>0</returncode>
+        <returnmessage />
+    </return>
+</message>
+;
+send;
+wait 1;
+---------
+step AGING;
+body
+<message>
+    <header>
+        <messagename>TrackOutLot</messagename>
+        <transactionid>20100805154240906250</transactionid>
+        <replysubjectname>_INBOX.C0A80065.4C5A015D19D.68</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>${LOTNAME}</LOTNAME>
+        <LOTGRADE>G</LOTGRADE>
+        <MACHINENAME>AGING01</MACHINENAME>
+        <LEVELNO />
+        <AGINGPALLETNAME>${APINAME}</AGINGPALLETNAME>
+        <MODULENAME />
+        <REVISIONCODE />
+        <EVENTUSER>jmna</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+    <return>
+        <returncode>0</returncode>
+        <returnmessage />
+    </return>
+</message>
+;
+send;
+wait 1;
+---------
+step FI;
+body
+<message>
+    <header>
+        <messagename>TrackOutLot</messagename>
+        <transactionid>20100805154627437500</transactionid>
+        <replysubjectname>_INBOX.C0A80065.4C5A015D19D.90</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>${LOTNAME}</LOTNAME>
+        <LOTGRADE>S</LOTGRADE>
+        <MACHINENAME>FI01</MACHINENAME>
+        <LEVELNO>L1</LEVELNO>
+        <AGINGPALLETNAME />
+        <MODULENAME>${MODNAME}</MODULENAME>
+        <REVISIONCODE />
+        <EVENTUSER>jmna</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+    <return>
+        <returncode>0</returncode>
+        <returnmessage />
+    </return>
+</message>
+;
+send;
+wait 1;
+---------
+step VI;
+body
+<message>
+    <header>
+        <messagename>TrackOutLot</messagename>
+        <transactionid>20100805154749171875</transactionid>
+        <replysubjectname>_INBOX.C0A80065.4C5A015D19D.99</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>${LOTNAME}</LOTNAME>
+        <LOTGRADE />
+        <MACHINENAME>VI01</MACHINENAME>
+        <LEVELNO>L3</LEVELNO>
+        <AGINGPALLETNAME />
+        <MODULENAME />
+        <REVISIONCODE>1</REVISIONCODE>
+        <EVENTUSER>jmna</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+    <return>
+        <returncode>0</returncode>
+        <returnmessage />
+    </return>
+</message>
+;
+send;
+wait 1;
+

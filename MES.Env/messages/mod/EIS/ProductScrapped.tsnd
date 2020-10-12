@@ -1,0 +1,20 @@
+8200
+;225.11.11.2
+
+BOEHF.B3.MES.DEVWG.MOD.PEMsvr
+Sample
+true
+3.0
+<message>
+  <header>
+    <messagename>ProductScrapped</messagename>
+    <transactionid>20100607172724484375</transactionid>
+    <replysubjectname>_INBOX.0A46012C.4C81ECDE259A1.159</replysubjectname>
+  </header>
+  <body>
+    <MACHINENAME>fdsa</MACHINENAME>
+    <PRODUCTNAME>3ATN080053B1FD</PRODUCTNAME>
+    <REASONCODE>TEMP</REASONCODE>
+    <REASONTEXT>TEMP</REASONTEXT>
+  </body>
+</message>

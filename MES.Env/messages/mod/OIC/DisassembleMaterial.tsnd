@@ -1,0 +1,21 @@
+8400
+;225.11.11.4
+
+BOEHF.B3.MES.DEVJMNA.MOD.CNMsvr
+Sample
+true
+15.0
+<message>
+  <header>
+    <messagename>DisassembleMaterial</messagename>
+    <transactionid>20100815180558625000</transactionid>
+    <replysubjectname>_INBOX.0A3C8D5D.4C67ADD7041.11</replysubjectname>
+  </header>
+  <body>
+    <LOTNAME>3ATN070059C8JB</LOTNAME>
+    <EVENTUSER>jnheo</EVENTUSER>
+    <EVENTCOMMENT />
+    <LANGUAGE>English</LANGUAGE>
+  </body>
+</message>
+

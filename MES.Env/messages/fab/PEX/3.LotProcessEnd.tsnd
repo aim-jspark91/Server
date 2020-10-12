@@ -1,0 +1,904 @@
+8500
+;225.11.11.5
+
+LHH.ARRAY.MES.DEV.FAB.PEXsvr
+Sample
+false
+3.0
+<Message>
+    <Header>
+        <MESSAGENAME>A_LotProcessEnd</MESSAGENAME>
+        <TRANSACTIONID>20180521193210792</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME>A2UCL010</ORIGINALSOURCESUBJECTNAME>
+        <EVENTUSER>A2UCL010</EVENTUSER>
+        <EVENTCOMMENT />
+    </Header>
+    <Body>
+        <MACHINENAME>A2UCL010</MACHINENAME>
+        <CARRIERNAME>A2C0040</CARRIERNAME>
+        <CARRIERSTATE>InUse</CARRIERSTATE>
+        <CARRIERTYPE>N</CARRIERTYPE>
+        <PORTNAME>1</PORTNAME>
+        <PORTTYPE>PU</PORTTYPE>
+        <PORTUSETYPE>OO</PORTUSETYPE>
+        <SLOTMAP>OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</SLOTMAP>
+        <SLOTSEL>YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY</SLOTSEL>
+        <UNITNAME />
+        <PRODUCTLIST>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810001</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>1</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810002</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>2</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810003</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>3</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810004</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>4</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810005</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>5</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810006</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>6</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810007</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>7</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810008</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>8</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810009</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>9</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810010</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>10</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810011</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>11</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810012</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>12</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810013</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>13</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810014</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>14</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810015</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>15</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810016</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>16</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810017</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>17</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810018</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>18</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810019</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>19</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810020</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>20</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810021</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>21</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810022</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>22</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810023</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>23</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810024</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>24</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810025</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>25</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810026</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>26</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810027</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>27</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810028</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>28</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810029</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>29</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+            <PRODUCT>
+                <PRODUCTNAME>A28501810030</PRODUCTNAME>
+                <VCRPRODUCTNAME />
+                <POSITION>30</POSITION>
+                <LOTNAME>A285018100</LOTNAME>
+                <PRODUCTSPECNAME>2A497H4B031</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>PROD</PRODUCTIONTYPE>
+                <PRODUCTTYPE>GLASS</PRODUCTTYPE>
+                <PROCESSFLOWNAME />
+                <PROCESSOPERATIONNAME />
+                <PRODUCTSIZE>730mm</PRODUCTSIZE>
+                <WORKORDER>2AMP1805007M</WORKORDER>
+                <REWORKCOUNT />
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PANELPRODUCTJUDGES />
+                <PRODUCTRECIPE>05AN100</PRODUCTRECIPE>
+                <PROCESSINGINFO>P</PROCESSINGINFO>
+                <CRATENAME />
+                <PROCESSEDUNITLIST>
+                    <PROCESSEDUNIT>
+                        <PROCESSEDUNITNAME />
+                        <PROCESSEDSUBUNITLIST />
+                    </PROCESSEDUNIT>
+                </PROCESSEDUNITLIST>
+                <PROCESSTURNFLAG />
+                <TURNOVERFLAG />
+                <OUTSTAGEFLAG />
+                <ELAQTIMEFLAG />
+            </PRODUCT>
+        </PRODUCTLIST>
+    </Body>
+    <Return>
+        <RETURNCODE>0</RETURNCODE>
+        <RETURNMESSAGE />
+    </Return>
+</Message>

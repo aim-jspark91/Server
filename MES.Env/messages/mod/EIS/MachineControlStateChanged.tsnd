@@ -1,0 +1,17 @@
+8200
+;225.11.11.2
+
+BOEHF.B3.MES.DEVJMNA.MOD.PEMsvr
+Sample
+false
+3.0
+<message>
+  <header>
+    <messagename>MachineControlStateChanged</messagename>
+    <transactionid>20100607172724484375</transactionid>
+  </header>
+  <body>
+    <MACHINENAME>FA21</MACHINENAME>
+    <CONTROLSTATENAME>OnLineRemote</CONTROLSTATENAME>
+  </body>
+</message>

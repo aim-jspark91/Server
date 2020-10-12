@@ -1,0 +1,35 @@
+8400
+;225.11.11.4
+
+BOEDT.B4.MES.DEV.FAB.CNMsvr
+Sample
+false
+3.0
+<Message>
+    <Header>
+        <MESSAGENAME>ReleaseHoldLot</MESSAGENAME>
+        <SHOPNAME>ARRAY</SHOPNAME>
+        <MACHINENAME />
+        <TRANSACTIONID>20120423142841328125</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME>_INBOX.0A50AE21.4F94F4310613.3</ORIGINALSOURCESUBJECTNAME>
+        <SOURCESUBJECTNAME />
+        <TARGETSUBJECTNAME />
+        <EVENTUSER>shpark</EVENTUSER>
+        <EVENTCOMMENT>ReleaseHoldLot</EVENTCOMMENT>
+        <INPUTSET />
+        <LANGUAGE>English</LANGUAGE>
+        <listener>LOCALListener</listener>
+    </Header>
+    <Body>
+        <LOTNAME>8AWX240001</LOTNAME>
+        <LOTMULTIHOLDLIST>
+            <LOTMULTIHOLD>
+                <REASONCODE>FDC01</REASONCODE>
+            </LOTMULTIHOLD>
+        </LOTMULTIHOLDLIST>
+    </Body>
+    <Return>
+        <RETURNCODE>0</RETURNCODE>
+        <RETURNMESSAGE />
+    </Return>
+</Message>

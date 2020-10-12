@@ -1,0 +1,37 @@
+8500
+;225.11.11.5
+tcp:10.80.136.51:7500
+GVO.A1.MES.PRD.GEN.CNXsvr
+Scenario test
+false
+3.0
+step 01;
+body
+<Message>
+    <Header>
+        <MESSAGENAME>CreateCarrier</MESSAGENAME>
+        <TRANSACTIONID>${TRANSACTIONID}</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME></ORIGINALSOURCESUBJECTNAME>
+        <EVENTUSER>SE</EVENTUSER>
+        <EVENTCOMMENT />
+        <LANGUAGE>English</LANGUAGE>
+    </Header>
+    <Body>
+        <FACTORYNAME>${FACTORYNAME}</FACTORYNAME>
+        <DURABLELIST>
+            <DURABLE>
+                <DURABLENAME>${DURABLENAME}</DURABLENAME>
+                <DURABLESPECNAME>${DURABLESPECNAME}</DURABLESPECNAME>
+                <CAPACITY>20</CAPACITY>
+                <PITCH />
+            </DURABLE>
+        </DURABLELIST>
+    </Body>
+    <Return>
+        <RETURNCODE></RETURNCODE>
+        <RETURNMESSAGE></RETURNMESSAGE>
+    </Return>
+</Message>
+;
+send;
+wait 500;

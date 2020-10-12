@@ -1,0 +1,26 @@
+8400
+;225.11.11.4
+
+BOEHF.B3.MES.DEVWG.MOD.CNMsvr
+Sample
+true
+3.0
+<message>
+    <header>
+        <messagename>ChangeLotOper</messagename>
+        <transactionid>20100917161550031250</transactionid>
+        <replysubjectname>_INBOX.0A3C8D4F.4C9322B32519.43</replysubjectname>
+    </header>
+    <body>
+        <LOTNAME>3ANA08E056A0DD</LOTNAME>
+        <REASONCODETYPE>test</REASONCODETYPE>
+        <REASONCODE>11</REASONCODE>
+        <PROCESSFLOWNAME>MMP</PROCESSFLOWNAME>
+        <PROCESSOPERATIONNAME>M4000</PROCESSOPERATIONNAME>
+        <REASONCODESIZE />
+        <EVENTCOMMENT></EVENTCOMMENT>
+        <EVENTUSER>wgchoi</EVENTUSER>
+        <EVENTCOMMENT>ghdfhgf</EVENTCOMMENT>
+        <LANGUAGE>English</LANGUAGE>
+    </body>
+</message>

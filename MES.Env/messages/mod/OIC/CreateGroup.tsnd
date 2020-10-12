@@ -1,0 +1,22 @@
+8500
+;225.11.11.5
+
+_LOCAL.BOEHF.B3.MES.DEVJMNA.MOD.CNXsvr
+Sample
+false
+5.0
+<message>
+  <header>
+    <messagename>CreateGroup</messagename>
+    <transactionid>20100707190321875000</transactionid>
+    <replysubjectname>_INBOX.0A46030B.4C1484291B124E.8</replysubjectname>
+  </header>
+  <body>
+    <GROUPNAME>Group001</GROUPNAME>
+    <DESCRIPTION>For OQA</DESCRIPTION>
+    <EVENTUSER>jnheo</EVENTUSER>
+    <EVENTCOMMENT />
+    <LANGUAGE>English</LANGUAGE>
+  </body>
+</message>
+

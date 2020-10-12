@@ -1,0 +1,472 @@
+8500
+;225.11.11.5
+
+DML.FAB.MES.DEV.FAB.PEXsvr
+Sample
+false
+3.0
+<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+    <Header>
+        <MESSAGENAME>LotProcessAbort</MESSAGENAME>
+        <TRANSACTIONID>20170417121617457504</TRANSACTIONID>
+        <ORIGINALSOURCESUBJECTNAME>DM.TEST</ORIGINALSOURCESUBJECTNAME>
+        <EVENTUSER>C1ODF100</EVENTUSER>
+        <EVENTCOMMENT />
+    </Header>
+    <Body>
+        <MACHINENAME>C1ODF100</MACHINENAME>
+        <LOTNAME>C008B4H01</LOTNAME>
+        <PROCESSOPERATIONNAME>CB0300</PROCESSOPERATIONNAME>
+        <CARRIERNAME>CSTAF1097</CARRIERNAME>
+        <CARRIERTYPE>GlassCST</CARRIERTYPE>
+        <PORTNAME>P01</PORTNAME>
+        <PORTTYPE>PL</PORTTYPE>
+        <PORTUSETYPE>TFT</PORTUSETYPE>
+        <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+        <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+        <PRODUCTQUANTITY>12</PRODUCTQUANTITY>
+        <SLOTMAP>XXXXXXXXOOOOOOOOOOOO</SLOTMAP>
+        <SLOTSEL>XOOOOOOOOOOOOOOOOOOO</SLOTSEL>
+        <MACHINERECIPENAME>Recipe_1</MACHINERECIPENAME>
+        <LOTJUDGE>G</LOTJUDGE>
+        <PRODUCTLIST>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A04L</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A04L</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>20</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A04K</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A04K</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>19</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A04J</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A04J</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>18</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A04H</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A04H</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>17</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A04G</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A04G</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>16</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A04F</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A04F</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>15</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A04E</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A04E</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>14</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A036</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A036</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>13</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A035</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A035</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>12</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A04B</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A04B</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>11</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A04A</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A04A</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>10</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+            <PRODUCT>
+                <LOTNAME>F013B4A04</LOTNAME>
+                <PRODUCTNAME>F013B4A049</PRODUCTNAME>
+                <VCRPRODUCTNAME>F013B4A049</VCRPRODUCTNAME>
+                <PRODUCTTYPE>Glass</PRODUCTTYPE>
+                <PROCESSOPERATIONNAME>CA0100</PROCESSOPERATIONNAME>
+                <POSITION>9</POSITION>
+                <PRODUCTSPECNAME>FHC013-043T1BDJ</PRODUCTSPECNAME>
+                <PRODUCTIONTYPE>E</PRODUCTIONTYPE>
+                <PRODUCTJUDGE>G</PRODUCTJUDGE>
+                <PRODUCTGRADE>G</PRODUCTGRADE>
+                <SUBPRODUCTJUDGES />
+                <SUBPRODUCTGRADES />
+                <PRODUCTTHICKNESS>0.5</PRODUCTTHICKNESS>
+                <PRODUCTSIZE>730mm*920mm</PRODUCTSIZE>
+                <CRATENAME>N1D4AAZL572600</CRATENAME>
+                <WORKORDER />
+                <GLASSMAKER>NEG</GLASSMAKER>
+                <PRODUCTRECIPE>Recipe_1</PRODUCTRECIPE>
+                <REWORKCOUNT>0</REWORKCOUNT>
+                <DUMMYUSEDCOUNT />
+                <PROBERNAME />
+                <MASKNAME />
+                <PROCESSINGINFO>B</PROCESSINGINFO>
+                <PROCESSINGINFOLIST />
+                <SAMPLINGFLAG>Y</SAMPLINGFLAG>
+                <PROCESSEDUNITLIST />
+                <GCFLAG />
+                <GCUNITNAME />
+                <ARRAYCUTREPAIRTYPE />
+                <LCVDREPAIRTYPE />
+                <LASTPROCESSENDTIME />
+                <ELARECIPENAME />
+                <ELAENERGYUSAGE />
+                <EVASAMPLINGFLAG>N</EVASAMPLINGFLAG>
+            </PRODUCT>
+        </PRODUCTLIST>
+    </Body>
+    <Return>
+        <RETURNCODE>EQPN-B-00A0</RETURNCODE>
+        <RETURNMESSAGE>EndUser Abort on EAS Client</RETURNMESSAGE>
+    </Return>
+</Message>

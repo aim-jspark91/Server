@@ -1,0 +1,19 @@
+8200
+;225.11.11.2
+tcp:10.70.3.11:7500
+BOEHF.B3.MES.DEV.MOD.PEMsvr
+Sample
+true
+3.0
+<message>
+    <header>
+        <messagename>ProductInformationRequest</messagename>
+        <transactionid>26296612</transactionid>
+        <replysubjectname>BOEHF.B3.EIS.DEVWG.MOD.BOEHF_B3_FLine01</replysubjectname>
+    </header>
+    <body>
+        <MACHINENAME>3MMVI41</MACHINENAME>
+        <PRODUCTNAME>3ATN070439A4BA</PRODUCTNAME>
+        <MODULENAME></MODULENAME>
+    </body>
+</message>

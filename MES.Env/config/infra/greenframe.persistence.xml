@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:osgi="http://www.springframework.org/schema/osgi" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd     http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" init-method="createDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+        
+        <!-- PRD DB
+        <property name="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.20.2.10)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=fp2mesdb)))" />
+        <property name="username" value="p2arrayadm" />
+        <property name="password" value="p2arrayadm" /> 
+        -->
+        
+            
+        <!-- TST DB  
+        <property name="url" value="jdbc:oracle:thin:@10.20.2.60:1521:tstmesdb" />   
+        <property name="username" value="t2arrayadm" />
+        <property name="password" value="t2arrayadm" /> 
+         -->
+
+        <!-- DEV DB -->   
+        <property name="url" value="jdbc:oracle:thin:@192.168.100.47:1521:ORCL" />
+        <property name="username" value="H5FABMES2" />
+        <property name="password" value="H5FABMES2" /> 
+         
+        
+        <!-- Local DB
+        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:ORCL" />
+        <property name="username" value="LOCAL_HKC5" />
+        <property name="password" value="LOCAL_HKC5" /> 
+        -->
+         
+        
+        <property name="maxActive" value="10" />
+        <property name="maxIdle" value="-1" />
+        <property name="minIdle" value="2" />
+        <property name="maxWait" value="5000" />
+        <property name="initialSize" value="4" />
+        <property name="validationQuery" value="select 1 from dual" />
+        <property name="testOnBorrow" value="true" />
+        <property name="minEvictableIdleTimeMillis" value="30000" />
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+          
+
+        
+      <property name="connectionProperties" value="v$session.program=TFT_MES-${svr}#${Seq}" />
+    </bean>
+
+      <bean id="SqlTemplate" class="kr.co.aim.greenframe.orm.SqlTemplate">
+            <property name="dataSource" ref="dataSource" />
+            <property name="queryTimeout" value="30" />
+      </bean>
+
+      <bean id="TxDataSourceManager" class="kr.co.aim.greenframe.transaction.impl.TxDataSourceManagerImpl">
+            <property name="transactionManager">
+                  <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+                  <property name="dataSource" ref="dataSource" />
+                  </bean>
+            </property>
+            <property name="propagationBehavior" value="PROPAGATION_NESTED" />
+            <property name="isolationLevel" value="ISOLATION_READ_COMMITTED" />
+            <property name="transactionTimeout" value="60" />
+            <property name="autoManaged" value="true" />
+      </bean>
+    
+      <bean id="LobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler" >
+            <property name="nativeJdbcExtractor">
+                  <bean class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor" />
+            </property>
+      </bean>
+</beans>
+
+
+

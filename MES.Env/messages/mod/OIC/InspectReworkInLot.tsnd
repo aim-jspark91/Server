@@ -1,0 +1,25 @@
+8400
+;225.11.11.4
+
+BOEHF.B3.MES.DEVJMNA.MOD.CNMsvr
+Sample
+true
+15.0
+<message>
+  <header>
+    <messagename>InspectReworkInLot</messagename>
+    <transactionid>20100607172724484375</transactionid>
+    <replysubjectname>_INBOX.0A46030B.4BF9CDA025F60.20</replysubjectname>
+  </header>
+  <body>
+    <LOTNAME>3ATN070059A4GC</LOTNAME>
+    <FAREASONCODE>20001</FAREASONCODE>
+    <FAREASONCODESIZE>12</FAREASONCODESIZE>
+    <FALEVEL>P</FALEVEL>
+    <FAADDRESSS>321</FAADDRESSS>
+    <FAADDRESSSPOINT>112</FAADDRESSSPOINT>
+    <EVENTUSER>jnheo</EVENTUSER>
+    <EVENTCOMMENT />
+    <LANGUAGE>English</LANGUAGE>
+  </body>
+</message>
