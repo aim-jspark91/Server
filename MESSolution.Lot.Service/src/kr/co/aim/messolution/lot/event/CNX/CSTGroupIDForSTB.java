@@ -211,6 +211,8 @@ public class CSTGroupIDForSTB extends SyncHandler {
 		}
 		//------ End Update Lot & Product [PROCESSGROUPNAME Column]------//
 		
+		
+		/*
 		//------ Start Calculate WorkOrder ReleasedQuantity ------//
 		//ARRAY
 		MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(arrayProductRequestData.getKey().getProductRequestName(), "R", (long)sumArrayProductQuantity, eventInfo);
@@ -228,6 +230,8 @@ public class CSTGroupIDForSTB extends SyncHandler {
 		{
 			throw new CustomException("PRODUCTREQUEST-0049", cfProductRequestData.getKey().getProductRequestName());
 		}
+		*/
+		
 		
 		//this.checkSameProductQuantity(productRequestName, processGroupData.getKey().getProcessGroupName());
 		

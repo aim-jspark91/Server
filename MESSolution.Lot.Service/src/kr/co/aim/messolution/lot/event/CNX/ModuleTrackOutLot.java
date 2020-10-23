@@ -35,6 +35,7 @@ import kr.co.aim.greentrack.lot.management.info.MakeLoggedOutInfo;
 import kr.co.aim.greentrack.lot.management.info.SetEventInfo;
 import kr.co.aim.greentrack.lot.management.info.TransferProductsToLotInfo;
 import kr.co.aim.greentrack.machine.management.data.Machine;
+import kr.co.aim.greentrack.name.NameServiceProxy;
 import kr.co.aim.greentrack.port.management.data.Port;
 import kr.co.aim.greentrack.processflow.ProcessFlowServiceProxy;
 import kr.co.aim.greentrack.processflow.management.data.Node;
@@ -71,7 +72,7 @@ public class ModuleTrackOutLot extends SyncHandler {
 		
 		String factoryName = SMessageUtil.getBodyItemValue(doc, "FACTORYNAME", true);
 		String machineName = SMessageUtil.getBodyItemValue(doc, "MACHINENAME", true);
-		String portName = SMessageUtil.getBodyItemValue(doc, "PORTNAME", true);
+		String portName = SMessageUtil.getBodyItemValue(doc, "PORTNAME", false);
 		String carrierName = SMessageUtil.getBodyItemValue(doc, "CARRIERNAME", true);
 		String carrierType = SMessageUtil.getBodyItemValue(doc, "CARRIERTYPE", true);
 		String lotGrade = SMessageUtil.getBodyItemValue(doc, "LOTGRADE", true);
@@ -299,14 +300,6 @@ public class ModuleTrackOutLot extends SyncHandler {
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		String toProcessFlowName = "";
 		String toProcessOperationName = "";
 
@@ -324,32 +317,9 @@ public class ModuleTrackOutLot extends SyncHandler {
 		String reworkFlag = "";
 		boolean toRework = false;
 
-		Map<String, Object> mandatoryNode = null;
-		try {
-			mandatoryNode = NodeStack.getNextMandatoryNodeID(
-					lotData.getFactoryName(), lotData.getProcessFlowName(),
-					lotData.getProcessFlowVersion(),
-					lotData.getProcessOperationName(),
-					lotData.getProcessOperationVersion());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (mandatoryNode != null) 
-		{
-			sequenceId = (String) mandatoryNode.get("NODEID");
-		} 
-		else 
-		{
-			throw new CustomException("LOT-9058", lotData.getProcessFlowName(), lotData.getProcessOperationName());
-		}
-		
 		Node nextProcessFlowSeq = null;
 		ProcessFlow processFlow = CommonUtil.getProcessFlowData( lotData );
 
-		
-		
-		
 		LotKey lotKey = new LotKey();
 		lotKey.setLotName( lotData.getKey().getLotName() );
 
@@ -424,11 +394,15 @@ public class ModuleTrackOutLot extends SyncHandler {
 	
 	public String generateSplitLotName(String lotName)
 	{
-		String shortLotName = StringUtil.substring(lotName, lotName.length()-2);
-		int splitNo = Integer.parseInt(StringUtil.substring(lotName, lotName.length()-2, lotName.length())) + 1;
-		String newLotName = shortLotName + splitNo;
+	    String shortLotName = StringUtil.substring(lotName, 0, 8);
+		List<String> argSeq = new ArrayList<String>();
+		argSeq.add(shortLotName);
+		List<String> lstName = NameServiceProxy.getNameGeneratorRuleDefService().generateName("GlassSplitLotNaming", argSeq, 1);
 		
-		return newLotName;
+		int i = 0;
+		String childLotName = lstName.get(i++);
+		
+		return childLotName;
 	}
 	
 	public static boolean IsAgingOperation(Product productData )

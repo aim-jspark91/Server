@@ -59,6 +59,13 @@
 			<zipfileset dir="MESSolution.Extended.Object/bin" includes="**/*.class" />
 			<zipfileset dir="MESSolution.Extended.Object/src" includes="**/*.*" />
 		</jar>
+		<jar destfile="dist/MESSolution.Extended.Policy-${VERSION}.jar" manifest="MESSolution.Extended.Policy/META-INF/MANIFEST.MF">
+			<zipfileset dir="MESSolution.Extended.Policy/META-INF/spring" prefix="META-INF/spring">
+				<include name="**/*.xml" />
+			</zipfileset>
+			<zipfileset dir="MESSolution.Extended.Policy/bin" includes="**/*.class" />
+			<zipfileset dir="MESSolution.Extended.Policy/src" includes="**/*.*" />
+		</jar>
 		<jar destfile="dist/MESSolution.Lot.Service-${VERSION}.jar" manifest="MESSolution.Lot.Service/META-INF/MANIFEST.MF">
 			<zipfileset dir="MESSolution.Lot.Service/META-INF/spring" prefix="META-INF/spring">
 				<include name="**/*.xml" />

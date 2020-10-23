@@ -16152,5 +16152,36 @@ public class LotServiceUtil implements ApplicationContextAware {
 		}
 		return productPSequence;
 	}
+	
+	/*
+	 * Name : isCOAProduct
+	 * Desc : This function is isCOAProduct
+	 * Author : AIM Systems, Inc
+	 * Date : 2019.06.10
+	 */
+	public static boolean isShipForCOA(ProductSpec productSpecData, Lot lotData) throws CustomException
+	{
+		if(StringUtil.equals(productSpecData.getUdfs().get("PRODUCTIONINPUTTYPE"),"COA"))
+		{
+				if(StringUtil.equals(lotData.getFactoryName(), "ARRAY")
+						&& StringUtil.equals(lotData.getDestinationFactoryName(), "CF"))
+				{
+					return true;
+				}
+				else if(StringUtil.equals(lotData.getFactoryName(), "CF")
+						&& StringUtil.equals(lotData.getDestinationFactoryName(), "ARRAY"))
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 }

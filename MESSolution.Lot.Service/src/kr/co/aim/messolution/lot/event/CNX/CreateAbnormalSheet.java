@@ -49,11 +49,11 @@ public class CreateAbnormalSheet extends SyncHandler {
 		String abnormalSheetName = "";
 		List<Element> abnormalSheetList = doc.getRootElement().getChild( "Body" ).getChild( "ABNORMALSHEETLIST" ).getChildren( "ABNORMALSHEET" );
 
-		String insertSql = " INSERT INTO CT_ABNORMALSHEET (ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,ENGDEPARTMENT, "
-				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,LASTEVENTTIMEKEY,LASTEVENTTIME,LASTEVENTNAME,LASTEVENTUSER,LASTEVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		String insertSql = " INSERT INTO CT_ABNORMALSHEET (ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,ACTIONCODE, PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,ENGINEER,LEADER,"
+				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,LASTEVENTTIMEKEY,LASTEVENTTIME,LASTEVENTNAME,LASTEVENTUSER,LASTEVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
-		String insertHistSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,ENGDEPARTMENT, "
-				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		String insertHistSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,ACTIONCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,ENGINEER,LEADER, "
+				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		List<Object[]> insertAbnormalSheetList = new ArrayList<Object[]>();
 		List<Object[]> insertAbnormalSheetHistList = new ArrayList<Object[]>();
@@ -63,9 +63,11 @@ public class CreateAbnormalSheet extends SyncHandler {
 			String lotName = SMessageUtil.getChildText( abnormalSheet, "LOTNAME", false );
 			String productName = SMessageUtil.getChildText( abnormalSheet, "PRODUCTNAME", false );
 			String abnormalCode = SMessageUtil.getChildText( abnormalSheet, "ABNORMALCODE", false );
+			String actionCode = SMessageUtil.getChildText( abnormalSheet, "ACTIONCODE", false );
 			String processOperationName = SMessageUtil.getChildText( abnormalSheet, "PROCESSOPERATIONNAME", false );
 			String machineName = SMessageUtil.getChildText( abnormalSheet, "MACHINENAME", false );
-			String engDepartment = SMessageUtil.getChildText( abnormalSheet, "ENGDEPARTMENT", false );
+			String engineer = SMessageUtil.getChildText( abnormalSheet, "ENGINEER", false );
+			String leader = SMessageUtil.getChildText( abnormalSheet, "LEADER", false );
 			String sLotPosition = SMessageUtil.getChildText( abnormalSheet, "SLOTPOSITION", false );
 			String durdate = SMessageUtil.getChildText( abnormalSheet, "DUEDATE", false );
 
@@ -102,10 +104,12 @@ public class CreateAbnormalSheet extends SyncHandler {
 			insertInfo.add( lotName );
 			insertInfo.add( productName );
 			insertInfo.add( abnormalCode );
+			insertInfo.add(actionCode);
 			insertInfo.add( "Created" );
 			insertInfo.add( processOperationName );
 			insertInfo.add( machineName );
-			insertInfo.add( engDepartment );
+			insertInfo.add( engineer );
+			insertInfo.add( leader );
 			insertInfo.add( sLotPosition );
 			insertInfo.add( durdate );
 			insertInfo.add( eventInfo.getEventUser() );
@@ -125,10 +129,12 @@ public class CreateAbnormalSheet extends SyncHandler {
 			insertHistory.add( lotName );
 			insertHistory.add( productName );
 			insertHistory.add( abnormalCode );
+			insertHistory.add(actionCode);
 			insertHistory.add( "Created" );
 			insertHistory.add( processOperationName );
 			insertHistory.add( machineName );
-			insertHistory.add( engDepartment );
+			insertHistory.add( engineer );
+			insertHistory.add( leader );
 			insertHistory.add( sLotPosition );
 			insertHistory.add( durdate );
 			insertHistory.add( eventInfo.getEventUser() );
@@ -151,137 +157,8 @@ public class CreateAbnormalSheet extends SyncHandler {
 			Product productData = null;
 			productData = ProductServiceProxy.getProductService().selectByKey( productKey );
 
-			// Check Product Hold
-			String checkSql = "SELECT REASONCODE, EVENTNAME, EVENTUSER FROM PRODUCTMULTIHOLD " + "WHERE PRODUCTNAME = :productName AND REASONCODE = :reasonCode";
-			Map<String, String> obj = new HashMap<String, String>();
-			obj.put( "productName", productData.getKey().getProductName() );
-			obj.put( "reasonCode", "ABSHOLD" );
-			List<Map<String, Object>> checkSqlResult = greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().queryForList( checkSql, obj );
-			if ( checkSqlResult.size() > 0 ) { throw new CustomException( "PRHOLD-02" ); }
-			if ( StringUtil.equals( lotData.getLotState(), GenericServiceProxy.getConstantMap().Lot_Released ) && StringUtil.equals( lotData.getLotProcessState(), "WAIT" ) )
-			{
-				eventInfo.setReasonCode( "ABSHOLD" );
-				eventInfo.setReasonCodeType( "HoldLot" );
-				eventInfo.setEventComment( "Hold Lot By Abnormal Sheet. AbnormalSheetName: " + abnormalSheetName );
-
-				MakeOnHoldInfo makeOnHoldInfo = new MakeOnHoldInfo();
-				ProductServiceProxy.getProductService().makeOnHold( productData.getKey(), eventInfo, makeOnHoldInfo );
-			}
-			else if ( StringUtil.equals( lotData.getLotState(), GenericServiceProxy.getConstantMap().Lot_Released ) && StringUtil.equals( lotData.getLotProcessState(), "RUN" ) )
-			{
-				Node nextMandatorySeq = LotInfoUtil.nextMandatoryInfo( lotData.getFactoryName(), lotData.getProcessOperationName(), lotData.getProcessFlowName(), null,
-						lotData.getProcessOperationVersion(), lotData.getProcessFlowVersion() );
-				
-				String nextOperationName = nextMandatorySeq.getNodeAttribute1();
-				
-				// ReserveLotHold, insert LotfutureAction
-				StringBuilder sql = new StringBuilder();
-				sql.append( "SELECT LOTNAME, PROCESSOPERATIONNAME, POSITION, EVENTUSER, REASONCODE " );
-				sql.append( "  FROM LOTFUTUREACTION " );
-				sql.append( " WHERE LOTNAME = :LOTNAME " );
-				sql.append( "   AND FACTORYNAME = :FACTORYNAME " );
-				sql.append( "   AND PROCESSFLOWNAME = :PROCESSFLOWNAME " );
-				sql.append( "   AND PROCESSOPERATIONNAME = :PROCESSOPERATIONNAME " );
-				sql.append( "   AND PROCESSOPERATIONVERSION = :PROCESSOPERATIONVERSION " );
-				sql.append( "   AND ACTIONNAME = 'hold' " );
-				sql.append( "ORDER BY POSITION " );
-
-				Map<String, String> bindMap = new HashMap<String, String>();
-				bindMap.put( "LOTNAME", lotName );
-				bindMap.put( "FACTORYNAME", lotData.getFactoryName() );
-				bindMap.put( "PROCESSFLOWNAME", lotData.getProcessFlowName() );
-				bindMap.put( "PROCESSOPERATIONNAME", nextOperationName);
-				bindMap.put( "PROCESSOPERATIONVERSION", lotData.getProcessOperationVersion() );
-
-				List<Map<String, Object>> sqlResult = greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().queryForList( sql.toString(), bindMap );
-
-				if ( sqlResult.size() > 0 )
-				{
-					for ( Map<String, Object> result : sqlResult )
-					{
-						String LotFutureAction_ReasonCode = ConvertUtil.getMapValueByName( result, "REASONCODE" );
-
-						//CommonValidation.deleteReserveHoldByReserveHoldUser( lotName, "ABSHOLD", eventInfo.getEventUser() );
-					}
-				}
-
-				// SetEvent
-				SetEventInfo setEventInfo = new SetEventInfo();
-				eventInfo.setEventName( "CreateAbnormalSheet " + abnormalSheetName );
-				eventInfo.setEventComment( "Reserve Hold by AbnormalSheet" );
-				LotServiceProxy.getLotService().setEvent( lotData.getKey(), eventInfo, setEventInfo );
-				eventLog.info( "Event Name = " + eventInfo.getEventName() + " , EventTimeKey + " + eventInfo.getEventTimeKey() );
-
-				// Delete LotFutureCondition & LotFutureAction
-				// Delete LotFutureAction
-				sql.setLength( 0 );
-				sql.append( "DELETE LOTFUTUREACTION " );
-				sql.append( " WHERE LOTNAME = :LOTNAME " );
-				sql.append( "   AND FACTORYNAME = :FACTORYNAME " );
-				sql.append( "   AND PROCESSFLOWNAME = :PROCESSFLOWNAME " );
-				sql.append( "   AND PROCESSOPERATIONNAME = :PROCESSOPERATIONNAME " );
-				sql.append( "   AND PROCESSOPERATIONVERSION = :PROCESSOPERATIONVERSION " );
-				sql.append( "   AND ACTIONNAME = 'hold' " );
-
-				greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().update( sql.toString(), bindMap );
-
-				// LotFutureCondition
-				LotFutureCondition lotFCData = new LotFutureCondition();
-				lotFCData.getKey().setLotName( lotName );
-				lotFCData.getKey().setFactoryName( lotData.getFactoryName() );
-				lotFCData.getKey().setProcessFlowName( lotData.getProcessFlowName() );
-				lotFCData.getKey().setProcessOperationName( nextOperationName );
-				lotFCData.getKey().setProcessFlowVersion( lotData.getProcessFlowVersion() );
-				lotFCData.getKey().setProcessOperationVersion( lotData.getProcessOperationVersion() );
-				lotFCData.setDescription( "Reserve Hold by AbnormalSheet" );
-
-				LotFutureCondition lotFutureCondition = null;
-				try
-				{
-					lotFutureCondition = LotServiceProxy.getLotFutureConditionService().selectByKey( lotFCData.getKey() );
-				}
-				catch ( NotFoundSignal e )
-				{}
-
-				try
-				{
-					if ( lotFutureCondition == null ) LotServiceProxy.getLotFutureConditionService().insert( lotFCData );
-					else LotServiceProxy.getLotFutureConditionService().update( lotFCData );
-				}
-				catch ( DuplicateNameSignal e )
-				{}
-
-				// LotFutureAction
-				long position = 0;
-				LotFutureActionKey lotFAKey = new LotFutureActionKey();
-				lotFAKey.setLotName( lotName );
-				lotFAKey.setFactoryName( lotData.getFactoryName() );
-				lotFAKey.setProcessFlowName( lotData.getProcessFlowName() );
-				lotFAKey.setProcessOperationName( nextOperationName );
-				lotFAKey.setPosition( position );
-				lotFAKey.setProcessFlowVersion( lotData.getProcessFlowVersion() );
-				lotFAKey.setProcessOperationVersion( lotData.getProcessOperationVersion() );
-
-				LotFutureAction lotFutureAction = new LotFutureAction();
-				lotFutureAction.setKey( lotFAKey );
-				lotFutureAction.setActionName( "hold" );
-				lotFutureAction.setActionType( "System" );
-				lotFutureAction.setEventName( eventInfo.getEventName() );
-				lotFutureAction.setEventUser( eventInfo.getEventUser() );
-				lotFutureAction.setReasonCodeType( "HOLD" );
-				lotFutureAction.setReasonCode( "ABSHOLD" );
-				lotFutureAction.setEventUser( eventInfo.getEventUser() );
-
-				try
-				{
-					LotServiceProxy.getLotFutureActionService().insert( lotFutureAction );
-				}
-				catch ( DuplicateNameSignal e )
-				{}
-
-				//LotServiceImpl.insertCT_RESERVEHOLDLOTBYPRODUCT( machineName, productName, nextOperationName, lotName, "ABSHOLD", eventInfo, "" );
-
-			}
+			//Action
+			
 		}
 		if ( insertAbnormalSheetList.size() > 0 && insertAbnormalSheetHistList.size() > 0 )
 		{

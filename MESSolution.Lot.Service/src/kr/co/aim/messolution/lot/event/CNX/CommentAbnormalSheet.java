@@ -1,4 +1,3 @@
-
 package kr.co.aim.messolution.lot.event.CNX;
 
 import java.sql.Timestamp;
@@ -49,18 +48,20 @@ public class CommentAbnormalSheet extends SyncHandler {
 		String lotName = SMessageUtil.getBodyItemValue( doc, "LOTNAME", true );
 		String productName = SMessageUtil.getBodyItemValue( doc, "PRODUCTNAME", true );
 		String abnormalCode = SMessageUtil.getBodyItemValue( doc, "ABNORMALCODE", true );
-		String engDepartment = SMessageUtil.getBodyItemValue( doc, "ENGDEPARTMENT", true );
 		String actionCode = SMessageUtil.getBodyItemValue( doc, "ACTIONCODE", true );
+		String engineer = SMessageUtil.getBodyItemValue( doc, "ENGINEER", true );
+		String leader = SMessageUtil.getBodyItemValue( doc, "LEADER", true );
 
-		String updateSql = "UPDATE CT_ABNORMALSHEET SET PROCESSSTATE = 'Commented',ENGDEPARTMENT = :ENGDEPARTMENT, ACTIONCODE = :ACTIONCODE,"
+		String updateSql = "UPDATE CT_ABNORMALSHEET SET PROCESSSTATE = 'Commented', ENGINEER = :ENGINEER, LEADER=:LEADER, ACTIONCODE = :ACTIONCODE, ABNORMALCODE = :ABNORMALCODE,"
 				+ "LASTEVENTTIMEKEY = :LASTEVENTTIMEKEY , LASTEVENTTIME = :LASTEVENTTIME ,LASTEVENTNAME = :LASTEVENTNAME ,"
 				+ "LASTEVENTUSER = :LASTEVENTUSER , LASTEVENTCOMMENT = :LASTEVENTCOMMENT WHERE ABNORMALSHEETNAME = :ABNORMALSHEETNAME "
-				+ "AND LOTNAME = :LOTNAME AND PRODUCTNAME = :PRODUCTNAME AND ABNORMALCODE = :ABNORMALCODE";
+				+ "AND LOTNAME = :LOTNAME AND PRODUCTNAME = :PRODUCTNAME ";
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put( "ENGDEPARTMENT", engDepartment );
+		map.put( "ENGINEER", engineer );
+		map.put( "LEADER", leader );
 		map.put( "ACTIONCODE", actionCode );
-		
+		map.put( "ABNORMALCODE", abnormalCode );
 		map.put( "LASTEVENTTIMEKEY", TimeUtils.getCurrentEventTimeKey());
 		map.put( "LASTEVENTTIME", eventInfo.getEventTime() );
 		map.put( "LASTEVENTNAME", "Comment" );
@@ -69,18 +70,16 @@ public class CommentAbnormalSheet extends SyncHandler {
 		map.put( "ABNORMALSHEETNAME", abnormalSheetName );
 		map.put( "LOTNAME", lotName );
 		map.put( "PRODUCTNAME", productName );
-		map.put( "ABNORMALCODE", abnormalCode );
 
-		String sql = "SELECT * FROM CT_ABNORMALSHEET WHERE ABNORMALSHEETNAME = :ABNORMALSHEETNAME AND LOTNAME = :LOTNAME AND PRODUCTNAME = :PRODUCTNAME AND ABNORMALCODE = :ABNORMALCODE";
+		String sql = "SELECT * FROM CT_ABNORMALSHEET WHERE ABNORMALSHEETNAME = :ABNORMALSHEETNAME AND LOTNAME = :LOTNAME AND PRODUCTNAME = :PRODUCTNAME ";
 
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put( "ABNORMALSHEETNAME", abnormalSheetName );
 		map2.put( "LOTNAME", lotName );
 		map2.put( "PRODUCTNAME", productName );
-		map2.put( "ABNORMALCODE", abnormalCode );
 
-		String insertSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,ENGDEPARTMENT, "
-				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,ACTIONCODE,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		String insertSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,ENGINEER,LEADER,  "
+				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,ACTIONCODE,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		List<Map<String, Object>> sqlResult = greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().queryForList( sql.toString(), map2 );
 		List<Object[]> insertInfo = new ArrayList<Object[]>();
@@ -96,7 +95,8 @@ public class CommentAbnormalSheet extends SyncHandler {
 			insert.add( "Commented" );
 			insert.add( (String) sqlResult.get( 0 ).get( "PROCESSOPERATIONNAME" ) );
 			insert.add( (String) sqlResult.get( 0 ).get( "MACHINENAME" ) );
-			insert.add( engDepartment );
+			insert.add( engineer );
+			insert.add( leader );
 			insert.add( (String) sqlResult.get( 0 ).get( "SLOTPOSITION" ) );
 			insert.add( (String) sqlResult.get( 0 ).get( "DUEDATE" ) );
 			insert.add( (String) sqlResult.get( 0 ).get( "CREATEUSER" ) );
@@ -113,6 +113,8 @@ public class CommentAbnormalSheet extends SyncHandler {
 		greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().update( updateSql, map );
 		GenericServiceProxy.getSqlMesTemplate().updateBatch( insertSql, insertInfo );
 
+		//Action
+		
 		return doc;
 	}
 }

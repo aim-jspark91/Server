@@ -39,7 +39,7 @@ public class CreateCarrier extends SyncHandler {
 		String sCapacity = SMessageUtil.getBodyItemValue(doc, "CAPACITY", true);
 		String sNamingRule = SMessageUtil.getBodyItemValue(doc, "NAMINGRULE", true);
 		String sQuantity = SMessageUtil.getBodyItemValue(doc, "COUNT", true);
-		String sSize = SMessageUtil.getBodyItemValue(doc, "SIZE", true);
+		String sSize = SMessageUtil.getBodyItemValue(doc, "SIZE", false);
 		Boolean checkname;
 		
 		if(!sdurableName.isEmpty())
@@ -67,8 +67,10 @@ public class CreateCarrier extends SyncHandler {
 		}
 		else{
 			List<String> argSeq = new ArrayList<String>();
-			argSeq.add("D5");
-			argSeq.add(sSize);
+			if(!sSize.isEmpty()){
+				argSeq.add("D5");
+				argSeq.add(sSize);
+			}
 			List<String> durableList = NameServiceProxy.getNameGeneratorRuleDefService().generateName(sNamingRule, argSeq, Integer.parseInt(sQuantity));
 
 			for (String durableName : durableList)

@@ -87,7 +87,7 @@ public class AssignCellWorkOrder extends SyncHandler
 			double subProductUnitQuantity2 = lotData.getSubProductUnitQuantity2();
 			
 	 		ChangeSpecInfo changeSpecInfo = MESLotServiceProxy.getLotInfoUtil().changeSpecInfo(lotName, productionType, productSpecName,
-					productSpecVersion, productSpec2Name, productSpec2Version, "", subProductUnitQuantity1, subProductUnitQuantity2,
+					productSpecVersion, productSpec2Name, productSpec2Version, productRequestName, subProductUnitQuantity1, subProductUnitQuantity2,
 					dueDate, priority, factoryName, areaName, lotState, lotProcessState, lotHoldState, processFlowName, processFlowVersion,
 					processOperationName, processOperationVersion, processFlowName, nextOperationData.getKey().getProcessOperationName(), "", "", lotData.getNodeStack(), lotData.getUdfs(),
 					productUdfs, true);
@@ -98,7 +98,7 @@ public class AssignCellWorkOrder extends SyncHandler
 			
 		}
 		
-		MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(productRequestName, null, "R", releaseQuantity, eventInfo);
+		MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(productRequestName, "R", releaseQuantity, eventInfo);
 		
 		// After ChangeSpec Lot & Assign WorkOrder
 		

@@ -16,20 +16,20 @@
         <property name="username" value="t2arrayadm" />
         <property name="password" value="t2arrayadm" /> 
          -->
-
-        <!-- DEV DB -->   
+           
+        <!-- DEV DB  -->
         <property name="url" value="jdbc:oracle:thin:@192.168.100.47:1521:ORCL" />
-        <property name="username" value="H5FABMES2" />
-        <property name="password" value="H5FABMES2" /> 
-         
-        
-        <!-- Local DB
-        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:ORCL" />
-        <property name="username" value="LOCAL_HKC5" />
-        <property name="password" value="LOCAL_HKC5" /> 
+        <property name="username" value="H5FABMES" />
+        <property name="password" value="H5FABMES" />     
+                
+        <!-- Local DB 
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+        <property name="username" value="EDO_LOCAL_ARRAY" />
+        <property name="password" value="EDO_LOCAL_ARRAY" />
         -->
-         
-        
+           
+
+                
         <property name="maxActive" value="10" />
         <property name="maxIdle" value="-1" />
         <property name="minIdle" value="2" />

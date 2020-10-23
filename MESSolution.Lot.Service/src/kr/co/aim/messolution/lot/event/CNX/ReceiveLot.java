@@ -13,10 +13,13 @@ import kr.co.aim.messolution.generic.GenericServiceProxy;
 import kr.co.aim.messolution.generic.errorHandler.CustomException;
 import kr.co.aim.messolution.generic.eventHandler.SyncHandler;
 import kr.co.aim.messolution.generic.util.CommonUtil;
+import kr.co.aim.messolution.generic.util.ConvertUtil;
 import kr.co.aim.messolution.generic.util.EventInfoUtil;
 import kr.co.aim.messolution.generic.util.SMessageUtil;
 import kr.co.aim.messolution.lot.MESLotServiceProxy;
+import kr.co.aim.messolution.lot.service.LotServiceUtil;
 import kr.co.aim.messolution.product.MESProductServiceProxy;
+import kr.co.aim.greenframe.greenFrameServiceProxy;
 import kr.co.aim.greenframe.util.time.TimeStampUtil;
 import kr.co.aim.greentrack.durable.DurableServiceProxy;
 import kr.co.aim.greentrack.durable.management.data.Durable;
@@ -30,6 +33,7 @@ import kr.co.aim.greentrack.lot.management.data.Lot;
 import kr.co.aim.greentrack.lot.management.info.ChangeSpecInfo;
 import kr.co.aim.greentrack.lot.management.info.MakeOnHoldInfo;
 import kr.co.aim.greentrack.lot.management.info.MakeReceivedInfo;
+import kr.co.aim.greentrack.processoperationspec.management.data.ProcessOperationSpec;
 import kr.co.aim.greentrack.product.ProductServiceProxy;
 import kr.co.aim.greentrack.product.management.data.Product;
 import kr.co.aim.greentrack.product.management.data.ProductSpec;
@@ -55,6 +59,8 @@ public class ReceiveLot extends SyncHandler {
 		
 		String productSpecName = SMessageUtil.getBodyItemValue(doc, "TOPRODUCTSPECNAME", true);
 		String factoryName = SMessageUtil.getBodyItemValue(doc, "TOFACTORYNAME", true);
+		String fromFactoryName = SMessageUtil.getBodyItemValue(doc, "FROMFACTORYNAME", true);
+		String fromProductSpecName = SMessageUtil.getBodyItemValue(doc, "FROMPRODUCTSPECNAME", true);
 		
 		ProductSpec productSpecData = CommonUtil.getProductSpecByProductSpecName( factoryName, productSpecName, "00001" );
 		
@@ -66,13 +72,8 @@ public class ReceiveLot extends SyncHandler {
 			String carrierName = SMessageUtil.getChildText(eLot, "DURABLENAME", true);
 			
 			Lot lot = MESLotServiceProxy.getLotInfoUtil().getLotData(lotName);
-			
-			//Validate
-/*			if(!this.validateLotData(lotName, factoryName))
-			{
-				throw new CustomException("LOT-0227");
-			}*/
-			
+			List<Product> productList = ProductServiceProxy.getProductService().allProductsByLot(lot.getKey().getLotName());
+
 			if(!this.validateProductData(lotName, factoryName, carrierName))
 			{
 				throw new CustomException("PRODUCT-0001",lotName);
@@ -84,35 +85,114 @@ public class ReceiveLot extends SyncHandler {
 				throw new CustomException("COMMON-0001","Lot ["+lotName+"] Panel Judge is not 'G','O','X' Can't Receive ! ");
 			}
 			
-			List<Product> productList = ProductServiceProxy.getProductService().allProductsByLot(lot.getKey().getLotName());
-			
+			ProductSpec productSpec = CommonUtil.getProductSpecByProductSpecName( factoryName, productSpecName, "00001" );
 			List<ProductU> productUdfs = MESLotServiceProxy.getLotInfoUtil().setProductUdfs(lotName);
-			
-			String eventUser = eventInfo.getEventUser();
-			
-			MakeReceivedInfo makeReceivedInfo = new MakeReceivedInfo();
-			makeReceivedInfo.setProductSpecName( productSpecData.getKey().getProductSpecName() );
-			makeReceivedInfo.setProductSpecVersion( productSpecData.getKey().getProductSpecVersion() );
-			makeReceivedInfo.setProductRequestName( lot.getProductRequestName() );
-			makeReceivedInfo.setProcessFlowName( productSpecData.getProcessFlowName() );
-			makeReceivedInfo.setProcessFlowVersion( "00001" );
-			makeReceivedInfo.setProductionType( lot.getProductionType() );
-			makeReceivedInfo.setProductType( productSpecData.getProductType() );
-			makeReceivedInfo.setAreaName(lot.getAreaName());
-			makeReceivedInfo.setSubProductType( productSpecData.getSubProductType() );
+			if ( LotServiceUtil.isShipForCOA( productSpec, lot ) )
+			{
+				StringBuffer sbSql = new StringBuffer();
+				sbSql.append( "SELECT RPS.TOFACTORYNAME,RPS.TOPRODUCTSPECNAME, RPS.TOPROCESSOPERATIONNAME " );
+				sbSql.append( "FROM TPPOLICY TP, POSFACTORYRELATION RPS " );
+				sbSql.append( "WHERE     TP.CONDITIONID = RPS.CONDITIONID " );
+				sbSql.append( "AND TP.FACTORYNAME = :FACTORYNAME " );
+				sbSql.append( "AND TP.PRODUCTSPECNAME = :FROMPRODUCTSPECNAME " );
+				sbSql.append( "AND RPS.JOBTYPE = :JOBTYPE " );
+				sbSql.append( "AND RPS.TOFACTORYNAME=:TOFACTORYNAME " );
+				sbSql.append( "AND RPS.TOPRODUCTSPECNAME=:PRODUCTSPECNAME " );
 
-			makeReceivedInfo.setProductUSequence( productUdfs );
-			
-			Map<String, String> userColumns = new HashMap<String, String>();
+				Map<String, Object> mBind = new HashMap<String, Object>();
+				mBind.put( "FACTORYNAME", fromFactoryName );
+				mBind.put( "PRODUCTSPECNAME", productSpecName );
+				mBind.put( "JOBTYPE", "Receive" );
+				mBind.put( "TOFACTORYNAME", factoryName );
+				mBind.put( "FROMPRODUCTSPECNAME", fromProductSpecName );
+				// mBind.put("PRODUCTIONTYPE", productionDetailType );
 
-			userColumns.put("RECEIVEFLAG", GenericServiceProxy.getConstantMap().Flag_Y);
-			
-			makeReceivedInfo.setUdfs( userColumns );
+				List<Map<String, Object>> results = greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().queryForList( sbSql.toString(), mBind );
 
-			LotServiceProxy.getLotService().makeReceived( lot.getKey(), eventInfo, makeReceivedInfo );
-			eventLog.info( "Event Name = " + eventInfo.getEventName() + " , EventTimeKey = " + eventInfo.getEventTimeKey() );
-			
+				if ( results == null || results.size() == 0 ) { throw new CustomException( "Lot-0059" ); }
+				eventInfo.setEventName( "ReceiveLot" );
+				
+				if(factoryName.equals("CELL"))
+				{
+					lot.setLotState(GenericServiceProxy.getConstantMap().Lot_Received);
+					lot.setLotProcessState("");
+					lot.setLotHoldState("");
+				}
+				else
+				{
+					lot.setLotState(GenericServiceProxy.getConstantMap().Lot_Released);
+					lot.setLotProcessState(GenericServiceProxy.getConstantMap().Lot_Wait);
+					lot.setLotHoldState("N");
+				}
+				
+				//ExitedFabQTime
+				for(Product productData : productList)
+				{
+					productData.setProductState( GenericServiceProxy.getConstantMap().Prod_InProduction );
+					productData.setProductProcessState( GenericServiceProxy.getConstantMap().Prod_Idle );
+					productData.setProductHoldState( GenericServiceProxy.getConstantMap().Prod_NotOnHold );
+					ProductServiceProxy.getProductService().update( productData );
+				}	
+				
+				factoryName = ConvertUtil.getMapValueByName( results.get( 0 ), "TOFACTORYNAME" );
+				productSpecName = ConvertUtil.getMapValueByName( results.get( 0 ), "TOPRODUCTSPECNAME" );
+				String processOperationName = ConvertUtil.getMapValueByName( results.get( 0 ), "TOPROCESSOPERATIONNAME" );
+				
 
+				productSpec = CommonUtil.getProductSpecByProductSpecName( factoryName, productSpecName, "00001" );
+
+				String processFlowName = productSpec.getProcessFlowName();
+
+				if(processOperationName.isEmpty()){
+					ProcessOperationSpec processOperationSpec = CommonUtil.getFirstOperation(factoryName, processFlowName);
+					processOperationName = processOperationSpec.getKey().getProcessOperationName();
+				}
+				
+				String nodeId = CommonUtil.getNodeStack(factoryName, processFlowName, processOperationName);
+
+				ChangeSpecInfo changeSpecInfo = new ChangeSpecInfo();
+				changeSpecInfo.setFactoryName( factoryName );
+				changeSpecInfo.setProductSpecName( productSpecName );
+				changeSpecInfo.setProcessOperationName( processOperationName );
+				changeSpecInfo.setProductSpecVersion("00001");
+				changeSpecInfo.setProcessFlowName( processFlowName );
+				changeSpecInfo.setNodeStack( nodeId );
+				changeSpecInfo.setProductRequestName( lot.getProductRequestName() );
+				changeSpecInfo.setProductionType( lot.getProductionType() );
+				changeSpecInfo.setProductUSequence(productUdfs);
+				changeSpecInfo.setPriority(lot.getPriority());
+				Map<String, String> userColumns = new HashMap<String, String>();
+				userColumns.put("RECEIVEFLAG", GenericServiceProxy.getConstantMap().Flag_Y);
+				changeSpecInfo.setUdfs( userColumns );
+				
+				LotServiceProxy.getLotService().changeSpec( lot.getKey(), eventInfo, changeSpecInfo );
+
+			}else{
+				String eventUser = eventInfo.getEventUser();
+				
+				MakeReceivedInfo makeReceivedInfo = new MakeReceivedInfo();
+				makeReceivedInfo.setProductSpecName( productSpecData.getKey().getProductSpecName() );
+				makeReceivedInfo.setProductSpecVersion( productSpecData.getKey().getProductSpecVersion() );
+				makeReceivedInfo.setProductRequestName( lot.getProductRequestName() );
+				makeReceivedInfo.setProcessFlowName( productSpecData.getProcessFlowName() );
+				makeReceivedInfo.setProcessFlowVersion( "00001" );
+				makeReceivedInfo.setProductionType( lot.getProductionType() );
+				makeReceivedInfo.setProductType( productSpecData.getProductType() );
+				makeReceivedInfo.setAreaName(lot.getAreaName());
+				makeReceivedInfo.setSubProductType( productSpecData.getSubProductType() );
+	
+				makeReceivedInfo.setProductUSequence( productUdfs );
+				
+				Map<String, String> userColumns = new HashMap<String, String>();
+	
+				userColumns.put("RECEIVEFLAG", GenericServiceProxy.getConstantMap().Flag_Y);
+				
+				makeReceivedInfo.setUdfs( userColumns );
+	
+				LotServiceProxy.getLotService().makeReceived( lot.getKey(), eventInfo, makeReceivedInfo );
+				eventLog.info( "Event Name = " + eventInfo.getEventName() + " , EventTimeKey = " + eventInfo.getEventTimeKey() );
+			
+			}
 			
 			//2019.02.25 dmlee : -------------------------------------------------------------------------------------------------
 			

@@ -15,7 +15,7 @@ import com.tibco.tibrv.TibrvMsg;
 
 public class MessageFormatter extends AbstractBundleEventTemplate {
    	private static Log log = LogFactory.getLog(MessageFormatter.class);
-   	//test
+   	
 	/**
 	 * @uml.property  name="dataField_TAG"
 	 */

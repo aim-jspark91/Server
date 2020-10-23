@@ -79,8 +79,8 @@ public class ClosingAbnormalSheet extends SyncHandler {
 			map2.put( "PRODUCTNAME", productName );
 			map2.put( "ABNORMALCODE", abnormalCode );
 
-			String insertSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,ENGDEPARTMENT, "
-					+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,ACTIONCODE,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+			String insertSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,ENGINEER,LEADER, "
+					+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,ACTIONCODE,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 			List<Map<String, Object>> sqlResult = greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().queryForList( sql.toString(), map2 );
 			List<Object[]> insertInfo = new ArrayList<Object[]>();
@@ -96,7 +96,8 @@ public class ClosingAbnormalSheet extends SyncHandler {
 				insert.add( "Closed" );
 				insert.add( (String) sqlResult.get( 0 ).get( "PROCESSOPERATIONNAME" ) );
 				insert.add( (String) sqlResult.get( 0 ).get( "MACHINENAME" ) );
-				insert.add( (String) sqlResult.get( 0 ).get( "ENGDEPARTMENT" )  );
+				insert.add( (String) sqlResult.get( 0 ).get( "ENGINEER" )  );
+				insert.add( (String) sqlResult.get( 0 ).get( "LEADER" )  );
 				insert.add( (String) sqlResult.get( 0 ).get( "SLOTPOSITION" ) );
 				insert.add( (String) sqlResult.get( 0 ).get( "DUEDATE" ) );
 				insert.add( (String) sqlResult.get( 0 ).get( "CREATEUSER" ) );
