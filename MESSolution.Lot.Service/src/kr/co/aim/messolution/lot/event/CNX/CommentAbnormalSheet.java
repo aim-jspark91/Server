@@ -49,15 +49,20 @@ public class CommentAbnormalSheet extends SyncHandler {
 		String productName = SMessageUtil.getBodyItemValue( doc, "PRODUCTNAME", true );
 		String abnormalCode = SMessageUtil.getBodyItemValue( doc, "ABNORMALCODE", true );
 		String actionCode = SMessageUtil.getBodyItemValue( doc, "ACTIONCODE", true );
+		String department = SMessageUtil.getBodyItemValue( doc, "DEPARTMENT", true );
+		String departmentCount = SMessageUtil.getBodyItemValue( doc, "DEPARTMENTCOUNT", true );
 		String engineer = SMessageUtil.getBodyItemValue( doc, "ENGINEER", true );
 		String leader = SMessageUtil.getBodyItemValue( doc, "LEADER", true );
+		String processState = SMessageUtil.getBodyItemValue( doc, "PROCESSSTATE", true );
 
-		String updateSql = "UPDATE CT_ABNORMALSHEET SET PROCESSSTATE = 'Commented', ENGINEER = :ENGINEER, LEADER=:LEADER, ACTIONCODE = :ACTIONCODE, ABNORMALCODE = :ABNORMALCODE,"
+		String updateSql = "UPDATE CT_ABNORMALSHEET SET PROCESSSTATE =:PROCESSSTATE, DEPARTMENT=:DEPARTMENT, DEPARTMENTCOUNT=:DEPARTMENTCOUNT, ENGINEER = :ENGINEER, LEADER=:LEADER, ACTIONCODE = :ACTIONCODE, ABNORMALCODE = :ABNORMALCODE,"
 				+ "LASTEVENTTIMEKEY = :LASTEVENTTIMEKEY , LASTEVENTTIME = :LASTEVENTTIME ,LASTEVENTNAME = :LASTEVENTNAME ,"
 				+ "LASTEVENTUSER = :LASTEVENTUSER , LASTEVENTCOMMENT = :LASTEVENTCOMMENT WHERE ABNORMALSHEETNAME = :ABNORMALSHEETNAME "
 				+ "AND LOTNAME = :LOTNAME AND PRODUCTNAME = :PRODUCTNAME ";
 
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put( "DEPARTMENT", department );
+		map.put( "DEPARTMENTCOUNT", departmentCount );
 		map.put( "ENGINEER", engineer );
 		map.put( "LEADER", leader );
 		map.put( "ACTIONCODE", actionCode );
@@ -70,6 +75,7 @@ public class CommentAbnormalSheet extends SyncHandler {
 		map.put( "ABNORMALSHEETNAME", abnormalSheetName );
 		map.put( "LOTNAME", lotName );
 		map.put( "PRODUCTNAME", productName );
+		map.put( "PROCESSSTATE", processState );
 
 		String sql = "SELECT * FROM CT_ABNORMALSHEET WHERE ABNORMALSHEETNAME = :ABNORMALSHEETNAME AND LOTNAME = :LOTNAME AND PRODUCTNAME = :PRODUCTNAME ";
 
@@ -78,8 +84,8 @@ public class CommentAbnormalSheet extends SyncHandler {
 		map2.put( "LOTNAME", lotName );
 		map2.put( "PRODUCTNAME", productName );
 
-		String insertSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,ENGINEER,LEADER,  "
-				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,ACTIONCODE,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		String insertSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,DEPARTMENT, DEPARTMENTCOUNT, ENGINEER,LEADER,  "
+				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,ACTIONCODE,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		List<Map<String, Object>> sqlResult = greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().queryForList( sql.toString(), map2 );
 		List<Object[]> insertInfo = new ArrayList<Object[]>();
@@ -92,9 +98,11 @@ public class CommentAbnormalSheet extends SyncHandler {
 			insert.add( lotName );
 			insert.add( productName );
 			insert.add( abnormalCode );
-			insert.add( "Commented" );
+			insert.add( processState);
 			insert.add( (String) sqlResult.get( 0 ).get( "PROCESSOPERATIONNAME" ) );
 			insert.add( (String) sqlResult.get( 0 ).get( "MACHINENAME" ) );
+			insert.add( department );
+			insert.add( departmentCount );
 			insert.add( engineer );
 			insert.add( leader );
 			insert.add( (String) sqlResult.get( 0 ).get( "SLOTPOSITION" ) );

@@ -360,11 +360,8 @@ public class ModuleTrackOutLot extends SyncHandler {
 		eventInfo.setEventName( "TrackOut" );
 		LotServiceProxy.getLotService().makeLoggedOut( lotData.getKey(), eventInfo, makeLoggedOutInfo );
 
-		// Pol rework & OLB TrackOut
-/*		if ( carrierType.equals( GenericServiceProxy.getConstantMap().Type_Box )
-				&& ( ( machineData.getMachineGroupName().equals( GenericServiceProxy.getConstantMap().ConsumableType_POL ) || ( machineData.getMachineGroupName().equals( GenericServiceProxy
-						.getConstantMap().MachineGroup_OLB ) ) ) ) )*/
-		if ( ( machineData.getMachineGroupName().equals( GenericServiceProxy.getConstantMap().CONSUMABLE_TYPE_POL ) || ( machineData.getMachineGroupName().equals( GenericServiceProxy
+		// Pol and OLB TrackOut
+		if ( ( detailProcessOperationType.equals( GenericServiceProxy.getConstantMap().CONSUMABLE_TYPE_POL ) || ( detailProcessOperationType.equals( GenericServiceProxy
 						.getConstantMap().MachineGroup_OLB ) ) ) ) 
 		{
 			try {

@@ -54,7 +54,7 @@ public class ClosingAbnormalSheet extends SyncHandler {
 			String productName = SMessageUtil.getChildText( abnormalSheet, "PRODUCTNAME", true );
 			String abnormalCode = SMessageUtil.getChildText( abnormalSheet, "ABNORMALCODE", true );
 
-			String updateSql = " UPDATE CT_ABNORMALSHEET SET PROCESSSTATE = 'Closed',LASTEVENTTIMEKEY = :LASTEVENTTIMEKEY , "
+			String updateSql = " UPDATE CT_ABNORMALSHEET SET PROCESSSTATE = '009',LASTEVENTTIMEKEY = :LASTEVENTTIMEKEY , "
 					+ "LASTEVENTTIME = :LASTEVENTTIME ,LASTEVENTNAME = :LASTEVENTNAME ,LASTEVENTUSER = :LASTEVENTUSER , "
 					+ "LASTEVENTCOMMENT = :LASTEVENTCOMMENT WHERE ABNORMALSHEETNAME = :ABNORMALSHEETNAME AND LOTNAME = :LOTNAME "
 					+ "AND PRODUCTNAME = :PRODUCTNAME AND ABNORMALCODE = :ABNORMALCODE ";
@@ -93,7 +93,7 @@ public class ClosingAbnormalSheet extends SyncHandler {
 				insert.add( lotName );
 				insert.add( productName );
 				insert.add( abnormalCode );
-				insert.add( "Closed" );
+				insert.add( "009" );
 				insert.add( (String) sqlResult.get( 0 ).get( "PROCESSOPERATIONNAME" ) );
 				insert.add( (String) sqlResult.get( 0 ).get( "MACHINENAME" ) );
 				insert.add( (String) sqlResult.get( 0 ).get( "ENGINEER" )  );
