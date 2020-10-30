@@ -90,6 +90,8 @@
 		<entry key="CancelPalletizing" value="kr.co.aim.messolution.lot.event.CNX.CancelPalletizing"/>
 		<entry key="PalletShipping" value="kr.co.aim.messolution.lot.event.CNX.PalletShipping"/>
 		<entry key="CancelPalletShipping" value="kr.co.aim.messolution.lot.event.CNX.CancelPalletShipping"/>
+		<entry key="CutGlass" value="kr.co.aim.messolution.lot.event.CNX.CutGlass"/>
+		<entry key="AssembleLot" value="kr.co.aim.messolution.lot.event.CNX.AssembleLot"/>
 		
 		<!-- Deleted by smkang on 2018.08.31 - Useless classes. -->
 		<!-- <entry key="TrackInOutLot" value="kr.co.aim.messolution.lot.event.CNX.TrackInOutLot"/> -->
