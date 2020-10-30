@@ -72,6 +72,7 @@ public class AssembleLot extends SyncHandler {
 				cm.setMaterialType("Product");
 				cm.setQuantity(1);
 				cm.setUdfs(pairProductData.getUdfs());
+
 				cms.add(cm);
 
 				ProductGSC productGSC = new ProductGSC();
