@@ -69,7 +69,7 @@ public class AssignCellWorkOrder extends SyncHandler
 			
 			String areaName = lotData.getAreaName();
 			String factoryName = lotData.getFactoryName();
-			String lotHoldState = lotData.getLotHoldState();
+			String lotHoldState = GenericServiceProxy.getConstantMap().Prq_NotOnHold;
 			String lotProcessState = GenericServiceProxy.getConstantMap().Lot_Wait;
 			String lotState = GenericServiceProxy.getConstantMap().Lot_Released;
 			String processFlowName = lotData.getProcessFlowName();
