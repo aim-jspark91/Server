@@ -51,7 +51,7 @@ public class CommentAbnormalSheet extends SyncHandler {
 		String actionCode = SMessageUtil.getBodyItemValue( doc, "ACTIONCODE", true );
 		String department = SMessageUtil.getBodyItemValue( doc, "DEPARTMENT", true );
 		String departmentCount = SMessageUtil.getBodyItemValue( doc, "DEPARTMENTCOUNT", true );
-		String engineer = SMessageUtil.getBodyItemValue( doc, "ENGINEER", true );
+		String engineer = SMessageUtil.getBodyItemValue( doc, "ENGINEER", false );
 		String leader = SMessageUtil.getBodyItemValue( doc, "LEADER", true );
 		String processState = SMessageUtil.getBodyItemValue( doc, "PROCESSSTATE", true );
 
