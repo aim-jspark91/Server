@@ -6,7 +6,9 @@ import java.util.List;
 import kr.co.aim.greentrack.generic.info.EventInfo;
 import kr.co.aim.greentrack.lot.LotServiceProxy;
 import kr.co.aim.greentrack.lot.management.data.Lot;
+import kr.co.aim.greentrack.lot.management.data.LotKey;
 import kr.co.aim.greentrack.lot.management.info.ConsumeMaterialsInfo;
+import kr.co.aim.greentrack.product.ProductServiceProxy;
 import kr.co.aim.greentrack.product.management.data.Product;
 import kr.co.aim.greentrack.product.management.info.ext.ConsumedMaterial;
 import kr.co.aim.greentrack.product.management.info.ext.ProductGSC;
@@ -40,6 +42,12 @@ public class AssembleLot extends SyncHandler {
 		
 		if(productElement.size() > 0)
 		{
+			
+			Lot ClotData = new Lot();
+			Lot CpLotData = new Lot();
+			
+			List<ProductGSC> productGSCSequence = new ArrayList<ProductGSC>();
+			
 			for (Element productInfo : productElement)
 			{
 
@@ -51,58 +59,48 @@ public class AssembleLot extends SyncHandler {
 				Lot lotData = MESLotServiceProxy.getLotInfoUtil().getLotData(sLotName);
 				Lot pairLotData = MESLotServiceProxy.getLotInfoUtil().getLotData(sPairLotName);
 				
+				ClotData = lotData;
+				CpLotData = pairLotData;
+				
 				Product sProductData = MESProductServiceProxy.getProductServiceUtil().getProductData(sProductName);
 				Product pairProductData = MESProductServiceProxy.getProductServiceUtil().getProductData(sPairProductName);
 				
-				// ProductP List
-				List<ProductP> productPList = new ArrayList<ProductP>();
-				ProductP productP = new ProductP();
-				productP.setPosition(pairProductData.getPosition());
-				productP.setProductName(pairProductData.getKey().getProductName());
-				productP.setUdfs(pairProductData.getUdfs());
-				productPList.add(productP);
+				List<ConsumedMaterial> cms = new ArrayList<ConsumedMaterial>();
 				
-				// Comsumed Material List (Lot)
-				List<kr.co.aim.greentrack.lot.management.info.ext.ConsumedMaterial> cmLots = new ArrayList<kr.co.aim.greentrack.lot.management.info.ext.ConsumedMaterial>();
-				kr.co.aim.greentrack.lot.management.info.ext.ConsumedMaterial cmLot = new kr.co.aim.greentrack.lot.management.info.ext.ConsumedMaterial();
-				cmLot.setMaterialName(sPairLotName);
-				cmLot.setMaterialType("Lot"); 
-				cmLot.setQuantity(1);
-				cmLot.setUdfs(pairLotData.getUdfs());  
-				cmLot.setProductPSequence(productPList);
-				cmLots.add(cmLot);
-				
-				// Comsumed Material List (Product)
-				List<ConsumedMaterial> consumedMaterialList = new ArrayList<ConsumedMaterial>();
-				ConsumedMaterial cms = new ConsumedMaterial();
-				cms.setMaterialName(sPairProductName);
-				cms.setMaterialType("Product");
-				cms.setQuantity(1); 
-				consumedMaterialList.add(cms);
-				
-				
-				// ProductGSC List
-				List<ProductGSC> productGSCList = new ArrayList<ProductGSC>();
+				ConsumedMaterial cm = new ConsumedMaterial();
+				cm.setMaterialName(pairProductData.getKey().getProductName());
+				cm.setMaterialType("Product");
+				cm.setQuantity(1);
+				cm.setUdfs(pairProductData.getUdfs());
+				cms.add(cm);
+
 				ProductGSC productGSC = new ProductGSC();
-				
-				productGSC.setConsumedMaterialSequence(consumedMaterialList);
+				productGSC.setConsumedMaterialSequence(cms);
 				productGSC.setProductGrade(sProductData.getProductGrade());
-				productGSC.setProductName(sProductName); 
-				productGSC.setSubProductGrades1(sProductData.getSubProductGrades1());
-				productGSC.setSubProductGrades2(sProductData.getSubProductGrades2());
-				productGSC.setSubProductQuantity1(Double.valueOf(sProductData.getSubProductQuantity1()).doubleValue());
-				productGSC.setSubProductQuantity2(Double.valueOf(sProductData.getSubProductQuantity2()).doubleValue());
+				productGSC.setProductName(sProductData.getKey().getProductName());
+				productGSC.setSubProductQuantity1(sProductData.getSubProductQuantity1());
 				productGSC.setUdfs(sProductData.getUdfs());
-				productGSCList.add(productGSC);
 				
-				ConsumeMaterialsInfo consumeMaterialsInfo = new ConsumeMaterialsInfo();
-				consumeMaterialsInfo.setConsumedMaterialSequence(cmLots);
-				consumeMaterialsInfo.setLotGrade(pairLotData.getLotGrade());
-				consumeMaterialsInfo.setProductGSCSequence(productGSCList); 
-				consumeMaterialsInfo.setUdfs(lotData.getUdfs());   
-				
-				LotServiceProxy.getLotService().consumeMaterials(lotData.getKey(), eventInfo, consumeMaterialsInfo);
+				productGSCSequence.add(productGSC);		
 			}
+			
+			List<kr.co.aim.greentrack.lot.management.info.ext.ConsumedMaterial> consumedMaterialSequence = new ArrayList<kr.co.aim.greentrack.lot.management.info.ext.ConsumedMaterial>();
+			
+			kr.co.aim.greentrack.lot.management.info.ext.ConsumedMaterial cmL = new kr.co.aim.greentrack.lot.management.info.ext.ConsumedMaterial();
+			cmL.setMaterialName(CpLotData.getKey().getLotName());
+			cmL.setMaterialType("Lot");
+			cmL.setQuantity(0);
+			cmL.setUdfs(CpLotData.getUdfs());
+			
+			consumedMaterialSequence.add(cmL);
+			
+			ConsumeMaterialsInfo consumeMaterialsInfo = new ConsumeMaterialsInfo();
+			consumeMaterialsInfo.setConsumedMaterialSequence(consumedMaterialSequence);
+			consumeMaterialsInfo.setLotGrade(CpLotData.getLotGrade());
+			consumeMaterialsInfo.setProductGSCSequence(productGSCSequence);
+			consumeMaterialsInfo.setUdfs(CpLotData.getUdfs());
+			
+			LotServiceProxy.getLotService().consumeMaterials(ClotData.getKey(), eventInfo, consumeMaterialsInfo);
 		}
 			
 		
