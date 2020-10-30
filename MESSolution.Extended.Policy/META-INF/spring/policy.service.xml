@@ -6,6 +6,7 @@
     http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
 
 	<!-- Lot -->
+	<bean id="MakeReceivedPolicy" class="kr.co.aim.mes.lot.policy.MakeReceivedPolicy" />
 <!-- 	<bean id="MakeOnHoldPolicy" class="kr.co.aim.mes.lot.policy.MakeOnHoldPolicy" />
 	<bean id="MakeNotOnHoldPolicy" class="kr.co.aim.mes.lot.policy.MakeNotOnHoldPolicy" /> -->
 
