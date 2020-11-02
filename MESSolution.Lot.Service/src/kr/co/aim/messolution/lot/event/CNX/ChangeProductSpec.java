@@ -46,7 +46,7 @@ import org.apache.commons.lang.StringUtils;
 import org.jdom.Document;
 import org.jdom.Element;
 
-import sun.org.mozilla.javascript.internal.regexp.SubString;
+//import sun.org.mozilla.javascript.internal.regexp.SubString;
 
 public class ChangeProductSpec extends SyncHandler {
 

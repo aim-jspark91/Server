@@ -2881,5 +2881,49 @@ public class CommonUtil implements ApplicationContextAware
 				throw new CustomException("PROCESSGROUP-1001", processGroupName);
 			}
 		}
+		
+		/*
+		 * Name : getBeforeProcessOperation 
+		 * Desc : This function is getBeforeProcessOperation 
+		 * Author : hsryu 
+		 * IncDate : 2020.10.30
+		 */
+		public static String getBeforeProcessOperation(Lot lotData) throws CustomException 
+		{
+			StringBuffer queryBuffer = new StringBuffer();
+			queryBuffer.append("	SELECT N2.NODEATTRIBUTE1 BEFOREOPERATIONNAME"); 
+			queryBuffer.append("	FROM NODE N,"); 
+			queryBuffer.append("	  ARC a,"); 
+			queryBuffer.append("	  NODE N2"); 
+			queryBuffer.append("	WHERE a.TONODEID= N.NODEID"); 
+			queryBuffer.append("	AND N.NODEID    ="); 
+			queryBuffer.append("	  (SELECT REGEXP_SUBSTR(L.NODESTACK,'[^.]+',1,REGEXP_COUNT(L.NODESTACK, '[^.]+'))"); 
+			queryBuffer.append("	  FROM LOT L"); 
+			queryBuffer.append("	  WHERE LOTNAME=:LOTNAME"); 
+			queryBuffer.append("	  )"); 
+			queryBuffer.append("	AND N2.NODEID = a.FROMNODEID"); 
+			queryBuffer.append("	AND N.PROCESSFLOWNAME = N2.PROCESSFLOWNAME");     
+
+			HashMap<String, Object> bindMap = new HashMap<String, Object>();
+
+			bindMap.put("LOTNAME", lotData.getKey().getLotName());
+
+			List<Map<String, Object>> sqlResult = GenericServiceProxy.getSqlMesTemplate().queryForList(queryBuffer.toString(), bindMap);
+
+			if(sqlResult != null && sqlResult.size() > 0)
+			{
+				
+				if(!StringUtil.isEmpty((String)sqlResult.get(0).get("BEFOREOPERATIONNAME")))
+				{
+					return (String)sqlResult.get(0).get("BEFOREOPERATIONNAME");
+				}
+				else 
+				{
+					throw new CustomException("PROCESSOPERATION-0005", lotData.getProcessOperationName(), "ForceSampling");
+				}
+			}
+			
+			throw new CustomException("PROCESSOPERATION-0005", lotData.getProcessOperationName(), "ForceSampling");
+		}
 
 }

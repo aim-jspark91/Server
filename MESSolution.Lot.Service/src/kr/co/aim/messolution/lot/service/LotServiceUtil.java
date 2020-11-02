@@ -1563,7 +1563,6 @@ public class LotServiceUtil implements ApplicationContextAware {
 
 		return newLotData;
 	}
-
 	/**
      * TK OUT logic
      * 150205 by swcho : modified and done refactoring
@@ -1598,7 +1597,11 @@ public class LotServiceUtil implements ApplicationContextAware {
         String decideSampleMainFlow = "";
         String decideSampleMainOper = "";
 
-        trackOutLotUdfs.put("PORTNAME", portData.getKey().getPortName());
+        if(portData != null)
+        {
+        	trackOutLotUdfs.put("PORTNAME", portData.getKey().getPortName());
+        }
+        
         trackOutLotUdfs.put("BEFOREOPERATIONNAME", trackOutLot.getProcessOperationName());
         trackOutLotUdfs.put("BEFOREFLOWNAME", trackOutLot.getProcessFlowName());
         trackOutLotUdfs.put("LASTLOGGEDOUTMACHINE", trackOutLot.getMachineName());

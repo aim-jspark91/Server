@@ -1,5 +1,6 @@
 package kr.co.aim.messolution.lot.event.CNX;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,7 @@ import kr.co.aim.greentrack.generic.info.EventInfo;
 import kr.co.aim.greentrack.lot.LotServiceProxy;
 import kr.co.aim.greentrack.lot.management.data.Lot;
 import kr.co.aim.greentrack.lot.management.data.LotKey;
+import kr.co.aim.greentrack.lot.management.info.ChangeSpecInfo;
 import kr.co.aim.greentrack.lot.management.info.SetEventInfo;
 import kr.co.aim.greentrack.processgroup.ProcessGroupServiceProxy;
 import kr.co.aim.greentrack.processgroup.management.data.ProcessGroup;
@@ -24,6 +26,7 @@ import kr.co.aim.greentrack.processoperationspec.management.data.ProcessOperatio
 import kr.co.aim.greentrack.product.ProductServiceProxy;
 import kr.co.aim.greentrack.product.management.data.Product;
 import kr.co.aim.greentrack.product.management.data.ProductSpec;
+import kr.co.aim.greentrack.product.management.info.ext.ProductU;
 import kr.co.aim.greentrack.productrequest.ProductRequestServiceProxy;
 import kr.co.aim.greentrack.productrequest.management.data.ProductRequest;
 import kr.co.aim.greentrack.productrequest.management.data.ProductRequestKey;
@@ -64,29 +67,69 @@ public class CancelCSTGroupID extends SyncHandler {
 		for (Element eleLot : eleArrayLotList) {
 
 			String lotName = SMessageUtil.getChildText(eleLot, "LOTNAME", true);
-						
 			Lot lotData = arrayLotDataMap.get(lotName);
-			ProcessOperationSpec processOperationSpec = CommonUtil.getProcessOperationSpec(lotData);
-			
-			if(!StringUtils.equals(processOperationSpec.getDetailProcessOperationType(), "STB")) {
-				throw new CustomException("LOT-0244", lotData.getKey().getLotName(), lotData.getProcessOperationName());
-			}
 			
 			if(StringUtils.isEmpty(lotData.getProcessGroupName())) {
 				throw new CustomException("LOT-0243", lotData.getKey().getLotName());
 			}
 			
-			if(this.checkCellStocker(lotData)) {
-				throw new CustomException("LOT-0246", lotData.getCarrierName(), lotData.getKey().getLotName());
-			}
+//			if(this.checkCellStocker(lotData)) {
+//				throw new CustomException("LOT-0246", lotData.getCarrierName(), lotData.getKey().getLotName());
+//			}
 			
 			int sumArrayProductQuantity = 0;			
+						
+			String beforeOperationName = CommonUtil.getBeforeProcessOperation(lotData);
+			ProcessOperationSpec beforeOperationData = CommonUtil.getProcessOperationSpec(lotData.getFactoryName(), beforeOperationName);
+			
+			if(!StringUtils.equals(beforeOperationData.getDetailProcessOperationType(), "STB")) {
+				throw new CustomException("LOT-0250", lotData.getKey().getLotName(), lotData.getProcessOperationName());
+			}
 			
 			lotData.setProcessGroupName(StringUtils.EMPTY);
 			LotServiceProxy.getLotService().update(lotData);
 			
-			SetEventInfo setEventInfo = new SetEventInfo();
-			LotServiceProxy.getLotService().setEvent(lotData.getKey(), eventInfo, setEventInfo);
+			List<ProductU> productUdfs = MESLotServiceProxy.getLotInfoUtil().setProductUdfs(lotData.getKey().getLotName());
+
+//			for (ProductU product : productUdfs) {
+//				Map<String, String> productsUdfs = new HashMap<String, String>();
+//				productsUdfs = product.getUdfs();
+//				productsUdfs.put("PROCESSGROUPNAME", StringUtils.EMPTY);
+//			}
+
+			ChangeSpecInfo changeSpecInfo = MESLotServiceProxy.getLotInfoUtil().changeSpecInfo (
+					lotName, 
+					lotData.getProductionType(), 
+					lotData.getProductSpecName(),
+					lotData.getProductSpecVersion(), 
+					lotData.getProductSpec2Name(), 
+					lotData.getProductSpec2Version(),
+					lotData.getProductRequestName(), 
+					lotData.getSubProductUnitQuantity1(),
+					lotData.getSubProductUnitQuantity2(),
+					lotData.getDueDate(),
+					lotData.getPriority(), 
+					lotData.getFactoryName(),
+					lotData.getAreaName(), 
+					lotData.getLotState(), 
+					lotData.getLotProcessState(), 
+					lotData.getLotHoldState(), 
+					lotData.getProcessFlowName(), 
+					lotData.getProcessFlowVersion(),
+					lotData.getProcessOperationName(), 
+					lotData.getProcessOperationVersion(), 
+					lotData.getProcessFlowName(), 
+					beforeOperationData.getKey().getProcessOperationName(), 
+					"", 
+					"", 
+					lotData.getNodeStack(), 
+					lotData.getUdfs(),
+					productUdfs, 
+					true);
+			
+			lotData.setProcessGroupName(StringUtils.EMPTY);
+			
+			lotData = MESLotServiceProxy.getLotServiceUtil().changeProcessOperation(eventInfo, lotData, changeSpecInfo);
 			
 			List<Product> ProductList = new ArrayList<Product>();
 			
@@ -99,49 +142,76 @@ public class CancelCSTGroupID extends SyncHandler {
 			{
 				throw new CustomException("LOT-0238", lotData.getKey().getLotName());
 			}
-			
-			for(Product product : ProductList) {
-				product.setProcessGroupName(StringUtils.EMPTY);
-				
-				ProductServiceProxy.getProductService().update(product);
-				
-				kr.co.aim.greentrack.product.management.info.SetEventInfo productSetEventInfo = new kr.co.aim.greentrack.product.management.info.SetEventInfo();
-				ProductServiceProxy.getProductService().setEvent(product.getKey(), eventInfo, productSetEventInfo);
-			}
-			
+						
 			ProductRequestKey arrayProductRequestKey = new ProductRequestKey();
 			arrayProductRequestKey.setProductRequestName(lotData.getProductRequestName());
 			ProductRequest arrayProductRequestData = ProductRequestServiceProxy.getProductRequestService().selectByKey(arrayProductRequestKey);
-			
-			MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(arrayProductRequestData.getKey().getProductRequestName(), "R", -(sumArrayProductQuantity), eventInfo);
+						
+			MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(arrayProductRequestData.getKey().getProductRequestName(), "F", -(sumArrayProductQuantity), eventInfo);
 		}
 		
 		for (Element eleLot : eleCFLotList) {
+			eventInfo.setEventName("CancelSTB");
 			String lotName = SMessageUtil.getChildText(eleLot, "LOTNAME", true);
 						
 			Lot lotData = cfLotDataMap.get(lotName);
-			ProcessOperationSpec processOperationSpec = CommonUtil.getProcessOperationSpec(lotData);
 			
-			if(!StringUtils.equals(processOperationSpec.getDetailProcessOperationType(), "STB")) {
-				throw new CustomException("LOT-0244", lotData.getKey().getLotName(), lotData.getProcessOperationName());
+			String beforeOperationName = CommonUtil.getBeforeProcessOperation(lotData);
+			ProcessOperationSpec beforeOperationData = CommonUtil.getProcessOperationSpec(lotData.getFactoryName(), beforeOperationName);
+			
+			if(!StringUtils.equals(beforeOperationData.getDetailProcessOperationType(), "STB")) {
+				throw new CustomException("LOT-0250", lotData.getKey().getLotName(), lotData.getProcessOperationName());
 			}
 			
 			if(StringUtils.isEmpty(lotData.getProcessGroupName())) {
 				throw new CustomException("LOT-0243", lotData.getKey().getLotName());
 			}
 			
-			if(this.checkCellStocker(lotData)) {
-				throw new CustomException("LOT-0246", lotData.getCarrierName(), lotData.getKey().getLotName());
-			}
-			
 			int sumCfProductQuantity = 0;
-						
+
+			List<ProductU> productUdfs = MESLotServiceProxy.getLotInfoUtil().setProductUdfs(lotData.getKey().getLotName());
+
+//			for (ProductU product : productUdfs) {
+//				Map<String, String> productsUdfs = new HashMap<String, String>();
+//				productsUdfs = product.getUdfs();
+//				productsUdfs.put("PROCESSGROUPNAME", StringUtils.EMPTY);
+//			}
+			
 			lotData.setProcessGroupName(StringUtils.EMPTY);
 			LotServiceProxy.getLotService().update(lotData);
 			
-			SetEventInfo setEventInfo = new SetEventInfo();
-			LotServiceProxy.getLotService().setEvent(lotData.getKey(), eventInfo, setEventInfo);
+			ChangeSpecInfo changeSpecInfo = MESLotServiceProxy.getLotInfoUtil().changeSpecInfo (
+					lotName, 
+					lotData.getProductionType(), 
+					lotData.getProductSpecName(),
+					lotData.getProductSpecVersion(), 
+					lotData.getProductSpec2Name(), 
+					lotData.getProductSpec2Version(),
+					lotData.getProductRequestName(), 
+					lotData.getSubProductUnitQuantity1(),
+					lotData.getSubProductUnitQuantity2(),
+					lotData.getDueDate(),
+					lotData.getPriority(), 
+					lotData.getFactoryName(),
+					lotData.getAreaName(), 
+					lotData.getLotState(), 
+					lotData.getLotProcessState(), 
+					lotData.getLotHoldState(), 
+					lotData.getProcessFlowName(), 
+					lotData.getProcessFlowVersion(),
+					lotData.getProcessOperationName(), 
+					lotData.getProcessOperationVersion(), 
+					lotData.getProcessFlowName(), 
+					beforeOperationData.getKey().getProcessOperationName(), 
+					"", 
+					"", 
+					lotData.getNodeStack(), 
+					lotData.getUdfs(),
+					productUdfs, 
+					true);
 			
+			lotData = MESLotServiceProxy.getLotServiceUtil().changeProcessOperation(eventInfo, lotData, changeSpecInfo);
+						
 			List<Product> ProductList = new ArrayList<Product>();
 			
 			try
@@ -153,21 +223,12 @@ public class CancelCSTGroupID extends SyncHandler {
 			{
 				throw new CustomException("LOT-0238", lotData.getKey().getLotName());
 			}
-			
-			for(Product product : ProductList) {
-				product.setProcessGroupName(StringUtils.EMPTY);
-				
-				ProductServiceProxy.getProductService().update(product);
-				
-				kr.co.aim.greentrack.product.management.info.SetEventInfo productSetEventInfo = new kr.co.aim.greentrack.product.management.info.SetEventInfo();
-				ProductServiceProxy.getProductService().setEvent(product.getKey(), eventInfo, productSetEventInfo);
-			}
-			
+						
 			ProductRequestKey cfProductRequestKey = new ProductRequestKey();
 			cfProductRequestKey.setProductRequestName(lotData.getProductRequestName());
 			ProductRequest cfProductRequestData = ProductRequestServiceProxy.getProductRequestService().selectByKey(cfProductRequestKey);
 			
-			MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(cfProductRequestData.getKey().getProductRequestName(), "R", -(sumCfProductQuantity), eventInfo);
+			MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(cfProductRequestData.getKey().getProductRequestName(), "F", -(sumCfProductQuantity), eventInfo);
 		}
 		
 		return doc;

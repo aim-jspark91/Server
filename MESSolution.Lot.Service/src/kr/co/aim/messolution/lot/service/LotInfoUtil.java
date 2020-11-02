@@ -5160,5 +5160,27 @@ public class LotInfoUtil implements ApplicationContextAware {
 			 return null;
 		 }
 	 }
+	 
+ 	/**
+	 * @author hsryu
+	 * @since 2020-10-30
+	 * @param productCSequence
+	 * @param lotUdfs
+	 * @return makeLoggedInInfo
+	 */
+	public MakeLoggedInInfo makeLoggedInInfoExceptMac(List<ProductC> productCSequence, Map<String, String> lotUdfs) 
+	{
+		MakeLoggedInInfo makeLoggedInInfo = new MakeLoggedInInfo();
+
+		makeLoggedInInfo.setConsumedMaterialSequence(new ArrayList<ConsumedMaterial>());
+		makeLoggedInInfo.setProductCSequence(productCSequence);
+		
+		if (lotUdfs != null)
+			lotUdfs.put("STARTCHECKRESULT", "N");
+		
+		makeLoggedInInfo.setUdfs(lotUdfs);
+
+		return makeLoggedInInfo;
+	}
  
 }
