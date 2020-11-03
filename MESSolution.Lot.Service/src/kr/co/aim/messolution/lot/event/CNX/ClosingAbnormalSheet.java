@@ -63,7 +63,7 @@ public class ClosingAbnormalSheet extends SyncHandler {
 			
 			map.put( "LASTEVENTTIMEKEY", TimeUtils.getCurrentEventTimeKey());
 			map.put( "LASTEVENTTIME", eventInfo.getEventTime() );
-			map.put( "LASTEVENTNAME", "Comment" );
+			map.put( "LASTEVENTNAME", "Closed" );
 			map.put( "LASTEVENTUSER", eventInfo.getEventUser() );
 			map.put( "LASTEVENTCOMMENT", eventInfo.getEventComment() );
 			map.put( "ABNORMALSHEETNAME", abnormalSheetName );
