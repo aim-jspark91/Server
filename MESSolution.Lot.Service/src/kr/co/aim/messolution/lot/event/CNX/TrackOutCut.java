@@ -111,7 +111,7 @@ public class TrackOutCut extends SyncHandler {
 					newLotData = MESLotServiceProxy.getLotServiceUtil().getLotData(childLotName);
 				}
 			}
-			else
+			else if(!lotData.getKey().getLotName().equals(newLotData.getKey().getLotName()))
 			{
 				TransferProductsToLotInfo transferProductsToLotInfo = new TransferProductsToLotInfo();
 				transferProductsToLotInfo.setDestinationLotName(newLotData.getKey().getLotName());
@@ -127,7 +127,7 @@ public class TrackOutCut extends SyncHandler {
 				EventInfo eventInfo = EventInfoUtil.makeEventInfo("Merge", this.getEventUser(), this.getEventComment(), "", "");
 				
 				
-				LotServiceProxy.getLotService().transferProductsToLot(lotData.getKey(), eventInfo, transferProductsToLotInfo);
+				LotServiceProxy.getLotService().transferProductsToLot(lotData.getKey(), eventInfo, transferProductsToLotInfo);	
 			}
 		}
 		
