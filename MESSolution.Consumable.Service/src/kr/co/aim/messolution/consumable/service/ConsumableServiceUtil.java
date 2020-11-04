@@ -12,12 +12,14 @@ import kr.co.aim.messolution.extended.object.management.data.MaterialConsumed;
 import kr.co.aim.messolution.generic.GenericServiceProxy;
 import kr.co.aim.messolution.generic.errorHandler.CustomException;
 import kr.co.aim.messolution.generic.util.CommonUtil;
+import kr.co.aim.messolution.generic.util.EventInfoUtil;
 import kr.co.aim.messolution.generic.util.SMessageUtil;
 import kr.co.aim.greenframe.util.time.TimeStampUtil;
 import kr.co.aim.greentrack.consumable.ConsumableServiceProxy;
 import kr.co.aim.greentrack.consumable.management.data.Consumable;
 import kr.co.aim.greentrack.consumable.management.data.ConsumableSpec;
 import kr.co.aim.greentrack.consumable.management.info.DecrementQuantityInfo;
+import kr.co.aim.greentrack.consumable.management.info.IncrementQuantityInfo;
 import kr.co.aim.greentrack.consumable.management.info.MakeNotAvailableInfo;
 import kr.co.aim.greentrack.consumable.management.info.SetAreaInfo;
 import kr.co.aim.greentrack.consumable.management.info.SetEventInfo;
@@ -1077,4 +1079,97 @@ public class ConsumableServiceUtil implements ApplicationContextAware
         
         return existence;
     }
+
+	public static void changeMaterialQuantity(EventInfo eventInfo, Element productListE) throws CustomException {
+	eventInfo = EventInfoUtil.makeEventInfo("ChangeQuantity", eventInfo.getEventUser(), eventInfo.getEventComment(), null, null);
+		eventInfo.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
+		
+		for ( Iterator iterator = productListE.getChildren().iterator(); iterator.hasNext(); )
+		{
+			Element productE = (Element) iterator.next();
+			String productName = SMessageUtil.getElementValueByName( productE, "PRODUCTNAME" );
+			String lotName = SMessageUtil.getElementValueByName( productE, "LOTNAME" );
+
+			List<Element> materialEList = SMessageUtil.getSubSequenceItemList( productE, "MATERIALLIST", false );
+
+			if (materialEList != null)
+			{
+				for(Element materialE : materialEList)
+				{
+					String materialName = SMessageUtil.getChildText(materialE, "MATERIALNAME", true);
+					String changeQuantity = SMessageUtil.getChildText(materialE, "QUANTITY", true);
+					
+					double changedQuantity = Double.parseDouble(changeQuantity);
+		
+					/*============= Validation ChangedQuantity =============*/
+					if(changedQuantity < 0)
+					{
+						throw new CustomException("MATERIAL-0026", materialName);
+					}
+					
+					Consumable materialData = MESConsumableServiceProxy.getConsumableInfoUtil().getConsumableData(materialName);
+					
+					/*============= Change Quantity =============*/
+					changeMaterialQuantity(eventInfo,materialData,changedQuantity);		
+				}
+			}
+			
+			List<Element> ePCBList = SMessageUtil.getSubSequenceItemList( productE, "PCBLIST", false );
+			if(ePCBList!= null){
+				double quantity =  ePCBList.size();
+				String materialName = "";
+				for ( Element element : ePCBList )
+				{
+					materialName = element.getChildText( "MATERIALNAME" );
+					break;
+				}
+				
+				Consumable materialData = MESConsumableServiceProxy.getConsumableInfoUtil().getConsumableData(materialName);
+				double changedQuanttiy = materialData.getQuantity()- quantity;
+				changeMaterialQuantity(eventInfo,materialData,changedQuanttiy);	
+			}
+		}
+		
+	}
+	
+	private static void changeMaterialQuantity(EventInfo eventInfo, Consumable materialData, double changedQuantity) 
+			throws CustomException
+	{
+		/*============= Set ConsumableQuantity =============*/
+		
+		double oldQuantity = materialData.getQuantity();
+		Map<String, String> udfs = materialData.getUdfs();
+		
+		if(changedQuantity < oldQuantity)
+		{	
+			TransitionInfo transitionInfo = MESConsumableServiceProxy.getConsumableInfoUtil().decrementQuantityInfo("", "", "", "",
+					eventInfo.getEventTimeKey(),(oldQuantity - changedQuantity), udfs);
+
+			MESConsumableServiceProxy.getConsumableServiceImpl().decrementQuantity(materialData,
+                                              (DecrementQuantityInfo) transitionInfo, eventInfo);
+		}
+		else // changedQuantity >= oldQuantity
+		{
+			TransitionInfo transitionInfo = MESConsumableServiceProxy.getConsumableInfoUtil().incrementQuantityInfo(changedQuantity - oldQuantity, udfs);
+			
+			MESConsumableServiceProxy.getConsumableServiceImpl().incrementQuantity(materialData, 
+											  (IncrementQuantityInfo)transitionInfo, eventInfo);
+		}
+		
+		
+		
+		//kr.co.aim.greentrack.consumable.management.info.SetEventInfo setEventInfo = MESConsumableServiceProxy.getConsumableInfoUtil().setEventInfo(materialData, materialData.getAreaName());
+		//MESConsumableServiceProxy.getConsumableServiceImpl().setEvent(materialData.getKey().getConsumableName(), setEventInfo, eventInfo);
+		
+		/*============= After Change Qty, if quantity == 0, Make NotAvaliable =============*/
+		if(materialData.getQuantity() == 0 && StringUtil.equals(materialData.getConsumableState(), "MONT"))
+		{
+			eventInfo.setEventName("ChangeState");
+			MakeNotAvailableInfo makeNotAvailableInfo = new MakeNotAvailableInfo();
+			makeNotAvailableInfo.setUdfs(materialData.getUdfs());
+			//OVER로 변경해야됨.
+			MESConsumableServiceProxy.getConsumableServiceImpl().makeNotAvailable(materialData, makeNotAvailableInfo, eventInfo);
+		}
+	}
+
 }
