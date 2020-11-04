@@ -366,6 +366,7 @@ public class ModuleTrackOutLot extends SyncHandler {
 		{
 			try {
 				ConsumableServiceUtil.insertCT_MaterialConsumedByTrackOut( eventInfo, productList, lotData );
+				ConsumableServiceUtil.changeMaterialQuantity(eventInfo, productList);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
