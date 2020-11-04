@@ -258,7 +258,7 @@ public class ChangeGrade extends SyncHandler
 					                
 					                if(scrapProduct==null)
 					                {
-										//historyì—ì„œ gradeê°€ Sì´ê³  eventê°€ changegradeì¸ ê²ƒì„ ì°¾ì•„ í•´ë‹¹ íˆìŠ¤í† ë¦¬ì˜ operationìœ¼ë¡œ ìˆ˜ì •(ëŒì•„ê°€ë ¤ëŠ”  operetionì´ë‘ í˜„ì¬ operationì´ ê°™ì•„ì•¼ ìˆ˜ì •í• ìˆ˜ ìˆìŒ)
+										//history¿¡¼­ grade°¡ SÀÌ°í event°¡ changegradeÀÎ °ÍÀ» Ã£¾Æ ÇØ´ç È÷½ºÅä¸®ÀÇ operationÀ¸·Î ¼öÁ¤(µ¹¾Æ°¡·Á´Â  operetionÀÌ¶û ÇöÀç operationÀÌ °°¾Æ¾ß ¼öÁ¤ÇÒ¼ö ÀÖÀ½)
 										String pCondition = " where productname = ? and timekey = (select max(timekey) from producthistory where productname = ? and eventname = ? and productgrade = ?)" ;
 					                    Object[] pBindSet = new Object[]{product.getKey().getProductName(),product.getKey().getProductName(),"ChangeSGrade","S"};
 					                    List<ProductHistory> pArrayList = ProductServiceProxy.getProductHistoryService().select(pCondition, pBindSet);
@@ -311,7 +311,7 @@ public class ChangeGrade extends SyncHandler
 				                    product.setProductGrade(productGrade);
 									product.setReasonCode("");
 								}
-								// change operation ì¶”ê°€  ë
+								// change operation Ãß°¡  ³¡
 							}
 							
 							product.setProductGrade(productGrade);
