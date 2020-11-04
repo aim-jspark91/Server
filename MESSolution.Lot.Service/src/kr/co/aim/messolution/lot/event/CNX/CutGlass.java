@@ -51,8 +51,8 @@ public class CutGlass extends SyncHandler {
 				}
 				
 				SeparateInfo separateProductInfo = new SeparateInfo();
-				separateProductInfo.setProductType("Cut");
-				separateProductInfo.setSubProductType("Panel");
+				separateProductInfo.setProductType("Panel");
+				separateProductInfo.setSubProductType("");
 				separateProductInfo.setSubProductPGQSSequence(productPGQSList);
 				
 				ProductServiceProxy.getProductService().separate(productData.getKey(), eventInfo, separateProductInfo);
