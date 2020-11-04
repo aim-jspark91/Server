@@ -915,6 +915,8 @@ public class ChangeGrade extends SyncHandler
 			
 			return normalSlotInfoBuffer.toString();
 		}
+	
+	//js
 
 	
 
