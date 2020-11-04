@@ -37,7 +37,7 @@ public class CutGlass extends SyncHandler {
 				
 				List<ProductPGQS> productPGQSList = new ArrayList<ProductPGQS>();
 				
-				for(int i=0; i<productData.getSubProductQuantity(); i++)
+				for(int i=0; i<2; i++)//2는 수정해야됨 (Cutting Modeling 기능 개발)
 				{
 					ProductPGQS productPGQS = new ProductPGQS();
 					productPGQS.setProductName(productData.getKey().getProductName()+(i+1));
