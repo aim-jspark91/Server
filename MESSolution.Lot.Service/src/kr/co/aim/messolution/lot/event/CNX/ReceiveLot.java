@@ -161,6 +161,9 @@ public class ReceiveLot extends SyncHandler {
 				changeSpecInfo.setProductionType( lot.getProductionType() );
 				changeSpecInfo.setProductUSequence(productUdfs);
 				changeSpecInfo.setPriority(lot.getPriority());
+				changeSpecInfo.setLotState(lot.getLotState());
+				changeSpecInfo.setLotHoldState(lot.getLotHoldState());
+				changeSpecInfo.setLotProcessState(lot.getLotProcessState());
 				Map<String, String> userColumns = new HashMap<String, String>();
 				userColumns.put("RECEIVEFLAG", GenericServiceProxy.getConstantMap().Flag_Y);
 				changeSpecInfo.setUdfs( userColumns );
