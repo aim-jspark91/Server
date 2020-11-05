@@ -196,7 +196,7 @@ public class ReceiveLot extends SyncHandler {
 			
 			//2019.02.25 dmlee : -------------------------------------------------------------------------------------------------
 			
-			//20180504, kyjung, QTime
+			/*//20180504, kyjung, QTime
 			try
 			{
 				MESProductServiceProxy.getProductServiceImpl().checkFabQTime(lotName, factoryName);
@@ -204,7 +204,7 @@ public class ReceiveLot extends SyncHandler {
 			catch(Exception ex)
 			{
 				throw ex;
-			}
+			}*/
 			
 			// 2019.05.23_hsryu_Add Validation. Mantis 0003973.
 			// 2020.09.22_hsryu_Delete Logic. 
@@ -349,7 +349,7 @@ public class ReceiveLot extends SyncHandler {
 			}			
 			*/
 			
-			//ExitedFabQTime
+			/*//ExitedFabQTime
 			for(Product productData : productList)
 			{
 				//Lot lot = MESLotServiceProxy.getLotInfoUtil().getLotData(productName);
@@ -363,14 +363,14 @@ public class ReceiveLot extends SyncHandler {
 				// 수정해야될 필요성 있음.
 				//MESProductServiceProxy.getProductServiceImpl().ClosedFabQTime(eventInfo, lot, "Receive");
 			}	
-			
+			*/
 
 			//------------------------------------------------------------------------------------------------------------------------------------------------Procedure Receive Lot 
 
 			
 			// After Receive if Product have Defect Hold OR Send Mail Made By Park Jeong Su
-			this.DefectHoldProduct(eventInfo, productList, carrierName, factoryName);
-			this.DefectMailProduct(eventInfo, productList, carrierName, factoryName);
+/*			this.DefectHoldProduct(eventInfo, productList, carrierName, factoryName);
+			this.DefectMailProduct(eventInfo, productList, carrierName, factoryName);*/
 			
 			
 
