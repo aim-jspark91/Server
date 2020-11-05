@@ -1116,7 +1116,8 @@ public class ConsumableServiceUtil implements ApplicationContextAware
 			
 			List<Element> ePCBList = SMessageUtil.getSubSequenceItemList( productE, "PCBLIST", false );
 			if(ePCBList!= null){
-				double quantity =  ePCBList.size();
+				int productQty =productListE.getChildren().size();
+				double quantity =  ePCBList.size() * productQty;
 				String materialName = "";
 				for ( Element element : ePCBList )
 				{
