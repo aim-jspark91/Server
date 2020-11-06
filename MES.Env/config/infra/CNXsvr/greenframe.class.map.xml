@@ -37,6 +37,7 @@
 		
 		<entry key="CreateErrorDefinition" value="kr.co.aim.messolution.generic.event.CreateErrorDefinition"/>
 		<entry key="ModifyErrorDefinition" value="kr.co.aim.messolution.generic.event.ModifyErrorDefinition"/>
+		<entry key="ChangeErrorStatement" value="kr.co.aim.messolution.generic.event.ModifyErrorDefinitionAdmin"/>
 		<entry key="RemoveErrorDefinition" value="kr.co.aim.messolution.generic.event.RemoveErrorDefinition"/>
 		
 		<entry key="CreateCustomQuery" value="kr.co.aim.messolution.generic.event.CreateCustomQuery"/>
