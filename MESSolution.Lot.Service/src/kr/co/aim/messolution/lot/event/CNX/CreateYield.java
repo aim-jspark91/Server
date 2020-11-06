@@ -15,6 +15,7 @@ public class CreateYield extends SyncHandler
 	@Override
 	public Object doWorks(Document doc) throws CustomException 
 	{
+		//
 		String factoryName = SMessageUtil.getBodyItemValue(doc, "FACTORYNAME", true);
 		String productSpecName = SMessageUtil.getBodyItemValue(doc, "PRODUCTSPECNAME", true);
 		String ecCode = SMessageUtil.getBodyItemValue(doc, "ECCODE", true);
