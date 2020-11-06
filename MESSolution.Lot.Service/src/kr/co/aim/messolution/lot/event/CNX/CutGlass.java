@@ -24,12 +24,13 @@ public class CutGlass extends SyncHandler {
 		
 		List<Element> productElement = SMessageUtil.getBodySequenceItemList(doc, "PRODUCTLIST", true);
 		
+		//EventInfo
+		EventInfo eventInfo = EventInfoUtil.makeEventInfo("Cut", this.getEventUser(), this.getEventComment(), "", "");
+		
 		if(productElement.size() > 0)
 		{
 			for (Element productInfo : productElement)
 			{
-				//EventInfo
-				EventInfo eventInfo = EventInfoUtil.makeEventInfo("Cut", this.getEventUser(), this.getEventComment(), "", "");
 
 				String sProductName = productInfo.getChild("PRODUCTNAME").getText();
 				
@@ -58,6 +59,8 @@ public class CutGlass extends SyncHandler {
 				ProductServiceProxy.getProductService().separate(productData.getKey(), eventInfo, separateProductInfo);
 			}
 		}
+		
+		SMessageUtil.addItemToBody(doc, "LASTEVENTTIMEKEY", eventInfo.getEventTimeKey());
 		
 		return doc;
 	}
