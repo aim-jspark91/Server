@@ -41,16 +41,16 @@ public class KitUnkittingMaterial extends SyncHandler {
 		eventInfo.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
 		
 		String consumableName = SMessageUtil.getBodyItemValue(doc, "CONSUMABLENAME", true);
-		String materialState = SMessageUtil.getBodyItemValue(doc, "MATERIALSTATE", true);
+		String consumableState = SMessageUtil.getBodyItemValue(doc, "CONSUMABLESTATE", true);
 		String machineName = SMessageUtil.getBodyItemValue(doc, "MACHINENAME", false);
 		String materialLocationName = SMessageUtil.getBodyItemValue(doc, "MATERIALLOCATIONNAME", false);
 		
 		ConsumableKey consumableKey = new ConsumableKey();
 		consumableKey.setConsumableName(consumableName);
 		Consumable consumableData = ConsumableServiceProxy.getConsumableService().selectByKeyForUpdate(consumableKey);
+		consumableData.setConsumableState(consumableState);
 		
 		Map<String, String> udfs = consumableData.getUdfs();
-		udfs.put("MATERIALSTATE", materialState);
 		udfs.put("MACHINENAME", machineName);
 		udfs.put("MATERIALLOCATIONNAME", materialLocationName);
 		

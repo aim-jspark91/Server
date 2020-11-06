@@ -28,7 +28,8 @@ public class AssignCellWorkOrder extends SyncHandler
 	{
 		// parsing variable
 		
-		EventInfo eventInfo = EventInfoUtil.makeEventInfo("Release", getEventUser(), getEventComment(), "", "");
+		EventInfo eventInfo = EventInfoUtil.makeEventInfo("AssignWorkOrder", getEventUser(), getEventComment(), "", "");
+		eventInfo.setBehaviorName("CELL");
 		String productRequestName = SMessageUtil.getBodyItemValue(doc, "PRODUCTREQUESTNAME", true);
 		List<Element> eleLotList = SMessageUtil.getBodySequenceItemList(doc, "LOTLIST", true);
 		int releaseQuantity = 0;
@@ -71,7 +72,7 @@ public class AssignCellWorkOrder extends SyncHandler
 			String factoryName = lotData.getFactoryName();
 			String lotHoldState = GenericServiceProxy.getConstantMap().Prq_NotOnHold;
 			String lotProcessState = GenericServiceProxy.getConstantMap().Lot_Wait;
-			String lotState = GenericServiceProxy.getConstantMap().Lot_Released;
+			String lotState = lotData.getLotState();
 			String processFlowName = lotData.getProcessFlowName();
 			String processFlowVersion = lotData.getProcessFlowVersion();
 			String processOperationName = lotData.getProcessOperationName();
@@ -97,8 +98,8 @@ public class AssignCellWorkOrder extends SyncHandler
 			lotData = MESLotServiceProxy.getLotServiceUtil().changeProcessOperation(eventInfo, lotData, changeSpecInfo);
 			
 		}
-		
-		MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(productRequestName, "R", releaseQuantity, eventInfo);
+		eventInfo.setBehaviorName("greenTrack");
+		MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(productRequestName, "A", releaseQuantity, eventInfo);
 		
 		// After ChangeSpec Lot & Assign WorkOrder
 		

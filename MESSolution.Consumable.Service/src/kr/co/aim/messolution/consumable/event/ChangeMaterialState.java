@@ -35,15 +35,13 @@ public class ChangeMaterialState extends SyncHandler {
 		eventInfo.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
 		
 		String consumableName = SMessageUtil.getBodyItemValue(doc, "CONSUMABLENAME", true);
-		String materialState = SMessageUtil.getBodyItemValue(doc, "MATERIALSTATE", true);
+		String consumableState = SMessageUtil.getBodyItemValue(doc, "CONSUMABLESTATE", true);
 		
 		ConsumableKey consumableKey = new ConsumableKey();
 		consumableKey.setConsumableName(consumableName);
 		Consumable consumableData = ConsumableServiceProxy.getConsumableService().selectByKeyForUpdate(consumableKey);
+		consumableData.setConsumableState(consumableState);
 		
-		Map<String, String> udfs = consumableData.getUdfs();
-		udfs.put("MATERIALSTATE", materialState);
-		consumableData.setUdfs(udfs);
 		
 		ConsumableServiceProxy.getConsumableService().update(consumableData);
 		SetEventInfo setEventInfo = MESConsumableServiceProxy.getConsumableInfoUtil().setEventInfo(consumableData, consumableData.getAreaName());

@@ -17,6 +17,7 @@ import kr.co.aim.greentrack.generic.exception.FrameworkErrorSignal;
 import kr.co.aim.greentrack.generic.exception.InvalidStateTransitionSignal;
 import kr.co.aim.greentrack.generic.exception.NotFoundSignal;
 import kr.co.aim.greentrack.generic.info.EventInfo;
+import kr.co.aim.greentrack.generic.util.StringUtil;
 import kr.co.aim.greentrack.generic.util.TimeUtils;
 import kr.co.aim.greentrack.lot.management.data.Lot;
 import kr.co.aim.greentrack.product.ProductServiceProxy;
@@ -24,6 +25,7 @@ import kr.co.aim.greentrack.product.management.data.Product;
 import kr.co.aim.greentrack.productrequest.ProductRequestServiceProxy;
 import kr.co.aim.greentrack.productrequest.management.data.ProductRequest;
 import kr.co.aim.greentrack.productrequest.management.data.ProductRequestKey;
+import kr.co.aim.greentrack.productrequest.management.info.ChangeSpecInfo;
 import kr.co.aim.greentrack.productrequest.management.info.IncrementFinishedQuantityByInfo;
 import kr.co.aim.greentrack.productrequest.management.info.IncrementReleasedQuantityByInfo;
 import kr.co.aim.greentrack.productrequest.management.info.IncrementScrappedQuantityByInfo;
@@ -906,14 +908,46 @@ public class ProductRequestServiceUtil implements ApplicationContextAware
 //				resultData = MESWorkOrderServiceProxy.getProductRequestInfoUtil().getProductRequest(productRequestKey.getProductRequestName());
 				resultData = ProductRequestServiceProxy.getProductRequestService().selectByKeyForUpdate(productRequestKey);
 			}
+			else if(calculateType.equals("A"))
+			{
+
+				if(calculateQty > 0)
+				{
+					eventInfo.setEventName("IncrementAssignQuantity");
+				}
+				else
+				{
+					eventInfo.setEventName("DecrementAssignQuantity");
+				}
+				
+				ProductRequest productRequestData = MESWorkOrderServiceProxy.getProductRequestInfoUtil().getProductRequest(productRequestKey.getProductRequestName());
+				ChangeSpecInfo changeSpecInfo = new ChangeSpecInfo();
+				changeSpecInfo.setProductRequestType(productRequestData.getProductRequestType());
+				changeSpecInfo.setFactoryName(productRequestData.getFactoryName());
+				changeSpecInfo.setProductSpecName(productRequestData.getProductSpecName());
+				changeSpecInfo.setProductSpecVersion(productRequestData.getProductSpecVersion());
+				changeSpecInfo.setPlanReleasedTime(productRequestData.getPlanReleasedTime());
+				changeSpecInfo.setPlanFinishedTime(productRequestData.getPlanFinishedTime());
+				changeSpecInfo.setPlanQuantity(productRequestData.getPlanQuantity());
+				changeSpecInfo.setReleasedQuantity(productRequestData.getReleasedQuantity());
+				changeSpecInfo.setFinishedQuantity(productRequestData.getFinishedQuantity());
+				changeSpecInfo.setScrappedQuantity(productRequestData.getScrappedQuantity());
+				changeSpecInfo.setProductRequestState("Assigned");
+				changeSpecInfo.setProductRequestHoldState(productRequestData.getProductRequestHoldState());
+				productRequestData.getUdfs().put("ASSIGNQUANTITY", Long.toString(calculateQty));
+				changeSpecInfo.setUdfs(productRequestData.getUdfs());
+				
+				MESWorkOrderServiceProxy.getProductRequestServiceImpl().changeSpec(productRequestData, changeSpecInfo, eventInfo, productRequestData.getKey().getProductRequestName());
+				
+				resultData = ProductRequestServiceProxy.getProductRequestService().selectByKeyForUpdate(productRequestKey);
+			}
 			else
 			{
 				throw new CustomException("calcultate Type Error !");
 			}
 			
 			//Set Product Request State
-			if(resultData.getProductRequestState().equals(GenericServiceProxy.getConstantMap().Prq_Planned)
-					&& resultData.getReleasedQuantity() > 0)
+			if(resultData.getProductRequestState().equals(GenericServiceProxy.getConstantMap().Prq_Planned) && resultData.getReleasedQuantity() > 0)
 			{
 				//WO State : Planned -> Released
 				eventInfo.setEventName("Release");
@@ -990,6 +1024,234 @@ public class ProductRequestServiceUtil implements ApplicationContextAware
 			{
 				throw new CustomException("PRODUCTREQUEST-0057", woData.getKey().getProductRequestName(), String.valueOf(productQuantity), String.valueOf(remainQty));
 			}
+		}
+	}
+ 	/*
+	 * Name : calculateProductRequestQtyForSTB 
+	 * Desc : This function is calculateProductRequestQtyForSTB 
+	 * Author : hsryu 
+	 * Date : 2020.11.05
+	 */
+	public void calculateProductRequestQtyForSTB(String productRequestName, String calculateType, long calculateQty, EventInfo eventInfo)
+			throws InvalidStateTransitionSignal, FrameworkErrorSignal, NotFoundSignal, DuplicateNameSignal, CustomException
+	{
+		try
+		{
+			EventInfo eventInfoForWO = EventInfoUtil.makeEventInfo("", eventInfo.getEventUser(), eventInfo.getEventComment(), "", "");
+			eventInfoForWO.setEventTime(eventInfo.getEventTime());
+			eventInfoForWO.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
+
+			ProductRequestKey productRequestKey;
+			productRequestKey = new ProductRequestKey(productRequestName);
+
+			ProductRequest resultData;
+
+			if (calculateType.equals("R"))
+			{
+				if (calculateQty > 0)
+				{
+					eventInfoForWO.setEventName("IncrementReleasedQuantity");
+				}
+				else
+				{
+					eventInfoForWO.setEventName("DecrementReleasedQuantity");
+				}
+
+				// Increment Released Qty
+				IncrementReleasedQuantityByInfo incrementReleasedInfo = new IncrementReleasedQuantityByInfo();
+				incrementReleasedInfo.setQuantity(calculateQty);
+
+				ProductRequest productRequestData = MESWorkOrderServiceProxy.getProductRequestInfoUtil().getProductRequest(
+						productRequestKey.getProductRequestName());
+				MESWorkOrderServiceProxy.getProductRequestServiceImpl().incrementReleasedQuantityBy(productRequestData, incrementReleasedInfo,
+						eventInfoForWO);
+
+				resultData = ProductRequestServiceProxy.getProductRequestService().selectByKeyForUpdate(productRequestKey);
+			}
+			else if (calculateType.equals("F"))
+			{
+				if (calculateQty > 0)
+				{
+					eventInfoForWO.setEventName("IncrementFinishedQuantity");
+				}
+				else
+				{
+					eventInfoForWO.setEventName("DecrementFinishedQuantity");
+				}
+
+				// Increment Finished Qty
+				IncrementFinishedQuantityByInfo incrementFinishedInfo = new IncrementFinishedQuantityByInfo();
+				incrementFinishedInfo.setQuantity(calculateQty);
+
+				ProductRequest productRequestData = MESWorkOrderServiceProxy.getProductRequestInfoUtil().getProductRequest(
+						productRequestKey.getProductRequestName());
+				MESWorkOrderServiceProxy.getProductRequestServiceImpl().incrementFinishedQuantityBy(productRequestData, incrementFinishedInfo,
+						eventInfoForWO);
+
+				resultData = ProductRequestServiceProxy.getProductRequestService().selectByKeyForUpdate(productRequestKey);
+			}
+			else if (calculateType.equals("S"))
+			{
+				IncrementScrappedQuantityByInfo incrementScrappedInfo = new IncrementScrappedQuantityByInfo();
+				incrementScrappedInfo.setQuantity(calculateQty);
+
+				if (calculateQty > 0)
+				{
+					eventInfoForWO.setEventName("IncrementScrappedQuantity");
+				}
+				else
+				{
+					eventInfoForWO.setEventName("DecrementScrappedQuantity");
+				}
+
+				ProductRequest productRequestData = MESWorkOrderServiceProxy.getProductRequestInfoUtil().getProductRequest(
+						productRequestKey.getProductRequestName());
+				MESWorkOrderServiceProxy.getProductRequestServiceImpl().incrementScrappedQuantityBy(productRequestData, incrementScrappedInfo,
+						eventInfoForWO);
+
+				resultData = ProductRequestServiceProxy.getProductRequestService().selectByKeyForUpdate(productRequestKey);
+			}
+			else
+			{
+				throw new CustomException("calcultate Type Error !");
+			}
+
+			if (calculateType.equals("R"))
+			{
+				if ((resultData.getProductRequestState().equals(GenericServiceProxy.getConstantMap().Prq_Planned) || resultData
+						.getProductRequestState().equals(GenericServiceProxy.getConstantMap().Prq_Assigned)))
+				{
+					if (calculateQty > 0)
+					{
+						if (resultData.getReleasedQuantity() >= resultData.getPlanQuantity())
+						{
+							// WO State : Assigned -> Complete
+							eventInfoForWO.setEventName("Complete");
+							eventInfoForWO.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
+							eventInfoForWO.setEventTime(TimeStampUtil.getCurrentTimestamp());
+
+							resultData.setProductRequestState(GenericServiceProxy.getConstantMap().Prq_Completed);
+							resultData.setCompleteTime(eventInfoForWO.getEventTime());
+							resultData.setCompleteUser(TimeUtils.getCurrentEventTimeKey());
+
+							resultData.setLastEventComment(eventInfoForWO.getEventComment());
+							resultData.setLastEventName(eventInfoForWO.getEventName());
+							resultData.setLastEventTime(eventInfoForWO.getEventTime());
+							resultData.setLastEventTimeKey(eventInfoForWO.getEventTimeKey());
+							resultData.setLastEventUser(eventInfoForWO.getEventUser());
+
+							ProductRequestServiceProxy.getProductRequestService().update(resultData);
+
+							MESWorkOrderServiceProxy.getProductRequestServiceUtil().addHistory(resultData, eventInfoForWO);
+						}
+						else if (resultData.getReleasedQuantity() > 0)
+						{
+							// WO State : Assigned -> Released
+							eventInfoForWO.setEventName("Release");
+							eventInfoForWO.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
+							eventInfoForWO.setEventTime(TimeStampUtil.getCurrentTimestamp());
+
+							MakeReleasedInfo makeReleasedInfo = new MakeReleasedInfo();
+							makeReleasedInfo.setUdfs(resultData.getUdfs());
+							MESWorkOrderServiceProxy.getProductRequestServiceImpl().makeReleased(resultData, makeReleasedInfo, eventInfoForWO);
+						}
+					}
+				}
+				else if ((resultData.getProductRequestState().equals(GenericServiceProxy.getConstantMap().Prq_Released)))
+				{
+					if (calculateQty > 0)
+					{
+						// STB
+						if (resultData.getReleasedQuantity() >= resultData.getPlanQuantity())
+						{
+							// WO State : Released -> Complete
+							eventInfoForWO.setEventName("Complete");
+							eventInfoForWO.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
+							eventInfoForWO.setEventTime(TimeStampUtil.getCurrentTimestamp());
+
+							kr.co.aim.greentrack.productrequest.management.info.MakeCompletedInfo makeCompletedInfo = new kr.co.aim.greentrack.productrequest.management.info.MakeCompletedInfo();
+							makeCompletedInfo.setUdfs(resultData.getUdfs());
+							MESWorkOrderServiceProxy.getProductRequestServiceImpl().makeCompleted(resultData, makeCompletedInfo, eventInfoForWO);
+						}
+					}
+					else
+					{
+						// WO State : Released -> Planned.(To do : Change state
+						// 'Planned' -> Assigned')
+						if (resultData.getReleasedQuantity() <= 0)
+						{
+							eventInfoForWO.setEventName("Assign");
+							eventInfoForWO.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
+							eventInfoForWO.setEventTime(TimeStampUtil.getCurrentTimestamp());
+
+							resultData.setProductRequestState(GenericServiceProxy.getConstantMap().Prq_Assigned);
+							resultData.setReleaseTime(null);
+							resultData.setReleaseUser(StringUtil.EMPTY);
+							resultData.setCompleteTime(null);
+							resultData.setCompleteUser(StringUtil.EMPTY);
+
+							resultData.setLastEventComment(eventInfoForWO.getEventComment());
+							resultData.setLastEventName(eventInfoForWO.getEventName());
+							resultData.setLastEventTime(eventInfoForWO.getEventTime());
+							resultData.setLastEventTimeKey(eventInfoForWO.getEventTimeKey());
+							resultData.setLastEventUser(eventInfoForWO.getEventUser());
+
+							ProductRequestServiceProxy.getProductRequestService().update(resultData);
+
+							MESWorkOrderServiceProxy.getProductRequestServiceUtil().addHistory(resultData, eventInfoForWO);
+						}
+					}
+				}
+				else if ((resultData.getProductRequestState().equals(GenericServiceProxy.getConstantMap().Prq_Completed)))
+				{
+					if (calculateQty < 0)
+					{
+						// WO State : Completed -> Assigned.
+						if (resultData.getReleasedQuantity() <= 0)
+						{
+							eventInfoForWO.setEventName("Assign");
+							eventInfoForWO.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
+							eventInfoForWO.setEventTime(TimeStampUtil.getCurrentTimestamp());
+
+							resultData.setProductRequestState(GenericServiceProxy.getConstantMap().Prq_Assigned);
+							resultData.setReleaseTime(null);
+							resultData.setReleaseUser(StringUtil.EMPTY);
+							resultData.setCompleteTime(null);
+							resultData.setCompleteUser(StringUtil.EMPTY);
+
+							resultData.setLastEventComment(eventInfoForWO.getEventComment());
+							resultData.setLastEventName(eventInfoForWO.getEventName());
+							resultData.setLastEventTime(eventInfoForWO.getEventTime());
+							resultData.setLastEventTimeKey(eventInfoForWO.getEventTimeKey());
+							resultData.setLastEventUser(eventInfoForWO.getEventUser());
+
+							ProductRequestServiceProxy.getProductRequestService().update(resultData);
+
+							MESWorkOrderServiceProxy.getProductRequestServiceUtil().addHistory(resultData, eventInfoForWO);
+						}
+						// WO State : Completed -> Release.
+						if (resultData.getReleasedQuantity() < resultData.getPlanQuantity())
+						{
+							// WO State : Assigned -> Released
+							eventInfoForWO.setEventName("Release");
+							eventInfoForWO.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
+							eventInfoForWO.setEventTime(TimeStampUtil.getCurrentTimestamp());
+
+							MakeReleasedInfo makeReleasedInfo = new MakeReleasedInfo();
+							makeReleasedInfo.setUdfs(resultData.getUdfs());
+							MESWorkOrderServiceProxy.getProductRequestServiceImpl().makeReleased(resultData, makeReleasedInfo, eventInfoForWO);
+						}
+					}
+				}
+			}
+		}
+		catch (greenFrameDBErrorSignal ne)
+		{
+			throw new CustomException("", ne.getMessage());
+		}
+		catch (Exception ex)
+		{
+			throw new CustomException(ex);
 		}
 	}
 

@@ -35,20 +35,26 @@ public class ChangeMaterialProperties extends SyncHandler {
 		eventInfo.setEventTimeKey(TimeUtils.getCurrentEventTimeKey());
 		
 		String consumableName = SMessageUtil.getBodyItemValue(doc, "CONSUMABLENAME", true);
-		String materialState = SMessageUtil.getBodyItemValue(doc, "MATERIALSTATE", true);
+		String consumableState = SMessageUtil.getBodyItemValue(doc, "CONSUMABLESTATE", true);
 		String quantity = SMessageUtil.getBodyItemValue(doc, "QUANTITY", true);
 		String productionInputType = SMessageUtil.getBodyItemValue(doc, "PRODUCTIONINPUTTYPE", true);
 		String expirationDate = SMessageUtil.getBodyItemValue(doc, "EXPIRATIONDATE", true);
 		String machineName = SMessageUtil.getBodyItemValue(doc, "MACHINENAME", false);
 		String materialLocationName = SMessageUtil.getBodyItemValue(doc, "MATERIALLOCATIONNAME", false);
-		String reasonCode = SMessageUtil.getBodyItemValue(doc, "REASONCODE", false);
-		String reasonCodeType = "ScrapMaterial";
-		
+//		String consumableHoldState = SMessageUtil.getBodyItemValue(doc, "CONSUMABLEHOLDSTATE", false);
+//		String reasonCode = SMessageUtil.getBodyItemValue(doc, "REASONCODE", false);
+//		String reasonCodeType = "";
+//		if(consumableHoldState.equals(GenericServiceProxy.getConstantMap().Flag_Y) && !consumableState.equals("SCRAPPED"))
+//			reasonCodeType = "HoldMaterial";
+//		else if(consumableState.equals("SCRAPPED"))
+//			reasonCodeType = "ScrapMaterial";
+			
 		ConsumableKey consumableKey = new ConsumableKey();
 		consumableKey.setConsumableName(consumableName);
 		Consumable consumableData = ConsumableServiceProxy.getConsumableService().selectByKeyForUpdate(consumableKey);
-		consumableData.setReasonCode(reasonCode);
-		consumableData.setReasonCodeType(reasonCodeType);
+		consumableData.setConsumableState(consumableState);
+//		consumableData.setReasonCode(reasonCode);
+//		consumableData.setReasonCodeType(reasonCodeType);
 		consumableData.setMaterialLocationName(materialLocationName);
 		consumableData.setQuantity(Integer.parseInt(quantity));
 		
@@ -56,7 +62,7 @@ public class ChangeMaterialProperties extends SyncHandler {
 		udfs.put("MACHINENAME", machineName);
 		udfs.put("EXPIRATIONDATE", expirationDate);
 		udfs.put("PRODUCTIONINPUTTYPE", productionInputType);
-		udfs.put("MATERIALSTATE", materialState);
+//		udfs.put("CONSUMABLEHOLDSTATE", consumableHoldState);
 		consumableData.setUdfs(udfs);
 		
 		ConsumableServiceProxy.getConsumableService().update(consumableData);

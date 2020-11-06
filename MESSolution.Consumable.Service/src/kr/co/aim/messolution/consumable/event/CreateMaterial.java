@@ -5,16 +5,22 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.aim.messolution.consumable.MESConsumableServiceProxy;
+import kr.co.aim.messolution.consumable.service.ConsumableServiceImpl;
+import kr.co.aim.messolution.consumable.service.ConsumableServiceUtil;
 import kr.co.aim.messolution.generic.GenericServiceProxy;
 import kr.co.aim.messolution.generic.errorHandler.CustomException;
 import kr.co.aim.messolution.generic.eventHandler.SyncHandler;
 import kr.co.aim.messolution.generic.util.EventInfoUtil;
 import kr.co.aim.messolution.generic.util.SMessageUtil;
 import kr.co.aim.greentrack.consumable.ConsumableServiceProxy;
+import kr.co.aim.greentrack.consumable.management.ConsumableService;
 import kr.co.aim.greentrack.consumable.management.data.Consumable;
+import kr.co.aim.greentrack.consumable.management.data.ConsumableHistoryKey;
+import kr.co.aim.greentrack.consumable.management.data.ConsumableKey;
 import kr.co.aim.greentrack.consumable.management.data.ConsumableSpec;
 import kr.co.aim.greentrack.consumable.management.data.ConsumableSpecKey;
 import kr.co.aim.greentrack.consumable.management.info.CreateInfo;
+import kr.co.aim.greentrack.consumable.management.info.SetEventInfo;
 import kr.co.aim.greentrack.generic.exception.FrameworkErrorSignal;
 import kr.co.aim.greentrack.generic.exception.NotFoundSignal;
 import kr.co.aim.greentrack.generic.info.EventInfo;
@@ -43,7 +49,7 @@ public class CreateMaterial extends SyncHandler {
 			String consumableType = SMessageUtil.getChildText(eleMaterial, "CONSUMABLETYPE", true);
 			String dueDate= SMessageUtil.getChildText(eleMaterial, "EXPIRATIONDATE", true);
 			String provider = SMessageUtil.getChildText(eleMaterial, "PROVIDER", true);
-			String materialState = SMessageUtil.getChildText(eleMaterial, "MATERIALSTATE", true);
+			String consumableState = SMessageUtil.getChildText(eleMaterial, "CONSUMABLESTATE", true);
 			String thickness = SMessageUtil.getChildText(eleMaterial, "THICKNESS", true);
 			String productionInputType = SMessageUtil.getChildText(eleMaterial, "PRODUCTIONINPUTTYPE", true);
 			/*============= Validation consumableName =============*/
@@ -57,17 +63,28 @@ public class CreateMaterial extends SyncHandler {
 			ConsumableSpec materialSpecData = ConsumableServiceProxy.getConsumableSpecService().selectByKey(consumableSpecKey);
 			
 			Map<String, String> materialUdf = new HashMap<String, String>();
-			materialUdf.put("TRANSPORTSTATE", GenericServiceProxy.getConstantMap().MCS_TRANSFERSTATE_INSTK);
+			materialUdf.put("TRANSPORTSTATE", "");
 		    materialUdf.put("EXPIRATIONDATE", dueDate);
 			materialUdf.put("DURATIONUSED", "0");
 			materialUdf.put("DURATIONUSEDLIMIT", materialSpecData.getUdfs().get("DURATIONUSEDLIMIT"));
 			materialUdf.put("PROVIDER", provider);
-			materialUdf.put("MATERIALSTATE", materialState);
 			materialUdf.put("THICKNESS", thickness);
 			materialUdf.put("PRODUCTIONINPUTTYPE", productionInputType);
 
 			CreateInfo createInfo = MESConsumableServiceProxy.getConsumableInfoUtil().createInfo(factoryName, "", consumableName, consumableSpecName, "00001", consumableType, Double.valueOf(quantity), materialUdf);
 			MESConsumableServiceProxy.getConsumableServiceImpl().createCrate(eventInfo, consumableName, createInfo);
+			
+			ConsumableHistoryKey conHisKey = new ConsumableHistoryKey();
+			conHisKey.setConsumableName(consumableName);			
+			ConsumableServiceProxy.getConsumableHistoryService().deleteLastOne(conHisKey);
+			
+			ConsumableKey conKey = new ConsumableKey();
+			conKey.setConsumableName(consumableName);
+			Consumable consumableData = ConsumableServiceProxy.getConsumableService().selectByKey(conKey);
+			consumableData.setConsumableState(consumableState);			
+			ConsumableServiceProxy.getConsumableService().update(consumableData);
+			SetEventInfo setEventInfo = MESConsumableServiceProxy.getConsumableInfoUtil().setEventInfo(consumableData, consumableData.getAreaName());
+			MESConsumableServiceProxy.getConsumableServiceImpl().setEvent(consumableData.getKey().getConsumableName(), setEventInfo, eventInfo);			
 		}
 		
 		return doc;

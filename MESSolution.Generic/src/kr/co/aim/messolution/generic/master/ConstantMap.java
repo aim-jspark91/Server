@@ -477,6 +477,10 @@ public class ConstantMap extends AbstractConstantMap {
 	 */
 	public String					PrqPlan_Completed					= "Completed";
 	/**
+	 * @uml.property  name="prq_Assigned"
+	 */
+	public String					Prq_Assigned					= "Assigned";
+	/**
 	 * @uml.property  name="prq_NotOnHold"
 	 */
 	public String					Prq_NotOnHold					= "N";

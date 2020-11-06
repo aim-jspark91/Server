@@ -46,6 +46,9 @@ public class CancelCSTGroupID extends SyncHandler {
 	{
 		EventInfo eventInfo = EventInfoUtil.makeEventInfo("CancelSTB", getEventUser(), "CancelSTB", "", "");
 		
+		//2020.11.06_hsryu_exclude Validation(InvalidLotState). Possible change lotstate(Released -> Recieved)
+		eventInfo.setBehaviorName("SPECIAL");
+
 		List<Element> eleArrayLotList = SMessageUtil.getBodySequenceItemList(doc, "ARRAYLOTLIST", false);
 		List<Element> eleCFLotList = SMessageUtil.getBodySequenceItemList(doc, "CFLOTLIST", false);
 		String note = SMessageUtil.getBodyItemValue(doc, "NOTE", true);
@@ -96,7 +99,7 @@ public class CancelCSTGroupID extends SyncHandler {
 //				productsUdfs = product.getUdfs();
 //				productsUdfs.put("PROCESSGROUPNAME", StringUtils.EMPTY);
 //			}
-
+			
 			ChangeSpecInfo changeSpecInfo = MESLotServiceProxy.getLotInfoUtil().changeSpecInfo (
 					lotName, 
 					lotData.getProductionType(), 
@@ -111,7 +114,7 @@ public class CancelCSTGroupID extends SyncHandler {
 					lotData.getPriority(), 
 					lotData.getFactoryName(),
 					lotData.getAreaName(), 
-					lotData.getLotState(), 
+					GenericServiceProxy.getConstantMap().Lot_Received, 
 					lotData.getLotProcessState(), 
 					lotData.getLotHoldState(), 
 					lotData.getProcessFlowName(), 
@@ -147,7 +150,8 @@ public class CancelCSTGroupID extends SyncHandler {
 			arrayProductRequestKey.setProductRequestName(lotData.getProductRequestName());
 			ProductRequest arrayProductRequestData = ProductRequestServiceProxy.getProductRequestService().selectByKey(arrayProductRequestKey);
 						
-			MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(arrayProductRequestData.getKey().getProductRequestName(), "F", -(sumArrayProductQuantity), eventInfo);
+			MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQtyForSTB(arrayProductRequestData.getKey().getProductRequestName(), "R", -(sumArrayProductQuantity), eventInfo);
+			MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQtyForSTB(arrayProductRequestData.getKey().getProductRequestName(), "F", -(sumArrayProductQuantity), eventInfo);
 		}
 		
 		for (Element eleLot : eleCFLotList) {
@@ -194,7 +198,7 @@ public class CancelCSTGroupID extends SyncHandler {
 					lotData.getPriority(), 
 					lotData.getFactoryName(),
 					lotData.getAreaName(), 
-					lotData.getLotState(), 
+					GenericServiceProxy.getConstantMap().Lot_Received, 
 					lotData.getLotProcessState(), 
 					lotData.getLotHoldState(), 
 					lotData.getProcessFlowName(), 
@@ -228,7 +232,8 @@ public class CancelCSTGroupID extends SyncHandler {
 			cfProductRequestKey.setProductRequestName(lotData.getProductRequestName());
 			ProductRequest cfProductRequestData = ProductRequestServiceProxy.getProductRequestService().selectByKey(cfProductRequestKey);
 			
-			MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQty(cfProductRequestData.getKey().getProductRequestName(), "F", -(sumCfProductQuantity), eventInfo);
+			MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQtyForSTB(cfProductRequestData.getKey().getProductRequestName(), "R", -(sumCfProductQuantity), eventInfo);
+			MESWorkOrderServiceProxy.getProductRequestServiceUtil().calculateProductRequestQtyForSTB(cfProductRequestData.getKey().getProductRequestName(), "F", -(sumCfProductQuantity), eventInfo);
 		}
 		
 		return doc;
