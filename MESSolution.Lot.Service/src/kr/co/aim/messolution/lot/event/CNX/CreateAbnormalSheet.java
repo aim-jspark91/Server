@@ -56,14 +56,17 @@ public class CreateAbnormalSheet extends SyncHandler {
 		String abnormalSheetName = "";
 		List<Element> abnormalSheetList = doc.getRootElement().getChild( "Body" ).getChild( "ABNORMALSHEETLIST" ).getChildren( "ABNORMALSHEET" );
 
-		String insertSql = " INSERT INTO CT_ABNORMALSHEET (ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,ACTIONCODE, PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME, DEPARTMENT, DEPARTMENTCOUNT, ENGINEER,LEADER,"
-				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,LASTEVENTTIMEKEY,LASTEVENTTIME,LASTEVENTNAME,LASTEVENTUSER,LASTEVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		String insertSql = " INSERT INTO CT_ABNORMALSHEET (ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,ACTIONCODE, FORMCATE, PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME, DEPARTMENT, DEPARTMENTCOUNT, ENGINEER,LEADER,"
+				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,LASTEVENTTIMEKEY,LASTEVENTTIME,LASTEVENTNAME,LASTEVENTUSER,LASTEVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
-		String insertHistSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,ACTIONCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,DEPARTMENT, DEPARTMENTCOUNT,ENGINEER,LEADER, "
-				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		String insertHistSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,ACTIONCODE,FORMCATE, PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,DEPARTMENT, DEPARTMENTCOUNT,ENGINEER,LEADER, "
+				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		
+		String insertNoteSql = " INSERT INTO CT_ABNORMALSHEETNOTE (ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,NOTE,CREATEUSER,CREATETIME) " + " VALUES(?,?,?,?,?,?) ";
 
 		List<Object[]> insertAbnormalSheetList = new ArrayList<Object[]>();
 		List<Object[]> insertAbnormalSheetHistList = new ArrayList<Object[]>();
+		List<Object[]> insertAbnormalSheetNoteList = new ArrayList<Object[]>();
 
 		for ( Element abnormalSheet : abnormalSheetList )
 		{
@@ -78,6 +81,7 @@ public class CreateAbnormalSheet extends SyncHandler {
 			String leader = SMessageUtil.getChildText( abnormalSheet, "LEADER", false );
 			String sLotPosition = SMessageUtil.getChildText( abnormalSheet, "SLOTPOSITION", false );
 			String durdate = SMessageUtil.getChildText( abnormalSheet, "DUEDATE", false );
+			String formCate = SMessageUtil.getChildText( abnormalSheet, "FORMCATE", false );
 
 			String abnormalSheetNameSql = "SELECT DISTINCT ABNORMALSHEETNAME FROM CT_ABNORMALSHEET A WHERE A.LOTNAME = :LOTNAME";
 			Map<String, String> map = new HashMap<String, String>();
@@ -113,6 +117,7 @@ public class CreateAbnormalSheet extends SyncHandler {
 			insertInfo.add( productName );
 			insertInfo.add( abnormalCode );
 			insertInfo.add(actionCode);
+			insertInfo.add(formCate);
 			insertInfo.add( "001" );
 			insertInfo.add( processOperationName );
 			insertInfo.add( machineName );
@@ -140,6 +145,7 @@ public class CreateAbnormalSheet extends SyncHandler {
 			insertHistory.add( productName );
 			insertHistory.add( abnormalCode );
 			insertHistory.add(actionCode);
+			insertHistory.add(formCate);
 			insertHistory.add( "001" );
 			insertHistory.add( processOperationName );
 			insertHistory.add( machineName );
@@ -157,7 +163,16 @@ public class CreateAbnormalSheet extends SyncHandler {
 			insertHistory.add( eventInfo.getEventComment() );
 
 			insertAbnormalSheetHistList.add( insertHistory.toArray() );
-
+			
+			List<Object> insertNote = new ArrayList<Object>();
+			insertNote.add( abnormalSheetName );
+			insertNote.add( lotName );
+			insertNote.add( productName );
+			insertNote.add( eventInfo.getEventComment() );
+			insertNote.add( eventInfo.getEventUser() );
+			insertNote.add( eventInfo.getEventTime() );
+			insertAbnormalSheetNoteList.add( insertNote.toArray() );
+			
 			LotKey lotKey = new LotKey();
 			lotKey.setLotName( lotName );
 			Lot lotData = new Lot();
@@ -174,6 +189,7 @@ public class CreateAbnormalSheet extends SyncHandler {
 		{
 			GenericServiceProxy.getSqlMesTemplate().updateBatch(insertSql, insertAbnormalSheetList);
 			GenericServiceProxy.getSqlMesTemplate().updateBatch(insertHistSql, insertAbnormalSheetHistList);
+			GenericServiceProxy.getSqlMesTemplate().updateBatch(insertNoteSql, insertAbnormalSheetNoteList);
 		}
 		//Hold Lot
 		eventInfo = EventInfoUtil.makeEventInfo("Hold", getEventUser(), "Hold Lot", "", "");
