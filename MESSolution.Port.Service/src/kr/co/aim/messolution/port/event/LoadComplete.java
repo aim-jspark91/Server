@@ -64,12 +64,6 @@ public class LoadComplete extends AsyncHandler {
 //			makeTransferStateInfo.setUdfs(udfs);
 			makeTransferStateInfo.getUdfs().put("FULLSTATE", GenericServiceProxy.getConstantMap().Port_FULL);
 			makeTransferStateInfo.getUdfs().put("CARRIERNAME", carrierName);
-			
-			//20.11.06 DMLee (Update CST Setting Code)
-			if(!StringUtils.isEmpty(carrierSettingCode) && !StringUtils.equals(portData.getUdfs().get("CSTSETTINGCODE"), carrierSettingCode))
-			{
-				makeTransferStateInfo.getUdfs().put("CSTSETTINGCODE", carrierSettingCode);
-			}
 
 			MESPortServiceProxy.getPortServiceImpl().makeTransferState(portData, makeTransferStateInfo, eventInfo);
 		}
@@ -87,13 +81,17 @@ public class LoadComplete extends AsyncHandler {
 //			setEventInfo.setUdfs(udfs);
 			setEventInfo.getUdfs().put("FULLSTATE", GenericServiceProxy.getConstantMap().Port_FULL);
 			setEventInfo.getUdfs().put("CARRIERNAME", carrierName);
-			
-			//20.11.06 DMLee (Update CST Setting Code)
-			if(!StringUtils.isEmpty(carrierSettingCode) && !StringUtils.equals(portData.getUdfs().get("CSTSETTINGCODE"), carrierSettingCode))
-			{
-				setEventInfo.getUdfs().put("CSTSETTINGCODE", carrierSettingCode);
-			}
 
+			MESPortServiceProxy.getPortServiceImpl().setEvent(portData, setEventInfo, eventInfo);
+		}
+		
+		//20.11.06 DMLee (Update CST Setting Code)
+		if(!StringUtils.isEmpty(carrierSettingCode) && !StringUtils.equals(portData.getUdfs().get("CSTSETTINGCODE"), carrierSettingCode))
+		{
+			eventInfo.setEventName("ChangeCSTSettingCode");
+			SetEventInfo setEventInfo = new SetEventInfo();
+			setEventInfo.getUdfs().put("CSTSETTINGCODE", carrierSettingCode);
+			
 			MESPortServiceProxy.getPortServiceImpl().setEvent(portData, setEventInfo, eventInfo);
 		}
 
