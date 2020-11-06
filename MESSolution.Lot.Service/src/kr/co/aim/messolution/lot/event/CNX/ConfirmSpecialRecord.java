@@ -14,6 +14,8 @@ public class ConfirmSpecialRecord extends SyncHandler {
 		//2019.02.28_hsryu_Delete all Logic.
 		//NOT USE CLASS!
 		
+		//
+		
 		return doc;
 	}
 
