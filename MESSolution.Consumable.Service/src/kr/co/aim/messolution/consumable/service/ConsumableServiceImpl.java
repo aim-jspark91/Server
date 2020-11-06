@@ -159,6 +159,7 @@ public class ConsumableServiceImpl implements ApplicationContextAware
 	{
 		try
 		{
+			eventInfo.setBehaviorName("ARRAY");
 			ConsumableServiceProxy.getConsumableService().decrementQuantity(consumableData.getKey(), eventInfo, decrementQuantityInfo);
 		}
 		catch (InvalidStateTransitionSignal ie)

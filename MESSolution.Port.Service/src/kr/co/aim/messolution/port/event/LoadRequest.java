@@ -31,6 +31,11 @@ public class LoadRequest extends AsyncHandler {
 		String portUseType = SMessageUtil.getBodyItemValue(doc, "PORTUSETYPE", false);
 		String portAccessMode = SMessageUtil.getBodyItemValue(doc, "PORTACCESSMODE", false);
 		
+		//20.11.06 DMLee (Add Item)
+		String carrierSettingCode = SMessageUtil.getBodyItemValue(doc, "CARRIERSETTINGCODE", false);
+		String portStateName = SMessageUtil.getBodyItemValue(doc, "PORTSTATENAME", false);
+		String reserveProductID = SMessageUtil.getBodyItemValue(doc, "REVERSEPRODUCTID", false);
+		
 		Port portData = MESPortServiceProxy.getPortInfoUtil().getPortData(machineName, portName);
 		
 		/* 20190218, hhlee, add, add ReadyToLoad Validation */
@@ -55,6 +60,7 @@ public class LoadRequest extends AsyncHandler {
 //			makeTransferStateInfo.setUdfs(udfs);
 			makeTransferStateInfo.getUdfs().put("CARRIERNAME", "");
 			
+			
 			MESPortServiceProxy.getPortServiceImpl().makeTransferState(portData, makeTransferStateInfo, eventInfo);
 		}
 		
@@ -68,8 +74,21 @@ public class LoadRequest extends AsyncHandler {
 //			setEventInfo.setUdfs(portData.getUdfs());
 			setEventInfo.getUdfs().put("FULLSTATE", GenericServiceProxy.getConstantMap().Port_EMPTY);
 			
+			
 			MESPortServiceProxy.getPortServiceImpl().setEvent(portData, setEventInfo, eventInfo);
 		}
+		
+		
+		//20.11.06 DMLee (Update CST Setting Code)
+		if(!StringUtils.isEmpty(carrierSettingCode) && !StringUtils.equals(portData.getUdfs().get("CSTSETTINGCODE"), carrierSettingCode))
+		{
+			eventInfo.setEventName("ChangeCSTSettingCode");
+			SetEventInfo setEventInfo = new SetEventInfo();
+			setEventInfo.getUdfs().put("CSTSETTINGCODE", carrierSettingCode);
+			
+			MESPortServiceProxy.getPortServiceImpl().setEvent(portData, setEventInfo, eventInfo);
+		}
+		
 		
 		/* 20181116, hhlee, add, add FACTORYNAME Element (Requsted by DSP) ==>> */
         SMessageUtil.setBodyItemValue(doc, "FACTORYNAME", GenericServiceProxy.getConstantMap().DEFAULT_FACTORY, true);

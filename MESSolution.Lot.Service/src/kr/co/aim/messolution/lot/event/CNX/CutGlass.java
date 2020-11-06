@@ -24,12 +24,13 @@ public class CutGlass extends SyncHandler {
 		
 		List<Element> productElement = SMessageUtil.getBodySequenceItemList(doc, "PRODUCTLIST", true);
 		
+		//EventInfo
+		EventInfo eventInfo = EventInfoUtil.makeEventInfo("Cut", this.getEventUser(), this.getEventComment(), "", "");
+		
 		if(productElement.size() > 0)
 		{
 			for (Element productInfo : productElement)
 			{
-				//EventInfo
-				EventInfo eventInfo = EventInfoUtil.makeEventInfo("Cut", this.getEventUser(), this.getEventComment(), "", "");
 
 				String sProductName = productInfo.getChild("PRODUCTNAME").getText();
 				
@@ -37,7 +38,7 @@ public class CutGlass extends SyncHandler {
 				
 				List<ProductPGQS> productPGQSList = new ArrayList<ProductPGQS>();
 				
-				for(int i=0; i<productData.getSubProductQuantity(); i++)
+				for(int i=0; i<2; i++)//2는 수정해야됨 (Cutting Modeling 기능 개발)
 				{
 					ProductPGQS productPGQS = new ProductPGQS();
 					productPGQS.setProductName(productData.getKey().getProductName()+(i+1));
@@ -51,13 +52,15 @@ public class CutGlass extends SyncHandler {
 				}
 				
 				SeparateInfo separateProductInfo = new SeparateInfo();
-				separateProductInfo.setProductType("Cut");
-				separateProductInfo.setSubProductType("Panel");
+				separateProductInfo.setProductType("Panel");
+				separateProductInfo.setSubProductType("");
 				separateProductInfo.setSubProductPGQSSequence(productPGQSList);
 				
 				ProductServiceProxy.getProductService().separate(productData.getKey(), eventInfo, separateProductInfo);
 			}
 		}
+		
+		SMessageUtil.addItemToBody(doc, "LASTEVENTTIMEKEY", eventInfo.getEventTimeKey());
 		
 		return doc;
 	}

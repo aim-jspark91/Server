@@ -33,6 +33,11 @@ public class UnloadComplete extends AsyncHandler {
         String portType = SMessageUtil.getBodyItemValue(doc, "PORTTYPE", false);
         String portUseType = SMessageUtil.getBodyItemValue(doc, "PORTUSETYPE", false);
         String portAccessMode = SMessageUtil.getBodyItemValue(doc, "PORTACCESSMODE", false);
+        
+        //20.11.06 DMLee (Add Item)
+  		String carrierSettingCode = SMessageUtil.getBodyItemValue(doc, "CARRIERSETTINGCODE", false);
+  		String portStateName = SMessageUtil.getBodyItemValue(doc, "PORTSTATENAME", false);
+  		String reserveProductID = SMessageUtil.getBodyItemValue(doc, "REVERSEPRODUCTID", false);
 
         if(StringUtil.equals(StringUtil.upperCase(portAccessMode), StringUtil.upperCase(GenericServiceProxy.getConstantMap().PORT_ACCESSMODE_MANUAL)))
         {
@@ -81,6 +86,16 @@ public class UnloadComplete extends AsyncHandler {
 
             MESPortServiceProxy.getPortServiceImpl().setEvent(portData, setEventInfo, eventInfo);
         }
+        
+		//20.11.06 DMLee (Update CST Setting Code)
+		if(!StringUtils.isEmpty(carrierSettingCode) && !StringUtils.equals(portData.getUdfs().get("CSTSETTINGCODE"), carrierSettingCode))
+		{
+			eventInfo.setEventName("ChangeCSTSettingCode");
+			SetEventInfo setEventInfo = new SetEventInfo();
+			setEventInfo.getUdfs().put("CSTSETTINGCODE", carrierSettingCode);
+			
+			MESPortServiceProxy.getPortServiceImpl().setEvent(portData, setEventInfo, eventInfo);
+		}
 
         /* 20180531, Carrier Hold processed if CleanCSTEnd is not reported. ==>> */
         //cleaning EQP
