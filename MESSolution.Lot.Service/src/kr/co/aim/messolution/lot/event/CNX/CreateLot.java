@@ -143,10 +143,11 @@ public class CreateLot extends SyncHandler {
 		
 		//List<String> lotNameList = CommonUtil.generateNameByNamingRule("GlassLotNaming", nameRuleAttrMap, eLotList.getChildren().size());
 		
+		//20.11.09 dmlee (H5LotNamingRule)
 		List<String> argSeq = new ArrayList<String>();
-		//20200910 mgkang "GlassLotNaming" -> "ArrayLotNaming"
-		//List<String> lotNameList = NameServiceProxy.getNameGeneratorRuleDefService().generateName("ArrayLotNaming", argSeq, eLotList.getChildren().size());
-		List<String> lotNameList = NameServiceProxy.getNameGeneratorRuleDefService().generateName("GlassLotNaming", argSeq, eLotList.getChildren().size());
+		String factoryCode = GenericServiceProxy.getSpecUtil().getFactoryCode(sFactoryName);
+		argSeq.add(factoryCode);
+		List<String> lotNameList = NameServiceProxy.getNameGeneratorRuleDefService().generateName("H5LotNamingRule", argSeq, eLotList.getChildren().size());
 		
 		int i = 0;
 		
