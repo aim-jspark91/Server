@@ -1,3 +1,4 @@
+
 package kr.co.aim.messolution.lot.event.CNX;
 
 import java.util.ArrayList;

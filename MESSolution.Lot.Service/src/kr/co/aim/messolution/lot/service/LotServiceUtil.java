@@ -11207,7 +11207,7 @@ public class LotServiceUtil implements ApplicationContextAware {
 	* @since 2018-06-21
 	* @return assembleLotData 
 	*/ 
-	public Map<String, String> getBeforeOperName(String factoryName, String processFlowName, String processFlowVersion, String processOperationName, String processOperationVersion)
+	public Map<String, String> getBeforeOperName(String factoryName, String processFlowName, String processFlowVersion, String processOperationName, String processOperationVersion) throws CustomException
 	{ 
 		try
 		{
@@ -11239,16 +11239,19 @@ public class LotServiceUtil implements ApplicationContextAware {
 			
 			List<Map<String, String>> result = GenericServiceProxy.getSqlMesTemplate().queryForList(sql, bindMap);
 
-			if(result.size()>0)
+			if(result!=null && result.size()>0)
 			{
 				return result.get(0);
+			}
+			else{
+				throw new Exception("query result = 0");
 			}
 		}
 		catch(Exception e)
 		{	
+			throw new CustomException("COMMON-0001", e.getMessage());
 		}
 		
-		return null;
 	}
 	
 	
