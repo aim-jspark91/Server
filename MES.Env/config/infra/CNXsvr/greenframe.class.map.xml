@@ -488,6 +488,7 @@
 		<entry key="CommentAbnormalSheet" value="kr.co.aim.messolution.lot.event.CNX.CommentAbnormalSheet"/>
 		<entry key="ClosingAbnormalSheet" value="kr.co.aim.messolution.lot.event.CNX.ClosingAbnormalSheet"/>
 		<entry key="AbnormalSheetAttachFile" value="kr.co.aim.messolution.lot.event.CNX.AbnormalSheetAttachFile"/>
+		<entry key="DeleteAbnormalSheet" value="kr.co.aim.messolution.lot.event.CNX.DeleteAbnormalSheet"/>
 		<entry key="SettingAbnormalCode" value="kr.co.aim.messolution.lot.event.CNX.SettingAbnormalCode"/>
 		<entry key="SettingActionCode" value="kr.co.aim.messolution.lot.event.CNX.SettingActionCode"/>
 		
