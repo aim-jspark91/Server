@@ -15875,7 +15875,8 @@ public class LotServiceUtil implements ApplicationContextAware {
 		sql.append("    AND (POL.PROCESSFLOWVERSION = :PROCESSFLOWVERSION OR POL.PROCESSFLOWVERSION='*') ");
 		sql.append("    AND (POL.PROCESSOPERATIONNAME = :PROCESSOPERATIONNAME OR POL.PROCESSOPERATIONNAME='*') ");
 		sql.append("    AND (POL.PROCESSOPERATIONVERSION = :PROCESSOPERATIONVERSION OR POL.PROCESSOPERATIONVERSION='*') ");
-		sql.append("    AND (instr(POS.LOTJUDGE,:LOTJUDGE)>0 OR  POS.LOTJUDGE='*')");
+		sql.append("    AND (instr(POS.REWORKCONDITIONVALUE,:REWORKCONDITIONVALUE)>0 OR  POS.REWORKCONDITIONVALUE='*')");
+		sql.append("    AND (POS.REWORKCONDITIONTYPE = :REWORKCONDITIONTYPE ) ");
 		sql.append("    AND (POS.CONDITIONVALUE = :CONDITIONVALUE ) ");
 		
 		bindMap.put( "FACTORYNAME", lotData.getFactoryName());
@@ -15886,7 +15887,8 @@ public class LotServiceUtil implements ApplicationContextAware {
 		bindMap.put( "PROCESSFLOWVERSION", lotData.getProcessFlowVersion());
 		bindMap.put( "PROCESSOPERATIONNAME", lotData.getProcessOperationName());
 		bindMap.put( "PROCESSOPERATIONVERSION", lotData.getProcessOperationVersion());
-		bindMap.put( "LOTJUDGE",lotJudge);
+		bindMap.put( "REWORKCONDITIONTYPE","LotJudge");
+		bindMap.put( "REWORKCONDITIONVALUE",lotJudge);
 		bindMap.put( "CONDITIONVALUE",conditionValue );
 		
 		List<ListOrderedMap> sqlResult = greenFrameServiceProxy.getSqlTemplate().queryForList(sql.toString(), bindMap);
