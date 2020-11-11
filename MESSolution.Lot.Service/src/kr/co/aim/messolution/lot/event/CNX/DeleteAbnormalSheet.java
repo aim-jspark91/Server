@@ -55,6 +55,9 @@ public class DeleteAbnormalSheet extends SyncHandler {
 		String abnormalSheetName = SMessageUtil.getBodyItemValue( doc, "ABNORMALSHEETNAME", true );
 		String lotName = SMessageUtil.getBodyItemValue( doc, "LOTNAME", true );
 		String productName = SMessageUtil.getBodyItemValue( doc, "PRODUCTNAME", true );
+		String note = SMessageUtil.getBodyItemValue( doc, "NOTE", true );
+		
+		eventInfo.setEventComment(note);
 
 		//insert History
 		String sql = "SELECT * FROM CT_ABNORMALSHEET WHERE ABNORMALSHEETNAME = :ABNORMALSHEETNAME AND LOTNAME = :LOTNAME AND PRODUCTNAME = :PRODUCTNAME ";
@@ -112,7 +115,17 @@ public class DeleteAbnormalSheet extends SyncHandler {
 		map.put( "PRODUCTNAME", productName );
 		
 		greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().update( DeleteSql, map );
+		
+		
+		String DeleteNoteSql = "DELETE CT_ABNORMALSHEETNOTE WHERE ABNORMALSHEETNAME = :ABNORMALSHEETNAME "
+				+ "AND LOTNAME = :LOTNAME AND PRODUCTNAME = :PRODUCTNAME ";
 
+		Map<String, Object> note_map = new HashMap<String, Object>();
+		note_map.put( "ABNORMALSHEETNAME", abnormalSheetName );
+		note_map.put( "LOTNAME", lotName );
+		note_map.put( "PRODUCTNAME", productName );
+		greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().update( DeleteNoteSql, note_map );
+		
 		return doc;
 	}
 }

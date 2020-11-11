@@ -34,6 +34,7 @@ import kr.co.aim.greentrack.product.ProductServiceProxy;
 import kr.co.aim.greentrack.product.management.data.Product;
 import kr.co.aim.greentrack.product.management.data.ProductKey;
 import kr.co.aim.greentrack.product.management.info.MakeOnHoldInfo;
+
 import org.jdom.Document;
 import org.jdom.Element;
 
@@ -46,6 +47,8 @@ public class ClosingAbnormalSheet extends SyncHandler {
 	{
 		EventInfo eventInfo = EventInfoUtil.makeEventInfo("ClosingAbnormalSheet", getEventUser(), getEventComment(), "", "");
 		List<Element> abnormalSheetList = doc.getRootElement().getChild( "Body" ).getChild( "ABNORMALSHEETLIST" ).getChildren( "ABNORMALSHEET" );
+		
+		String note = SMessageUtil.getBodyItemValue( doc, "NOTE", true );
 		
 		for ( Element abnormalSheet : abnormalSheetList )
 		{
@@ -113,6 +116,16 @@ public class ClosingAbnormalSheet extends SyncHandler {
 
 			greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().update( updateSql, map );
 			GenericServiceProxy.getSqlMesTemplate().updateBatch( insertSql, insertInfo );
+			
+			String updateNoteSql = "UPDATE CT_ABNORMALSHEETNOTE SET NOTE=:NOTE WHERE ABNORMALSHEETNAME = :ABNORMALSHEETNAME "
+					+ "AND LOTNAME = :LOTNAME AND PRODUCTNAME = :PRODUCTNAME ";
+
+			Map<String, Object> note_map = new HashMap<String, Object>();
+			note_map.put( "NOTE", note );
+			note_map.put( "ABNORMALSHEETNAME", abnormalSheetName );
+			note_map.put( "LOTNAME", lotName );
+			note_map.put( "PRODUCTNAME", productName );
+			greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().update( updateNoteSql, note_map );
 		}
 		
 

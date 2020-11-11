@@ -87,7 +87,7 @@ public class CommentAbnormalSheet extends SyncHandler {
 		map2.put( "PRODUCTNAME", productName );
 
 		String insertSql = " INSERT INTO CT_ABNORMALSHEETHISTORY (TIMEKEY,ABNORMALSHEETNAME,LOTNAME,PRODUCTNAME,ABNORMALCODE,PROCESSSTATE,PROCESSOPERATIONNAME,MACHINENAME,DEPARTMENT, DEPARTMENTCOUNT, ENGINEER,LEADER,  "
-				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,ACTIONCODE,EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+				+ " SLOTPOSITION,DUEDATE,CREATEUSER,CREATETIME,ACTIONCODE, FORMCATE, EVENTTIME,EVENTNAME,EVENTUSER,EVENTCOMMENT) " + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		List<Map<String, Object>> sqlResult = greenFrameServiceProxy.getSqlTemplate().getSimpleJdbcTemplate().queryForList( sql.toString(), map2 );
 		List<Object[]> insertInfo = new ArrayList<Object[]>();
@@ -112,6 +112,7 @@ public class CommentAbnormalSheet extends SyncHandler {
 			insert.add( (String) sqlResult.get( 0 ).get( "CREATEUSER" ) );
 			insert.add( (java.sql.Timestamp ) sqlResult.get( 0 ).get( "CREATETIME" ) );
 			insert.add( actionCode );
+			insert.add( (String) sqlResult.get( 0 ).get( "FORMCATE" ));
 			insert.add( eventInfo.getEventTime() );
 			insert.add( "Comment" );
 			insert.add( eventInfo.getEventUser() );
