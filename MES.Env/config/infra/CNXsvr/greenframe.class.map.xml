@@ -246,6 +246,7 @@
 		<entry key="ChangeMaterialSpec" value="kr.co.aim.messolution.consumable.event.ChangeMaterialSpec"/>
 		<entry key="ChangeMaterialQuantity" value="kr.co.aim.messolution.consumable.event.ChangeMaterialQuantity"/>
 		<entry key="UnbondMaterial" value="kr.co.aim.messolution.lot.event.CNX.UnbondMaterial"/>
+		<entry key="BondingMaterial" value="kr.co.aim.messolution.lot.event.CNX.BondingMaterial"/>
 		
 		<!-- Added by smkang on 2018.09.22 - According to EDO's request, Only one material can change to InUse state in a unit. -->
 		<entry key="ProcessingMaterial" value="kr.co.aim.messolution.consumable.event.ProcessingMaterial"/>
