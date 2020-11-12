@@ -392,7 +392,7 @@ public class ModuleTrackOutLot extends SyncHandler {
 	
 	public String generateSplitLotName(String lotName)
 	{
-	    String shortLotName = StringUtil.substring(lotName, 0, 8);
+	    String shortLotName = StringUtil.substring(lotName, 0, 9);
 		List<String> argSeq = new ArrayList<String>();
 		argSeq.add(shortLotName);
 		List<String> lstName = NameServiceProxy.getNameGeneratorRuleDefService().generateName("GlassSplitLotNaming", argSeq, 1);
