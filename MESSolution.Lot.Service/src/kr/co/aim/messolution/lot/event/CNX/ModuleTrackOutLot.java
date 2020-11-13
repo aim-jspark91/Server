@@ -355,16 +355,13 @@ public class ModuleTrackOutLot extends SyncHandler {
 		lotUserColumns.put( "TRANSACTIONID", transactionId );
 		lotUserColumns.put( "RETURNNODESTACK", returnSequenceId );
 
-		makeLoggedOutInfo.setUdfs( lotUserColumns );
-
-		eventInfo.setEventName( "TrackOut" );
-		LotServiceProxy.getLotService().makeLoggedOut( lotData.getKey(), eventInfo, makeLoggedOutInfo );
-
 		// Pol and OLB TrackOut
 		if ( ( detailProcessOperationType.equals( GenericServiceProxy.getConstantMap().CONSUMABLE_TYPE_POL ) || ( detailProcessOperationType.equals( GenericServiceProxy
 						.getConstantMap().MachineGroup_OLB ) ) ) ) 
 		{
 			try {
+				lotData.setProcessGroupName("");
+				LotServiceProxy.getLotService().update(lotData);
 				ConsumableServiceUtil.insertCT_MaterialConsumedByTrackOut( eventInfo, productList, lotData );
 				ConsumableServiceUtil.changeMaterialQuantity(eventInfo, productList);
 			} catch (Exception e) {
@@ -372,6 +369,11 @@ public class ModuleTrackOutLot extends SyncHandler {
 				e.printStackTrace();
 			}
 		}
+		
+		makeLoggedOutInfo.setUdfs( lotUserColumns );
+
+		eventInfo.setEventName( "TrackOut" );
+		LotServiceProxy.getLotService().makeLoggedOut( lotData.getKey(), eventInfo, makeLoggedOutInfo );
 
 		// set return lotname
 		List<Map<String, Object>> returnInfoList = new ArrayList<Map<String, Object>>();
