@@ -61,6 +61,7 @@ public class ReceiveLot extends SyncHandler {
 		String factoryName = SMessageUtil.getBodyItemValue(doc, "TOFACTORYNAME", true);
 		String fromFactoryName = SMessageUtil.getBodyItemValue(doc, "FROMFACTORYNAME", true);
 		String fromProductSpecName = SMessageUtil.getBodyItemValue(doc, "FROMPRODUCTSPECNAME", true);
+		String processFlowName = SMessageUtil.getBodyItemValue(doc, "PROCESSFLOWNAME", true);
 		
 		ProductSpec productSpecData = CommonUtil.getProductSpecByProductSpecName( factoryName, productSpecName, "00001" );
 		
@@ -138,11 +139,6 @@ public class ReceiveLot extends SyncHandler {
 				productSpecName = ConvertUtil.getMapValueByName( results.get( 0 ), "TOPRODUCTSPECNAME" );
 				String processOperationName = ConvertUtil.getMapValueByName( results.get( 0 ), "TOPROCESSOPERATIONNAME" );
 				
-
-				productSpec = CommonUtil.getProductSpecByProductSpecName( factoryName, productSpecName, "00001" );
-
-				String processFlowName = productSpec.getProcessFlowName();
-
 				if(processOperationName.isEmpty()){
 					ProcessOperationSpec processOperationSpec = CommonUtil.getFirstOperation(factoryName, processFlowName);
 					processOperationName = processOperationSpec.getKey().getProcessOperationName();
@@ -166,6 +162,8 @@ public class ReceiveLot extends SyncHandler {
 				changeSpecInfo.setLotProcessState(lot.getLotProcessState());
 				Map<String, String> userColumns = new HashMap<String, String>();
 				userColumns.put("RECEIVEFLAG", GenericServiceProxy.getConstantMap().Flag_Y);
+				userColumns.put("BEFOREFLOWNAME", lot.getProcessFlowName());
+				userColumns.put("BEFOREOPERATIONNAME", lot.getProcessOperationName());
 				changeSpecInfo.setUdfs( userColumns );
 				
 				LotServiceProxy.getLotService().changeSpec( lot.getKey(), eventInfo, changeSpecInfo );
@@ -181,7 +179,7 @@ public class ReceiveLot extends SyncHandler {
 				makeReceivedInfo.setProcessFlowVersion( "00001" );
 				makeReceivedInfo.setProductionType( lot.getProductionType() );
 				makeReceivedInfo.setProductType( productSpecData.getProductType() );
-				makeReceivedInfo.setAreaName(lot.getAreaName());
+				makeReceivedInfo.setAreaName("01 PI");
 				makeReceivedInfo.setSubProductType( productSpecData.getSubProductType() );
 	
 				makeReceivedInfo.setProductUSequence( productUdfs );
@@ -189,6 +187,8 @@ public class ReceiveLot extends SyncHandler {
 				Map<String, String> userColumns = new HashMap<String, String>();
 	
 				userColumns.put("RECEIVEFLAG", GenericServiceProxy.getConstantMap().Flag_Y);
+				userColumns.put("BEFOREFLOWNAME", lot.getProcessFlowName());
+				userColumns.put("BEFOREOPERATIONNAME", lot.getProcessOperationName());
 				
 				makeReceivedInfo.setUdfs( userColumns );
 	

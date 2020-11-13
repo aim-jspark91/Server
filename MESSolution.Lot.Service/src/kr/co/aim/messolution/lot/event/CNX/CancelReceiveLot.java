@@ -91,13 +91,13 @@ public class CancelReceiveLot extends SyncHandler {
 
 			ProductSpec productSpec = CommonUtil.getProductSpecByProductSpecName( factoryName, productSpecName, "00001" );
 
-			String processFlowName = productSpec.getProcessFlowName();
+			String processFlowName = lotData.getUdfs().get("BEFOREFLOWNAME");
 
 			Node nodeData = ProcessFlowServiceProxy.getNodeService().getNode(factoryName, processFlowName, "00001", "ProcessOperation", processOperationName, "00001");
 		
 			List<ProductU> productUdfs = MESLotServiceProxy.getLotInfoUtil().setProductUdfs(lotName);
 			
-			lotData.setDestinationFactoryName(destinationFactoryName);
+			lotData.setDestinationFactoryName(destinationFactoryName);  
 		//	lotData.setAreaName(lotData.getUdfs().get("OLDAREANAME"));
 			LotServiceProxy.getLotService().update(lotData);
 			

@@ -55,7 +55,7 @@ public class ShipLot extends SyncHandler {
 				String processOperationName = SMessageUtil.getChildText(lotE, "PROCESSOPERATIONNAME", true);
 				String lotName        = SMessageUtil.getChildText(lotE, "LOTNAME", true);
 				String destFactoryName = SMessageUtil.getChildText(lotE, "DESTINATIONNFACTORY", true);
-				String destAreaName = SMessageUtil.getChildText(lotE, "DESTINATIONAREANAME", true);
+				String destAreaName = SMessageUtil.getChildText(lotE, "DESTINATIONAREANAME", false);
 				//Lot lotData = MESLotServiceProxy.getLotInfoUtil().getLotData(lotName);
 				
 				// Modified by GJJ mantis:5725 20200309  Lot should be locked to be prevented concurrent executing.
