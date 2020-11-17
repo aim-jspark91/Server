@@ -110,7 +110,7 @@
         <entry key="RegisterSuperLot" value="kr.co.aim.messolution.lot.event.CNX.RegisterSuperLot"/>
         <entry key="ChangeReserveState" value="kr.co.aim.messolution.lot.event.CNX.ChangeReserveState"/>
         <entry key="ChangeBank" value="kr.co.aim.messolution.lot.event.CNX.ChangeBank"/>
-        <entry key="BeolIn" value="kr.co.aim.messolution.lot.event.CNX.BeolIn"/>
+        <entry key="CommonBank" value="kr.co.aim.messolution.lot.event.CNX.CommonBank"/>
         <entry key="AssignWorkOrderForBank" value="kr.co.aim.messolution.lot.event.CNX.AssignWorkOrderForBank"/>
         <entry key="CheckLotValidation" value="kr.co.aim.messolution.lot.event.CNX.CheckLotValidation"/>
         <entry key="CreateYield" value="kr.co.aim.messolution.lot.event.CNX.CreateYield"/>
