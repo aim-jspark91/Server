@@ -32,7 +32,7 @@ import kr.co.aim.greentrack.productrequest.management.data.ProductRequestKey;
 import org.jdom.Document;
 import org.jdom.Element;
 
-public class BeolIn extends SyncHandler {
+public class CommonBank extends SyncHandler {
 
 	@Override
 	public Object doWorks(Document doc) throws CustomException {
@@ -47,8 +47,6 @@ public class BeolIn extends SyncHandler {
 		String processOperationVersion = "00001";
 		
 		ProductSpec productSpecData = GenericServiceProxy.getSpecUtil().getProductSpec(factoryName, productSpecName, GenericServiceProxy.getConstantMap().DEFAULT_ACTIVE_VERSION);
-		String processFlowName = productSpecData.getProcessFlowName();
-		String processFlowVersion = productSpecData.getProcessFlowVersion();
 		List<Element> lotList = SMessageUtil.getBodySequenceItemList(doc, "LOTLIST", true);		
 				
 		//get release qty
@@ -56,59 +54,21 @@ public class BeolIn extends SyncHandler {
 		{
 			String lotName = eLotData.getChild("LOTNAME").getText();
 			Lot lotData = MESLotServiceProxy.getLotInfoUtil().getLotData(lotName);
-						
-			if(!lotData.getProductSpecName().equals( productSpecName ) || 
-					!lotData.getProductSpecVersion().equals( productSpecVersion ) )
-			{
-				lotData.setProductSpecName(productSpecName);
-				lotData.setProductSpecVersion(productSpecVersion);
-				lotData.setProcessFlowName(processFlowName);
-				lotData.setProcessFlowVersion(processFlowVersion);
-				
-				if(lotData.getProcessFlowName().equals( productSpecData.getProcessFlowName() ))
-				{
-					lotData.setProcessOperationName(processOperationName);
-					lotData.setProcessOperationVersion(processOperationVersion);
+			
+	        CommonValidation.checkLotHoldState(lotData);
+	        
+			lotData.setProductSpecName(productSpecName);
+			lotData.setProductSpecVersion(productSpecVersion);
+
+			lotData.setProcessOperationName(processOperationName);
+			lotData.setProcessOperationVersion(processOperationVersion);
 					
-					LotServiceProxy.getLotService().update(lotData);
-					SetEventInfo setEventInfo = new SetEventInfo();
-					LotServiceProxy.getLotService().setEvent(lotData.getKey(), eventInfo, setEventInfo);									
-				}
-				else
-				{
-					String operationName = getFirstOperationName(productSpecData.getKey().getFactoryName(), productSpecData.getProcessFlowName());
-					if(operationName!="")
-					{
-						lotData.setProcessOperationName(operationName);
-						lotData.setProcessOperationVersion(processOperationVersion);
-						
-						LotServiceProxy.getLotService().update(lotData);
-						SetEventInfo setEventInfo = new SetEventInfo();
-						LotServiceProxy.getLotService().setEvent(lotData.getKey(), eventInfo, setEventInfo);
-					}
-				}
-			}
+			LotServiceProxy.getLotService().update(lotData);
+			SetEventInfo setEventInfo = new SetEventInfo();
+			LotServiceProxy.getLotService().setEvent(lotData.getKey(), eventInfo, setEventInfo);		
+			
 		}
 		return doc;
 	}
 	
-	public String getFirstOperationName(String factoryName,String processFlowName)
-	{
-		String operationName ="";
-		String sql ="SELECT NODEID,NODETYPE,PROCESSOPERATIONNAME,PROCESSOPERATIONVERSION FROM V_PROCESSFLOWSEQ WHERE FACTORYNAME=:FACTORYNAME AND PROCESSFLOWNAME=:PROCESSFLOWNAME "
-				 + " AND NODETYPE='ProcessOperation' ORDER BY POSITION ";
-		Map<String,Object> args = new HashMap<String,Object>();
-		args.put( "FACTORYNAME", factoryName );
-		args.put( "PROCESSFLOWNAME", processFlowName );
-		
-		List<Map<String, Object>> result = GenericServiceProxy.getSqlMesTemplate().queryForList(sql, args);
-		if(result.size()>0)
-		{
-			operationName = (String)result.get( 0 ).get( "PROCESSOPERATIONNAME" );
-		}
-				
-        return operationName;
-				
-	}
-
 }
