@@ -16191,5 +16191,41 @@ public class LotServiceUtil implements ApplicationContextAware {
 			return false;
 		}
 	}
+	
+	public void TrackInLotForBank(Lot lotData, EventInfo eventInfo) throws CustomException
+	{
+		
+		eventInfo = EventInfoUtil.makeEventInfo("", eventInfo.getEventUser(),eventInfo.getEventComment(), null, null);
+	
+		// TrackIn
+		//MakeLoggedInInfo makeLoggedInInfo = MESLotServiceProxy.getLotInfoUtil().makeLoggedInInfo(lotData.getMachineName(), lotData, productCSequence,lotUdfs);
+
+		MakeLoggedInInfo makeLoggedInInfo = new MakeLoggedInInfo();
+		String carrierName = lotData.getCarrierName();
+		
+		eventInfo.setEventName("BankIn");
+		Lot trackInLot = MESLotServiceProxy.getLotServiceImpl().trackInLot(eventInfo, lotData, makeLoggedInInfo);
+
+		trackInLot = MESLotServiceProxy.getLotServiceUtil().executeSampleLot(trackInLot);
+	}
+	
+	public void TrackOutLotForBank(Lot lotData, EventInfo eventInfo) throws CustomException
+	{
+		eventInfo = EventInfoUtil.makeEventInfo("", eventInfo.getEventUser(),eventInfo.getEventComment(), null, null);
+
+		List<Product> productDataList = ProductServiceProxy.getProductService().allUnScrappedProductsByLot(lotData.getKey().getLotName());
+
+		// TrackOut
+		List<ProductC> productCSequence = MESLotServiceProxy.getLotInfoUtil().setProductCSequence(lotData.getKey().getLotName());
+		
+		//MakeLoggedInInfo makeLoggedInInfo = MESLotServiceProxy.getLotInfoUtil().makeLoggedInInfo(lotData.getMachineName(), lotData, productCSequence,lotUdfs);
+
+		MakeLoggedOutInfo makeLoggedOutInfo = new MakeLoggedOutInfo();
+		String carrierName = lotData.getCarrierName();
+		
+		eventInfo.setEventName("BankOut");
+		Lot trackOutLot = MESLotServiceProxy.getLotServiceImpl().trackOutLot(eventInfo, lotData, makeLoggedOutInfo);
+
+	}
 
 }
