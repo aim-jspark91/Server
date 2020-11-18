@@ -111,6 +111,7 @@
         <entry key="ChangeReserveState" value="kr.co.aim.messolution.lot.event.CNX.ChangeReserveState"/>
         <entry key="ChangeBank" value="kr.co.aim.messolution.lot.event.CNX.ChangeBank"/>
         <entry key="CommonBank" value="kr.co.aim.messolution.lot.event.CNX.CommonBank"/>
+        <entry key="BankInOut" value="kr.co.aim.messolution.lot.event.CNX.BankInOut"/>
         <entry key="AssignWorkOrderForBank" value="kr.co.aim.messolution.lot.event.CNX.AssignWorkOrderForBank"/>
         <entry key="CheckLotValidation" value="kr.co.aim.messolution.lot.event.CNX.CheckLotValidation"/>
         <entry key="CreateYield" value="kr.co.aim.messolution.lot.event.CNX.CreateYield"/>
