@@ -682,4 +682,9 @@ public class ExtendedObjectProxy extends MESStackTrace implements ApplicationCon
 	{
 		return (TimeScheduleService) CTORMUtil.loadServiceProxy(TimeSchedule.class); 
 	}
+	
+	public static ProductCutModelingService getProductCutModelingService() throws CustomException
+	{
+		return (ProductCutModelingService) CTORMUtil.loadServiceProxy(ProductCutModeling.class);
+	}
 }
