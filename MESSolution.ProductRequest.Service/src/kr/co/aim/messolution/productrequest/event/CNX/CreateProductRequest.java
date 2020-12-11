@@ -3,13 +3,6 @@ package kr.co.aim.messolution.productrequest.event.CNX;
 import java.util.HashMap;
 import java.util.Map;
 
-import kr.co.aim.messolution.generic.GenericServiceProxy;
-import kr.co.aim.messolution.generic.errorHandler.CustomException;
-import kr.co.aim.messolution.generic.eventHandler.SyncHandler;
-import kr.co.aim.messolution.generic.util.CommonUtil;
-import kr.co.aim.messolution.generic.util.EventInfoUtil;
-import kr.co.aim.messolution.generic.util.SMessageUtil;
-import kr.co.aim.messolution.productrequest.MESWorkOrderServiceProxy;
 import kr.co.aim.greenframe.util.time.TimeStampUtil;
 import kr.co.aim.greentrack.generic.info.EventInfo;
 import kr.co.aim.greentrack.generic.util.StringUtil;
@@ -17,6 +10,14 @@ import kr.co.aim.greentrack.productrequest.ProductRequestServiceProxy;
 import kr.co.aim.greentrack.productrequest.management.data.ProductRequest;
 import kr.co.aim.greentrack.productrequest.management.data.ProductRequestKey;
 import kr.co.aim.greentrack.productrequest.management.info.CreateInfo;
+import kr.co.aim.greentrack.productrequest.management.info.SetEventInfo;
+import kr.co.aim.messolution.generic.GenericServiceProxy;
+import kr.co.aim.messolution.generic.errorHandler.CustomException;
+import kr.co.aim.messolution.generic.eventHandler.SyncHandler;
+import kr.co.aim.messolution.generic.util.CommonUtil;
+import kr.co.aim.messolution.generic.util.EventInfoUtil;
+import kr.co.aim.messolution.generic.util.SMessageUtil;
+import kr.co.aim.messolution.productrequest.MESWorkOrderServiceProxy;
 
 import org.apache.commons.lang.StringUtils;
 import org.jdom.Document;
@@ -111,6 +112,11 @@ public class CreateProductRequest extends SyncHandler
 		
 		resultData.setProductRequestHoldState(GenericServiceProxy.getConstantMap().Prq_OnHold);
 		ProductRequestServiceProxy.getProductRequestService().update(resultData);
+		
+		SetEventInfo aa = new SetEventInfo();
+		ProductRequestServiceProxy.getProductRequestService().setEvent(resultData.getKey(), eventInfo, aa);
+		
+		
 
 		//Add History
 		MESWorkOrderServiceProxy.getProductRequestServiceUtil().addHistory(resultData, eventInfo);				
